@@ -40,7 +40,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -78,8 +78,14 @@ wechatpay: /IMG_4730.JPG
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: Fan
-algolia_search:enable: false
+theme: clexy
+
+
+#prism_plugin:
+prism_plugin:
+  mode: 'preprocess'
+  theme: 'default'
+  line_number: false
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -87,4 +93,18 @@ deploy:
   type: git
   repo: git@github.com:boywithsmalleyes/boywithsmalleyes.github.io.git
   branch: master
+
+about : {
+  name : "Tony.wang",
+  intro1 : "Android 工程师",
+  intro2 : "Android SDK 开发工程师",
+  linkedin : "https://www.linkedin.com/in/%E6%97%AD-%E7%8E%8B-76414b110/",
+  # facebook : "https://www.facebook.com/mkkhedawat",
+  # twitter : "https://twitter.com/mkkhedawat",
+  # instagram : "https://www.instagram.com/mkkhedawat/",
+  email : "zhuangbudong@gmail.com",
+  github : "https://github.com/boywithsmalleyes",
+  # stackoverflow : "https://stackoverflow.com/users/1608029/mkkhedawat",
+  # sourceforge : "https://sourceforge.net/u/mkkhedawat/profile/"
+}
 
