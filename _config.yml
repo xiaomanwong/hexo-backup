@@ -77,7 +77,9 @@ wechatpay: /IMG_4730.JPG
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: Fan
+algolia_search:enable: false
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
