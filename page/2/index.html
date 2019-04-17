@@ -1,88 +1,749 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><h4 class="page-title">Recent Articles</h4><a href="/2019/04/17/事件分发/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline"></h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">事件分发事件分发的三个方法
+<!DOCTYPE html>
 
-dispatchTouchEvent(MotionEvent event) 
- 判断当前 View 是否要消费此事件，消费，则不再向下传递，反之传递，以此来分发事件；
 
-onInterceptTouchEvent(MotionEvent event) 
- 通过 dispatchTouchEvent 调用， 返回值用来判断当前 View 是否要消费事件；
 
-onTouchEvent(MotionEvent e</p></article></a><a href="/2019/04/17/hello-world/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Hello World</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new p</p></article></a><a href="/2019/04/16/Java-判断字符串是否是数字的方法/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Java 判断字符串是否是数字的方法</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">
-使用 Java自带的函数
 
-public static boolean isNumeric (String str) {
-    for (int i = str.length(); --i &amp;gt;=0) {
-          if (!Character.isDigit(str.charAt(i))) {
-                return false;
-          }
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
-    return tru</p></article></a><a href="/2019/04/16/Android-中设置全屏的方法/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Android 中设置全屏的方法</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">在开发中,我们经常需要把我们的应用设置为全屏,这里有两种方式: 一是在代码中设置; 二是在配置文件中设置
-一. 在代码中设置public class BaseActivity extends Activity {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(saveInstanceState);
-  </p></article></a><a href="/2019/04/16/Android-获取-IP-地址/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Android 获取 IP 地址</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,
-第一种方法: 
-  WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  
-  WifiInfo wifiInfo = wifiManager.getConnectionInfo();  
-  int ipAddress = wifiInfo.getIpAddress</p></article></a><a href="/2019/04/16/Android-在一个应用中启动另外一个应用/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Android 在一个应用中启动另外一个应用</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.
-综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外</p></article></a><a href="/2019/04/16/Android-Studio-Dependencies-Library-Resolve/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Android Studio Dependencies Library Resolve</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">在使用 Android Studio 开发时,使用 Gradle 脚本构建项目, 同 Maven 一样,所引用的包之间也存在着相互依赖的关系, 当你使用某个包之后,发现有包版本冲突, 那么解决方案就来了.
-先说点不正经的:
-
-你可以把你自己引入的包去掉,使用依赖包
-放弃治疗
-
-哈哈,言归正传:
-当我们引入的包之间存在冲突(不是同一个)的关系时, 也就是说,我们需要保留一个项目依赖包使用,那么我们需要在 build.gradle 中将我们</p></article></a><a href="/2019/04/16/git-command/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">git command</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">Git 命令
+  };
+</script>
 
 
-修改记录
-修改时间
-备注
+  
 
 
 
 
-添加删除远程分支
-2018年07月26日13:59:22
-删除远程分支命令
+  <meta property="og:type" content="website">
+<meta property="og:title" content="小 man 的博客">
+<meta property="og:url" content="http://xiaoman.ren/page/2/index.html">
+<meta property="og:site_name" content="小 man 的博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小 man 的博客">
 
 
-更新fork仓库
-2018年08月10日14:16:08
-添加fork的仓库，从主仓库更新代码的命令
 
 
 
-整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^
-Git 文件的三种状态
-已提交：表示该文件已经被安全地保存在本地版本库中，执行过git comm</p></article></a><a href="/2019/04/16/开发一个Android-IoT-App/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">开发一个Android IoT App</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">构建 Android IoT App本文翻译自Building IoT APP for Android Things in 3 step
-前言这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Android 系统衍生出来的，更有意思的是，我们可</p></article></a><a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">Jenkins + gradle + git 构建 Android CI 构建环境</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。
-目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。
-然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。
-因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。
-对于开发工程师，只负责向版本库提交代码，不用关心打包，发布之类的</p></article></a><a href="/2019/04/16/adb-command/" class="article"><article itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting" class="item"><h2 itemprop="headline">adb command</h2><span class="post-meta"></span><p itemprop="text" class="post-excerpt">
-查看PID
-adb shell ps
+  
+  
+  <link rel="canonical" href="http://xiaoman.ren/page/2/">
 
-查看日志
-全部日志
-adb logcat
 
-按照 PID 筛选日志
-adb logcat | grep &amp;lt;PID&amp;gt;
 
-查询链接设备
-adb devices
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
-重启机器
-adb reboot
+  <title>小 man 的博客</title>
+  
 
-杀死进程服务
-adb kill-server
 
-重启进程服务
-adb start-server
 
-获取机器 Mac 地址
-adb shell cat /sys/class/net/wlan0/a</p></article></a></main></body></html>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小 man 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/adb-command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/adb-command/" class="post-title-link" itemprop="url">adb command</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 17:38:08" itemprop="dateCreated datePublished" datetime="2019-04-16T17:38:08+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 10:01:18" itemprop="dateModified" datetime="2019-04-17T10:01:18+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>查看PID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">全部日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">按照 PID 筛选日志</span><br><span class="line">adb logcat | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询链接设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启机器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>杀死进程服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb kill-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启进程服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb start-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取机器 Mac 地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /sys/class/net/wlan0/address</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 APK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">普通安装</span><br><span class="line">adb install &lt;file path&gt;</span><br><span class="line"></span><br><span class="line">保留数据和缓存文件</span><br><span class="line">adb install -r &lt;file path&gt;</span><br><span class="line"></span><br><span class="line">安装到 SD 卡上</span><br><span class="line">adb install -s &lt;file path&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载 APK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">普通卸载</span><br><span class="line">adb uninstall &lt;package name&gt;</span><br><span class="line"></span><br><span class="line">保留数据和缓存文件</span><br><span class="line">adb uninstall -k &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动应用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -n &lt;package name&gt;/.&lt;activity_class_name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看 CPU 占用率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell top</span><br><span class="line"></span><br><span class="line">查看内存占用前 6 的 app</span><br><span class="line">adb shell top -m 6</span><br><span class="line"></span><br><span class="line">刷新一次内存</span><br><span class="line">adb shell top -n 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>杀死进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell kill &lt;pid&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将 System 分区重新挂在为可读写分区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从本地复制文件到设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push &lt;local&gt; &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从设备复制文件到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull &lt;remote&gt; &lt;local&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看 WiFi 密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /data/misc/wifi/*.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看 bug 报告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb bugreport</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>跑 monkey</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -v -p your.package.name 500</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>截图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screencap -p /sdcard/screenshot.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>录屏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">小 man</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小 man</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

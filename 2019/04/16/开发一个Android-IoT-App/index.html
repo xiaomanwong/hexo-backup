@@ -1,4 +1,392 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>开发一个Android IoT App | 小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">开发一个Android IoT App</h1><span class="post-meta"></span><br><br><h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="构建 Android IoT App本文翻译自Building IoT APP for Android Things in 3 step 前言这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Androi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发一个Android IoT App">
+<meta property="og:url" content="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/index.html">
+<meta property="og:site_name" content="小 man 的博客">
+<meta property="og:description" content="构建 Android IoT App本文翻译自Building IoT APP for Android Things in 3 step 前言这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Androi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-ce68329a358d9cb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-0957d79bc802bd94?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-17T02:01:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开发一个Android IoT App">
+<meta name="twitter:description" content="构建 Android IoT App本文翻译自Building IoT APP for Android Things in 3 step 前言这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Androi">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1550996-ce68329a358d9cb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>开发一个Android IoT App | 小 man 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小 man 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">开发一个Android IoT App
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 17:43:18" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:18+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 10:01:18" itemprop="dateModified" datetime="2019-04-17T10:01:18+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Android 系统衍生出来的，更有意思的是，我们可以使用我们的 Android 知识来开发 Android IoT 应用程序。在开始之前，了解 <a href="http://www.survivingwithandroid.com/2017/01/android-things-android-internet-of-things.html" target="_blank" rel="noopener">Android Things and how it works</a> 是很有必要的。</p>
 <h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>Android IoT App ： 安卓物联网应用</p>
 <p>Raspberry Pi 3 ： 树莓派 3</p>
@@ -19,88 +407,375 @@
 </ul>
 <p>这些引脚索引是非常重要的，因为我们会在 Android IoT App 上使用它。 上电前，请仔细检查 Raspberry 链接是否有异常。</p>
 <p>现在，我们使用  <code>Android Studio</code> 创建一个 IoT 应用，第一步，配置 Android IoT 工程， build.gradle :</p>
-<pre><code>dependencies {
-    provided &#39;com.google.android.things:androidthings:0.1-devpreview&#39;
-}
-</code></pre><p>Android Things 使用 Activity ，就像我们在 Android 中使用一样。因此，让我们创建一个 <code>RGBThingsActivity</code> 类，并在 <code>onCreate</code> 方法中处理 <code>Pin</code> 通信。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    provided &apos;com.google.android.things:androidthings:0.1-devpreview&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Android Things 使用 Activity ，就像我们在 Android 中使用一样。因此，让我们创建一个 <code>RGBThingsActivity</code> 类，并在 <code>onCreate</code> 方法中处理 <code>Pin</code> 通信。</p>
 <h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p>使用 <code>GPIO</code> 引脚与 RGB LED 传递信息。 <code>GPIO</code> 引脚使用可编程的接口去获取设备的状态或者设置输出值（高电平/低电平），使用 Respberry GPIO 音及哦啊，我们开启或关闭三个颜色的组件（红绿蓝）。</p>
 <p>Android Things SDK 提供了一个 <code>PeripheralManagerService</code> 的服务，去抽象 GPIO 通信接口。每当我们想读写数据时都必须使用它。一开始， Android IoT App 初始化服务，并设置引脚值：</p>
-<pre><code>try {
-   PeripheralManagerService manager = new PeripheralManagerService();
-   blueIO = manager.openGpio(&quot;BCM5&quot;);
-   blueIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
-   greenIO = manager.openGpio(&quot;BCM6&quot;);
-   greenIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);
-   redIO = manager.openGpio(&quot;BCM13&quot;);
-   redIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
-   redIO.setValue(false);
-   blueIO.setValue(false);
-   greenIO.setValue(false);
-} catch (IOException e) {
-   Log.w(TAG, &quot;Unable to access GPIO&quot;, e);
-}
-</code></pre><p>这段代码介绍了一些新的重要的新方面。首先,我们必须选对引脚。如果使用的是 Respberry ，我们需要知道每一个引脚都有对应的序号。同样的方式，Android Things 使用相同的寻址模型，不管怎样，引脚的命名都是用不同的方式。通过 <a href="https://developer.android.com/things/hardware/raspberrypi-io.html" target="_blank" rel="noopener">Respberry Pin reference</a> ,下图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">   PeripheralManagerService manager = new PeripheralManagerService();</span><br><span class="line">   blueIO = manager.openGpio(&quot;BCM5&quot;);</span><br><span class="line">   blueIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);</span><br><span class="line">   greenIO = manager.openGpio(&quot;BCM6&quot;);</span><br><span class="line">   greenIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);</span><br><span class="line">   redIO = manager.openGpio(&quot;BCM13&quot;);</span><br><span class="line">   redIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);</span><br><span class="line">   redIO.setValue(false);</span><br><span class="line">   blueIO.setValue(false);</span><br><span class="line">   greenIO.setValue(false);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">   Log.w(TAG, &quot;Unable to access GPIO&quot;, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码介绍了一些新的重要的新方面。首先,我们必须选对引脚。如果使用的是 Respberry ，我们需要知道每一个引脚都有对应的序号。同样的方式，Android Things 使用相同的寻址模型，不管怎样，引脚的命名都是用不同的方式。通过 <a href="https://developer.android.com/things/hardware/raspberrypi-io.html" target="_blank" rel="noopener">Respberry Pin reference</a> ,下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-0957d79bc802bd94?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="树莓派引脚图"></p>
 <p>可以了解到 <code>Respberry Pi 3</code> 的引脚地址。这些地址名称在上面的代码中使用。 例如，要使用引脚BCM5（或引脚29），代码为：</p>
-<pre><code>blueIO = manager.openGpio(&quot;BCM5&quot;);
-</code></pre><p>开始， 我们设置所有的引脚为低电平状态（低电平即为关闭状态），此时 Led 灯为关闭状态。改变引脚的状态值，由低电平调整到高电平，或者有高电平调整为低电平，我们可以看到灯的颜色变化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blueIO = manager.openGpio(&quot;BCM5&quot;);</span><br></pre></td></tr></table></figure>
+<p>开始， 我们设置所有的引脚为低电平状态（低电平即为关闭状态），此时 Led 灯为关闭状态。改变引脚的状态值，由低电平调整到高电平，或者有高电平调整为低电平，我们可以看到灯的颜色变化。</p>
 <h2 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h2><p>Android Things 另外一个有趣的功能是，为我们提供了 UI Interface。 我们开发一个 UI Interface 给 Android IoT App 和开发 Android UI 一样。就像 Android app 一样， Android Things UI 同样是使用 xml 格式开发。 下面例子，我们去配置控制 RGB Led 显示的 3 个开关：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-  &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-            android:orientation=&quot;vertical&quot;
-            android:layout_width=&quot;match_parent&quot;
-            android:layout_height=&quot;match_parent&quot;&gt;
-
- &lt;Switch android:text=&quot;Red&quot;
-         android:layout_width=&quot;wrap_content&quot;
-         android:layout_height=&quot;wrap_content&quot;
-         android:id=&quot;@+id/switchRed&quot;
-         android:layout_marginTop=&quot;20dp&quot;/&gt;
-
- &lt;Switch android:text=&quot;Green&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/switchGreen&quot;
-        android:layout_marginTop=&quot;20dp&quot;/&gt;
-
- &lt;Switch android:text=&quot;Blue&quot;
-         android:layout_width=&quot;wrap_content&quot;
-         android:layout_height=&quot;wrap_content&quot;
-         android:id=&quot;@+id/switchBlue&quot;
-         android:layout_marginTop=&quot;20dp&quot;/&gt;
-
-&lt;/LinearLayout&gt;
-</code></pre><p>在 <code>onCreate</code> 方法中，我们设置 layout 布局：</p>
-<pre><code>@Override
-public void onCreate (Bundle savedInstanceState) {
-    super.onCreate(saveInstanceState);
-    setContentView(R.layout.activity_main);
-    ...
-}
-</code></pre><p>处理用户开关：</p>
-<pre><code>Switch switchRed = (Switch)findViewById(R.id.switchRed);
-switch.setOnCheckedChangedListener(new CompoundButton.OnCheckedChangedListener(){
-    @Override
-    public void onCheckedChanged (CompoundButton buttonView, boolean isChecked){
-        try {
-            redIO.setValue(!isChecked);
-        } catch (IOException e) {
-            Log.w(TAG,&quot;Red GPIO Error&quot;, e);
-        }
-    }
-});
-</code></pre><p>我们必须为其他引脚重复同一段代码。最终结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">  &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">            android:orientation=&quot;vertical&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;Switch android:text=&quot;Red&quot;</span><br><span class="line">         android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">         android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">         android:id=&quot;@+id/switchRed&quot;</span><br><span class="line">         android:layout_marginTop=&quot;20dp&quot;/&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;Switch android:text=&quot;Green&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/switchGreen&quot;</span><br><span class="line">        android:layout_marginTop=&quot;20dp&quot;/&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;Switch android:text=&quot;Blue&quot;</span><br><span class="line">         android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">         android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">         android:id=&quot;@+id/switchBlue&quot;</span><br><span class="line">         android:layout_marginTop=&quot;20dp&quot;/&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>在 <code>onCreate</code> 方法中，我们设置 layout 布局：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onCreate (Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>处理用户开关：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Switch switchRed = (Switch)findViewById(R.id.switchRed);</span><br><span class="line">switch.setOnCheckedChangedListener(new CompoundButton.OnCheckedChangedListener()&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onCheckedChanged (CompoundButton buttonView, boolean isChecked)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            redIO.setValue(!isChecked);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            Log.w(TAG,&quot;Red GPIO Error&quot;, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们必须为其他引脚重复同一段代码。最终结果如下：</p>
 <p>因 MarkDown 模式下， 简书不支持视频播放，请点击一下链接观看。</p>
 <p><a href="https://www.youtube.com/embed/KT_FAqMbbNQ" target="_blank" rel="noopener">最终结果展示–需要翻墙 youtube 上观看</a></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KT_FAqMbbNQ" frameborder="0" allowfullscreen></iframe>
 
 <p>最后，要使用我们的应用程序，我们必须在 <code>Manifest.xml</code> 文件中条件：</p>
-<pre><code>&lt;uses-library android:name=&quot;com.google.android.things&quot;/&gt;
-</code></pre><p>并且声明我的 <code>Activity</code> 是一个 IoT Activity， 启动脚本为：</p>
-<pre><code>&lt;intent-filter&gt;
-    &lt;category android:name=&quot;android.intent.category.IOT_LAUNCHER&quot;/&gt;
-    &lt;category android:name=&quot;android.intent.category.DEFAULT”/&gt;
-&lt;/intent-filter&gt;
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章最后，你已经知道了如何更好的使用 Android Things。 有趣的是，使用一些新的 API Android 开发人员可以准备下一次技术革命成为物联网。此外，开发过程与 Android 应用程序相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-library android:name=&quot;com.google.android.things&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>并且声明我的 <code>Activity</code> 是一个 IoT Activity， 启动脚本为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;intent-filter&gt;</span><br><span class="line">    &lt;category android:name=&quot;android.intent.category.IOT_LAUNCHER&quot;/&gt;</span><br><span class="line">    &lt;category android:name=&quot;android.intent.category.DEFAULT”/&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章最后，你已经知道了如何更好的使用 Android Things。 有趣的是，使用一些新的 API Android 开发人员可以准备下一次技术革命成为物联网。此外，开发过程与 Android 应用程序相同。</p>
 <p>使用简单的几行代码，一个 Android 开发者就可以构建 Android IoT App.</p>
-</article><br><br><span class="next-post"><a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2019/04/16/git-command/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" rel="next" title="Jenkins + gradle + git 构建 Android CI 构建环境">
+                <i class="fa fa-chevron-left"></i> Jenkins + gradle + git 构建 Android CI 构建环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/16/git-command/" rel="prev" title="git command">
+                git command <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">小 man</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建-Android-IoT-App"><span class="nav-number">1.</span> <span class="nav-text">构建 Android IoT App</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词索引"><span class="nav-number">1.2.</span> <span class="nav-text">名词索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.3.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤一"><span class="nav-number">1.4.</span> <span class="nav-text">步骤一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤二"><span class="nav-number">1.5.</span> <span class="nav-text">步骤二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤三"><span class="nav-number">1.6.</span> <span class="nav-text">步骤三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小 man</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
