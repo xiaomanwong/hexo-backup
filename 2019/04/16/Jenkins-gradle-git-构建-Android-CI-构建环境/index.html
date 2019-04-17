@@ -97,6 +97,7 @@
 
 
   <meta name="description" content="前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。 目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。 然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。 因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。 对于开发工程师，只负责向">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jenkins + gradle + git 构建 Android CI 构建环境">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/index.html">
@@ -126,7 +127,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-63b6bcb7b2dfd551.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-58ecc4965ab845ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-4b2fc4b1190ddcd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-04-17T02:01:18.000Z">
+<meta property="og:updated_time" content="2019-04-17T13:55:47.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins + gradle + git 构建 Android CI 构建环境">
 <meta name="twitter:description" content="前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。 目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。 然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。 因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。 对于开发工程师，只负责向">
@@ -373,7 +374,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 10:01:18" itemprop="dateModified" datetime="2019-04-17T10:01:18+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 21:55:47" itemprop="dateModified" datetime="2019-04-17T21:55:47+08:00">2019-04-17</time>
               
             
           </span>
@@ -415,6 +416,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <p>对于产品和测试，只需要从发布页面下载 APK 安装文件，不需要每一次都去工程师哪里索取最新的安装文件。</p>
 <p>CI 的基本工作流程如下：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1"></p>
 <p>我们每一次提交代码（通过git/svn作为版本库）到主干上，根据 CI 的定时任务，检测到版本更新，通过 CI ，将进行打包发布等流程操作。</p>
+<a id="more"></a>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>本文使用 Linux Ubuntu 系统为大家介绍环境的搭建</p>
 <h2 id="环境工具"><a href="#环境工具" class="headerlink" title="环境工具"></a>环境工具</h2><pre><code>1. PC 机(mac/linux)
 2. Java JDK
@@ -511,6 +513,12 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -601,7 +609,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -609,6 +617,25 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           

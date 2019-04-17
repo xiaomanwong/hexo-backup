@@ -97,13 +97,14 @@
 
 
   <meta name="description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 在一个应用中启动另外一个应用">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/index.html">
 <meta property="og:site_name" content="小 man 的博客">
 <meta property="og:description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T02:01:18.000Z">
+<meta property="og:updated_time" content="2019-04-17T13:56:42.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 在一个应用中启动另外一个应用">
 <meta name="twitter:description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
@@ -349,7 +350,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 10:01:18" itemprop="dateModified" datetime="2019-04-17T10:01:18+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 21:56:42" itemprop="dateModified" datetime="2019-04-17T21:56:42+08:00">2019-04-17</time>
               
             
           </span>
@@ -383,9 +384,10 @@
       
 
       
-        <p>Android 在一个应用中启动另外一个应用<br>Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.</p>
+        <h1 id="Android-在一个应用中启动另外一个应用"><a href="#Android-在一个应用中启动另外一个应用" class="headerlink" title="Android 在一个应用中启动另外一个应用"></a>Android 在一个应用中启动另外一个应用</h1><p>Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.</p>
 <p>综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外一个 APP 的方式.</p>
-<h1 id="1-通过-APP-启动另一个-APP"><a href="#1-通过-APP-启动另一个-APP" class="headerlink" title="1. 通过 APP 启动另一个 APP"></a>1. 通过 APP 启动另一个 APP</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String packageName = &quot;com.android.calendar&quot;;</span><br><span class="line">Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);</span><br><span class="line">intent.putExtra(&quot;type&quot;, true);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="1-通过-APP-启动另一个-APP"><a href="#1-通过-APP-启动另一个-APP" class="headerlink" title="1. 通过 APP 启动另一个 APP"></a>1. 通过 APP 启动另一个 APP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String packageName = &quot;com.android.calendar&quot;;</span><br><span class="line">Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);</span><br><span class="line">intent.putExtra(&quot;type&quot;, true);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
 <p>上面的代码,就可以完成从一个 APP 启动另一个 APP 的业务需求, 这里需要注意的是,我们需要检测一下要启动的 APP 是否已经安装,如果应用未安装, 则会 NullPointException.</p>
 <p>通过这种方式, Android 虚拟机会自己在目标 APP 下寻找标签为 <code>android.intent.action.MAIN</code> 的 Activity 启动.</p>
 <p>这里介绍两种方式,检测目标应用是否已经安装</p>
@@ -393,7 +395,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = getPackageName().getLaunchIntentForPackage(packageName);</span><br><span class="line">if (intent == null) &#123;</span><br><span class="line">  // 这里判断 Intent 为空, 说明应用不存在 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>方法二:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PackageInfo packageInfo = getPackageManager(0.getPackageInfo(packageName, 0);</span><br><span class="line">if (packageInfo == null) &#123;</span><br><span class="line">    // 这里如果 packageInfo 为 null, 说明应用不存在</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="2-打开另外一个-APP-指定的-Activity"><a href="#2-打开另外一个-APP-指定的-Activity" class="headerlink" title="2. 打开另外一个 APP 指定的 Activity"></a>2. 打开另外一个 APP 指定的 Activity</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent();</span><br><span class="line">ComponentName componeneName = new ComponeneName(&quot;com.android.calendar&quot;, &quot;com.android.calendar.LaunchActivity&quot;);</span><br><span class="line">intent.setComponent(componeneName);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<h2 id="2-打开另外一个-APP-指定的-Activity"><a href="#2-打开另外一个-APP-指定的-Activity" class="headerlink" title="2. 打开另外一个 APP 指定的 Activity"></a>2. 打开另外一个 APP 指定的 Activity</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent();</span><br><span class="line">ComponentName componeneName = new ComponeneName(&quot;com.android.calendar&quot;, &quot;com.android.calendar.LaunchActivity&quot;);</span><br><span class="line">intent.setComponent(componeneName);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
 <p>值得注意: </p>
 <ul>
 <li>需要将目标 Activity 的 android:export=”true” 属性在所属应用的 AndroidMainfest 里设置为 true, 意思是当前 Activity 允许被外部应用访问, 否则会报错</li>
@@ -403,6 +405,7 @@
 <li>在 5.0 以前的设备上,需要在当前的 AndroidMainfest 里也生命目标Activity, 否则会报错; 但在 5.0 以后的设备上,就不会报错哦</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  Caused by: android.content.ActivityNotFoundException: Unable to find explicit activity class &#123;com.example.fm/com.example.fm.MainFragmentActivity&#125;; </span><br><span class="line">have you declared this activity in your AndroidManifest.xml?</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -423,6 +426,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -442,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/16/Android-获取-IP-地址/" rel="prev" title="Android 获取 IP 地址">
-                Android 获取 IP 地址 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/16/事件分发/" rel="prev" title="事件分发">
+                事件分发 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +522,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -521,6 +530,25 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
@@ -555,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-通过-APP-启动另一个-APP"><span class="nav-number">1.</span> <span class="nav-text">1. 通过 APP 启动另一个 APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-打开另外一个-APP-指定的-Activity"><span class="nav-number">2.</span> <span class="nav-text">2. 打开另外一个 APP 指定的 Activity</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-在一个应用中启动另外一个应用"><span class="nav-number">1.</span> <span class="nav-text">Android 在一个应用中启动另外一个应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-通过-APP-启动另一个-APP"><span class="nav-number">1.1.</span> <span class="nav-text">1. 通过 APP 启动另一个 APP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-打开另外一个-APP-指定的-Activity"><span class="nav-number">1.2.</span> <span class="nav-text">2. 打开另外一个 APP 指定的 Activity</span></a></li></ol></li></ol></div>
             
 
           </div>

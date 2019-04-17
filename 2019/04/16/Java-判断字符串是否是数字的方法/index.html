@@ -97,13 +97,14 @@
 
 
   <meta name="description" content="使用 Java自带的函数  12345678public static boolean isNumeric (String str) &amp;#123;    for (int i = str.length(); --i &amp;gt;=0) &amp;#123;          if (!Character.isDigit(str.charAt(i))) &amp;#123;                return">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 判断字符串是否是数字的方法">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/16/Java-判断字符串是否是数字的方法/index.html">
 <meta property="og:site_name" content="小 man 的博客">
 <meta property="og:description" content="使用 Java自带的函数  12345678public static boolean isNumeric (String str) &amp;#123;    for (int i = str.length(); --i &amp;gt;=0) &amp;#123;          if (!Character.isDigit(str.charAt(i))) &amp;#123;                return">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T02:01:18.000Z">
+<meta property="og:updated_time" content="2019-04-17T13:55:55.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 判断字符串是否是数字的方法">
 <meta name="twitter:description" content="使用 Java自带的函数  12345678public static boolean isNumeric (String str) &amp;#123;    for (int i = str.length(); --i &amp;gt;=0) &amp;#123;          if (!Character.isDigit(str.charAt(i))) &amp;#123;                return">
@@ -349,7 +350,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 10:01:18" itemprop="dateModified" datetime="2019-04-17T10:01:18+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 21:55:55" itemprop="dateModified" datetime="2019-04-17T21:55:55+08:00">2019-04-17</time>
               
             
           </span>
@@ -387,6 +388,7 @@
 <li>使用 Java自带的函数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isNumeric (String str) &#123;</span><br><span class="line">    for (int i = str.length(); --i &gt;=0) &#123;</span><br><span class="line">          if (!Character.isDigit(str.charAt(i))) &#123;</span><br><span class="line">                return false;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <ul>
 <li>使用正则表达式</li>
 </ul>
@@ -404,6 +406,7 @@
 <li>判断是不是浮点型数据</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isDouble(String str) &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;^[-\\+]?[.\\d]*$&quot;);</span><br><span class="line">    return pattern.matcher(str).matches();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -424,6 +427,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
 
       
       
@@ -442,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/17/事件分发/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,7 +510,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -513,6 +518,25 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
