@@ -266,7 +266,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-友情链接">
 
     
     
@@ -274,7 +274,22 @@
 
     
 
-    <a href="/archives/" rel="section">Archives</a>
+    <a href="/https:\\fiissh.tech/" rel="section">友情链接</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+
+    
+
+    <a href="/archives/" rel="section">归档</a>
 
   </li>
 
@@ -807,171 +822,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:54:55" itemprop="dateModified" datetime="2019-04-17T21:54:55+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
-<p><strong>第一种方法: </strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
-<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
-<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
-<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
-<p><strong>第二种方法:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
-<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/事件分发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1090,6 +940,171 @@
             </div>
           
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 21:54:55" itemprop="dateModified" datetime="2019-04-17T21:54:55+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
+<p><strong>第一种方法: </strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
+<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
+<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
+<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
+<p><strong>第二种方法:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
+<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
+
+          
         
       
     </div>
@@ -2013,7 +2028,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives">
                 
                     <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
