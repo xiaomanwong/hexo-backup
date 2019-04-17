@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Android 获取 IP 地址 | 小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Android 获取 IP 地址</h1><span class="post-meta"></span><br><br><p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
+<p><strong>第一种方法: </strong></p>
+<pre class=" language-java"><code class="language-java">  WifiManager wifiManager <span class="token operator">=</span> <span class="token punctuation">(</span>WifiManager<span class="token punctuation">)</span> <span class="token function">getSystemService</span><span class="token punctuation">(</span>WIFI_SERVICE<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  WifiInfo wifiInfo <span class="token operator">=</span> wifiManager<span class="token punctuation">.</span><span class="token function">getConnectionInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  <span class="token keyword">int</span> ipAddress <span class="token operator">=</span> wifiInfo<span class="token punctuation">.</span><span class="token function">getIpAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+</code></pre>
+<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
+<pre><code>String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);
+</code></pre><p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
+<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
+<p><strong>第二种方法:</strong></p>
+<pre><code>  public String getLocalIpAddress() {  
+    try {  
+        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {  
+            NetworkInterface intf = en.nextElement();  
+            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {  
+                InetAddress inetAddress = enumIpAddr.nextElement();  
+                if (!inetAddress.isLoopbackAddress()) {  
+                    return inetAddress.getHostAddress().toString();  
+                }  
+            }  
+        }  
+    } catch (SocketException ex) {  
+        Log.e(LOG_TAG, ex.toString());  
+    }  
+    return null;  
+}  
+</code></pre><p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
+<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
+</article><br><br><span class="next-post"><a href="/2019/04/16/Android-在一个应用中启动另外一个应用/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2019/04/16/Android-中设置全屏的方法/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>

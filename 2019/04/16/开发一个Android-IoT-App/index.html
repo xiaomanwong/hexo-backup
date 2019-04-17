@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>开发一个Android IoT App | 小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">开发一个Android IoT App</h1><span class="post-meta"></span><br><br><h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统– Android Things。Android Things 系统，是由 Android 系统衍生出来的，更有意思的是，我们可以使用我们的 Android 知识来开发 Android IoT 应用程序。在开始之前，了解 <a href="http://www.survivingwithandroid.com/2017/01/android-things-android-internet-of-things.html" target="_blank" rel="noopener">Android Things and how it works</a> 是很有必要的。</p>
+<h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>Android IoT App ： 安卓物联网应用</p>
+<p>Raspberry Pi 3 ： 树莓派 3</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>这篇文章的目标是：</p>
+<ol>
+<li>使用 Android Things 构建一个简单的 RGB Led 控制器</li>
+<li>使用 Android API 构建 Android IoT UI 开发</li>
+</ol>
+<p>我们会使用 <code>Raspberry Pi 3</code> 作为 <a href="http://www.survivingwithandroid.com/2016/08/iot-rapid-prototyping-board.html" target="_blank" rel="noopener">IoT 开发板</a>,你也可以使用其他的开发板去开发 Android Things。</p>
+<p>此Android IoT应用可帮助您熟悉新的Android Things API。 此外，这个物联网应用程序对于开发Android IoT 应用 UI 的概述很有用。</p>
+<h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><p>通常情况下，一个 IoT 工程有两部分， 电气/电子部分和软件部分。让事情变得简单，使我们可以集中精力在Android IoT App, 这个 IoT 应用控制着一个简单的 RGB LED （共阳极）灯。RGB Led 灯使用220Ω电阻链接到 <code>Raspberry</code>， 每个颜色一个，原理图如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-ce68329a358d9cb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引脚原理图"> </p>
+<p>共阳极 RGB LED 灯非常常见，因此 <code>Raspberry Pi 3</code> 为引脚阳极供电。控制 LED 颜色的 RGB 引脚连接到 <code>Raspberry</code> 引脚：</p>
+<ul>
+<li>Pin 29</li>
+<li>Pin 31</li>
+<li>Pin 33</li>
+</ul>
+<p>这些引脚索引是非常重要的，因为我们会在 Android IoT App 上使用它。 上电前，请仔细检查 Raspberry 链接是否有异常。</p>
+<p>现在，我们使用  <code>Android Studio</code> 创建一个 IoT 应用，第一步，配置 Android IoT 工程， build.gradle :</p>
+<pre><code>dependencies {
+    provided &#39;com.google.android.things:androidthings:0.1-devpreview&#39;
+}
+</code></pre><p>Android Things 使用 Activity ，就像我们在 Android 中使用一样。因此，让我们创建一个 <code>RGBThingsActivity</code> 类，并在 <code>onCreate</code> 方法中处理 <code>Pin</code> 通信。</p>
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p>使用 <code>GPIO</code> 引脚与 RGB LED 传递信息。 <code>GPIO</code> 引脚使用可编程的接口去获取设备的状态或者设置输出值（高电平/低电平），使用 Respberry GPIO 音及哦啊，我们开启或关闭三个颜色的组件（红绿蓝）。</p>
+<p>Android Things SDK 提供了一个 <code>PeripheralManagerService</code> 的服务，去抽象 GPIO 通信接口。每当我们想读写数据时都必须使用它。一开始， Android IoT App 初始化服务，并设置引脚值：</p>
+<pre><code>try {
+   PeripheralManagerService manager = new PeripheralManagerService();
+   blueIO = manager.openGpio(&quot;BCM5&quot;);
+   blueIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
+   greenIO = manager.openGpio(&quot;BCM6&quot;);
+   greenIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);
+   redIO = manager.openGpio(&quot;BCM13&quot;);
+   redIO.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
+   redIO.setValue(false);
+   blueIO.setValue(false);
+   greenIO.setValue(false);
+} catch (IOException e) {
+   Log.w(TAG, &quot;Unable to access GPIO&quot;, e);
+}
+</code></pre><p>这段代码介绍了一些新的重要的新方面。首先,我们必须选对引脚。如果使用的是 Respberry ，我们需要知道每一个引脚都有对应的序号。同样的方式，Android Things 使用相同的寻址模型，不管怎样，引脚的命名都是用不同的方式。通过 <a href="https://developer.android.com/things/hardware/raspberrypi-io.html" target="_blank" rel="noopener">Respberry Pin reference</a> ,下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-0957d79bc802bd94?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="树莓派引脚图"></p>
+<p>可以了解到 <code>Respberry Pi 3</code> 的引脚地址。这些地址名称在上面的代码中使用。 例如，要使用引脚BCM5（或引脚29），代码为：</p>
+<pre><code>blueIO = manager.openGpio(&quot;BCM5&quot;);
+</code></pre><p>开始， 我们设置所有的引脚为低电平状态（低电平即为关闭状态），此时 Led 灯为关闭状态。改变引脚的状态值，由低电平调整到高电平，或者有高电平调整为低电平，我们可以看到灯的颜色变化。</p>
+<h2 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h2><p>Android Things 另外一个有趣的功能是，为我们提供了 UI Interface。 我们开发一个 UI Interface 给 Android IoT App 和开发 Android UI 一样。就像 Android app 一样， Android Things UI 同样是使用 xml 格式开发。 下面例子，我们去配置控制 RGB Led 显示的 3 个开关：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+  &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+            android:orientation=&quot;vertical&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot;&gt;
+
+ &lt;Switch android:text=&quot;Red&quot;
+         android:layout_width=&quot;wrap_content&quot;
+         android:layout_height=&quot;wrap_content&quot;
+         android:id=&quot;@+id/switchRed&quot;
+         android:layout_marginTop=&quot;20dp&quot;/&gt;
+
+ &lt;Switch android:text=&quot;Green&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/switchGreen&quot;
+        android:layout_marginTop=&quot;20dp&quot;/&gt;
+
+ &lt;Switch android:text=&quot;Blue&quot;
+         android:layout_width=&quot;wrap_content&quot;
+         android:layout_height=&quot;wrap_content&quot;
+         android:id=&quot;@+id/switchBlue&quot;
+         android:layout_marginTop=&quot;20dp&quot;/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><p>在 <code>onCreate</code> 方法中，我们设置 layout 布局：</p>
+<pre><code>@Override
+public void onCreate (Bundle savedInstanceState) {
+    super.onCreate(saveInstanceState);
+    setContentView(R.layout.activity_main);
+    ...
+}
+</code></pre><p>处理用户开关：</p>
+<pre><code>Switch switchRed = (Switch)findViewById(R.id.switchRed);
+switch.setOnCheckedChangedListener(new CompoundButton.OnCheckedChangedListener(){
+    @Override
+    public void onCheckedChanged (CompoundButton buttonView, boolean isChecked){
+        try {
+            redIO.setValue(!isChecked);
+        } catch (IOException e) {
+            Log.w(TAG,&quot;Red GPIO Error&quot;, e);
+        }
+    }
+});
+</code></pre><p>我们必须为其他引脚重复同一段代码。最终结果如下：</p>
+<p>因 MarkDown 模式下， 简书不支持视频播放，请点击一下链接观看。</p>
+<p><a href="https://www.youtube.com/embed/KT_FAqMbbNQ" target="_blank" rel="noopener">最终结果展示–需要翻墙 youtube 上观看</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KT_FAqMbbNQ" frameborder="0" allowfullscreen></iframe>
+
+<p>最后，要使用我们的应用程序，我们必须在 <code>Manifest.xml</code> 文件中条件：</p>
+<pre><code>&lt;uses-library android:name=&quot;com.google.android.things&quot;/&gt;
+</code></pre><p>并且声明我的 <code>Activity</code> 是一个 IoT Activity， 启动脚本为：</p>
+<pre><code>&lt;intent-filter&gt;
+    &lt;category android:name=&quot;android.intent.category.IOT_LAUNCHER&quot;/&gt;
+    &lt;category android:name=&quot;android.intent.category.DEFAULT”/&gt;
+&lt;/intent-filter&gt;
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章最后，你已经知道了如何更好的使用 Android Things。 有趣的是，使用一些新的 API Android 开发人员可以准备下一次技术革命成为物联网。此外，开发过程与 Android 应用程序相同。</p>
+<p>使用简单的几行代码，一个 Android 开发者就可以构建 Android IoT App.</p>
+</article><br><br><span class="next-post"><a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2019/04/16/git-command/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>

@@ -27,4 +27,4 @@
 <li>事件的传递过程：Activity -&gt; Window(PhoneWindow) -&gt; View -&gt; dispatchTouchEvent -&gt; onInterceptTouchEvent -&gt; onTouchEvent。</li>
 <li>当一个 View 需要处理事件时，如果它设置了 onTouchListener，那么 onTouchListener 中的 onTouch 方法会被回调。这时事件如何处理要看 onTouch 的返回值，返回 false，则当前 View 的 onTouchEvent 被调用，true， 则不调用。View 的 onTouchListener 方法优先级高于 onTouchEvent；onClickListener（需要完成有 up 操作） 方法在 onTouchEvent 中被调用，因此，onClickListener 处于事件传递的尾端。</li>
 </ol>
-</article><br><br><br><br><br></main></body></html>
+</article><br><br><span class="next-post"><a href="/2019/04/17/hello-world/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>

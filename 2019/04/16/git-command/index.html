@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>git command | 小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">git command</h1><span class="post-meta"></span><br><br><h1 id="Git-命令"><a href="#Git-命令" class="headerlink" title="Git 命令"></a>Git 命令</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">修改记录</th>
+<th style="text-align:center">修改时间</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">添加删除远程分支</td>
+<td style="text-align:center">2018年07月26日13:59:22</td>
+<td style="text-align:center">删除远程分支命令</td>
+</tr>
+<tr>
+<td style="text-align:center">更新fork仓库</td>
+<td style="text-align:center">2018年08月10日14:16:08</td>
+<td style="text-align:center">添加fork的仓库，从主仓库更新代码的命令</td>
+</tr>
+</tbody>
+</table>
+<p>整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^</p>
+<h2 id="Git-文件的三种状态"><a href="#Git-文件的三种状态" class="headerlink" title="Git 文件的三种状态"></a>Git 文件的三种状态</h2><ol>
+<li>已提交：表示该文件已经被安全地保存在本地版本库中，执行过git commit。</li>
+<li>已修改：表示修改了某个文件，但还没有提交保存</li>
+<li>已暂存：表示把已修改的文件房子啊下次提交时要保存的清单中，也就是执行了 git add 命令。</li>
+</ol>
+<h2 id="远程仓库与本地代码的配置"><a href="#远程仓库与本地代码的配置" class="headerlink" title="远程仓库与本地代码的配置"></a>远程仓库与本地代码的配置</h2><p>将本地已经有的项目上传到远程空仓库中</p>
+<pre class=" language-git"><code class="language-git">cd &lt;project path>
+git init
+git remote add origin &lt;远程仓库地址>
+git add .
+git commit -m <span class="token string">'提交日志'</span>
+git push -u origin master
+</code></pre>
+<h2 id="Git-基本配置"><a href="#Git-基本配置" class="headerlink" title="Git 基本配置"></a>Git 基本配置</h2><ol>
+<li>配置个人的用户名称和电子邮件地址，每次提交时，都会引用这两条信息，以用来说明是谁提交的更新。</li>
+</ol>
+<p>使用 <code>--global</code> 选项，更改的未用户主目录下的配置，如果想在某个特定的项目中使用其他的名称和邮件，只需要去掉 <code>--global</code> 选项重新配置，新的配置位于当前项目的 <code>.git/config</code> 文件中。</p>
+<pre class=" language-git"><code class="language-git"> git config --global user.name <span class="token string">''</span>yourname<span class="token string">''</span>
+ git config --global user.email  yourname@gmail.com
+</code></pre>
+<ol start="2">
+<li>基础命令</li>
+</ol>
+<blockquote>
+<p>git init</p>
+</blockquote>
+<p>通过此命令会在当前目录创建一个<code>.git</code>的隐藏目录，这是<code>git</code>的第一步。</p>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p><code>git status</code>是最为常用的命令之一，用于检查本地项目的状态.仔细阅读红色/绿色部分，可以获得相关文件的操作信息，根据提示，判断是执行<code>git commit</code> 还是执行<code>git add</code> 操作。</p>
+<blockquote>
+<p>git add</p>
+</blockquote>
+<p>将一个或多个文件添加到 <code>git</code>仓库中，只有通过 <code>git add</code> 添加的文件才会被版本控制管理。</p>
+<p>添加单个文件 <code>git add HelloWorld2.java</code></p>
+<p>添加多个文件 <code>git add --a</code></p>
+<p>添加当前目录所有文件 <code>git add .</code></p>
+<blockquote>
+<p>git rm –cached <file></file></p>
+</blockquote>
+<p>将文件从<code>git</code>追踪列表中移除，只是逻辑删除（从版本库中移除），并不会将本地文件删除</p>
+<blockquote>
+<p>git commit</p>
+</blockquote>
+<p>执行过 <code>git add</code> 命令后，需要将暂存的文件提交到本地仓库中，此时是真正的提交</p>
+<p>带 log 的提交： <code>git commit -m &#39;first commit&#39;</code></p>
+<p>通过编辑器提交: <code>git commit</code></p>
+<p>带log 的提交比较方便，但当你的提交信息有一定格式或者需要提交的文字内容较多时，使用编辑器效果会更好.</p>
+<blockquote>
+<p>git log</p>
+</blockquote>
+<p>查看历史提交记录， 包括<strong>提交人</strong>、<strong>时间</strong>、<strong>信息</strong>、<strong>信息指纹</strong>等.</p>
+<p>查看提交记录： <code>git log</code></p>
+<p>单行展示记录： <code>git log --pretty=oneline</code></p>
+<p>展示全部信息： <code>git log --pretty=fuller</code></p>
+<blockquote>
+<p>git clone &lt;远程仓库地址&gt;</p>
+</blockquote>
+<p>拉取远程仓库代码,此项目并不一定是你所创建</p>
+<p>例如： <code>git clone git@github.com:bboyfeiyu/AndroidEventBus.git</code></p>
+<p>执行完成后，会在本地当前目录创建一个AndroidEventBus的目录来存放仓库代码</p>
+<blockquote>
+<p>git remote</p>
+</blockquote>
+<p>将本地已经<code>init</code>过的工程链接到远程的空仓库中，以此来完成远程版本库的创建</p>
+<p>链接远程版本库： <code>git remote add origin &lt;远程地址&gt;</code></p>
+<blockquote>
+<p>git branch</p>
+</blockquote>
+<p>分支是用来管理代码版本、类型的有效工具，可根据不同的服务对象、不同的上线版本等等，来做代码分离，版本管理操作</p>
+<p>查看分支： <code>git branch</code></p>
+<p>查看带提交信息的分支信息： <code>git branch -v</code></p>
+<p>创建分支： <code>git branch &lt;分支名称&gt;</code></p>
+<p>创建并切换分支： <code>git branch -b &lt;分支名称&gt;</code></p>
+<p>切换分支： <code>git checkout &lt;分支名称&gt;</code></p>
+<p>推送分支： <code>git push origin &lt;分支名称&gt;</code></p>
+<p>删除分支： <code>git branch -d &lt;分支名称&gt;</code></p>
+<p>删除远程分支： <code>git push origin :&lt;分支名称&gt;</code></p>
+<p>合并分支： <code>git merge &lt;分支名称&gt;</code></p>
+<blockquote>
+<p>git tag </p>
+</blockquote>
+<p>会列出所有的 <code>tag</code> 标签信息</p>
+<p>在完成了所有功能、并且经过测试之后，可以封板上线的版本，通常会打一个标签，<strong><em>这是一个很重要的功能</em></strong> </p>
+<p>建议每次上线都要做一次，便于后续的版本检索与维护，通常一个标签就代表了一个正式版本。</p>
+<p>查看本地/远程 tag 标签：<code>git tag</code></p>
+<p>查看模糊 tag 标签： <code>git tag -l &#39;v1.4.2.*&#39;</code></p>
+<p>查看备注 tag 标签： <code>git tag -ln</code></p>
+<p>查看标签信息： <code>git show &lt;标签名&gt;</code></p>
+<p>创建本地 tag 标签： <code>git tag -a &lt;标签名&gt; -m &quot;&lt;标签备注信息&gt;&quot;</code></p>
+<p>删除本地 tag 标签： <code>git tag -d &lt;标签名&gt;</code></p>
+<p>推送远程 tag 标签： <code>git push origin &lt;标签名&gt;</code></p>
+<p>推送全部 tag 标签： <code>git push origin -tags</code></p>
+<p>删除远程 tag 标签： <code>git push origin :refs/tags/&lt;标签名&gt;</code></p>
+<p><strong>查看远程机状态</strong></p>
+<blockquote>
+<p>git remote 用来管理， fork 的项目，与主项目的更新操作</p>
+</blockquote>
+<pre><code>git remote -v
+git remote add upstream git@github.com:XXX/XXX.git
+git fetch upstream
+git merge upstream/master
+git push
+</code></pre><h2 id="使用中的一些技巧"><a href="#使用中的一些技巧" class="headerlink" title="使用中的一些技巧"></a>使用中的一些技巧</h2><p><strong>命名别名</strong><br>复杂并超长的命令，可以通过起别名的方式方便在终端中书协</p>
+<pre><code>git config --global alias.ci commit
+git config --global alias.ck checkout
+git config --global alias.st status
+</code></pre><p>然后就可以很愉快的使用git命令了。</p>
+<pre><code>git st
+</code></pre></article><br><br><span class="next-post"><a href="/2019/04/16/开发一个Android-IoT-App/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2019/04/16/Android-Studio-Dependencies-Library-Resolve/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>

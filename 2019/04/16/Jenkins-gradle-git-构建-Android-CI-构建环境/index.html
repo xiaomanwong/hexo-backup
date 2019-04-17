@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Jenkins + gradle + git 构建 Android CI 构建环境 | 小 man`s Blog</title><meta name="description"><meta name="generator" content="小 man`s Blog"><meta name="author" content="小 man"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="小 man`s Blog" title="小 man`s Blog" itemprop="headline">小 man`s Blog</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Jenkins + gradle + git 构建 Android CI 构建环境</h1><span class="post-meta"></span><br><br><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。</p>
+<p>目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。</p>
+<p>然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。</p>
+<p>因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。</p>
+<p>对于开发工程师，只负责向版本库提交代码，不用关心打包，发布之类的流程。</p>
+<p>对于产品和测试，只需要从发布页面下载 APK 安装文件，不需要每一次都去工程师哪里索取最新的安装文件。</p>
+<p>CI 的基本工作流程如下：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1"></p>
+<p>我们每一次提交代码（通过git/svn作为版本库）到主干上，根据 CI 的定时任务，检测到版本更新，通过 CI ，将进行打包发布等流程操作。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>本文使用 Linux Ubuntu 系统为大家介绍环境的搭建</p>
+<h2 id="环境工具"><a href="#环境工具" class="headerlink" title="环境工具"></a>环境工具</h2><pre><code>1. PC 机(mac/linux)
+2. Java JDK
+3. Android SDK
+4. Gradle
+5. Git
+6. Tomcat
+7. Jenkins
+</code></pre><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Java-环境-安装"><a href="#Java-环境-安装" class="headerlink" title="Java 环境 安装"></a>Java 环境 安装</h3><p>Java JDK, Android SDK, Gradle 可从<a href="http://androiddevtools.cn" target="_blank" rel="noopener">AndroidDevTools</a>处下载获取。</p>
+<h3 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h3><p>git 可通过终端进行安装</p>
+<pre><code>sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+</code></pre><p>安装完成之后通过<code>git --version</code> 检查是否成功</p>
+<p>安装后 git 存储在 <code>/usr/bin/git</code>下</p>
+<h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>通过 Jenkins <a href="https://jenkins.io/index.html" target="_blank" rel="noopener">官方网站</a>下载最新Jenkins.war包</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-d2654c0a1383423a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Jenkins 下载"></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>打开 <code>vi /etc/profile</code></p>
+<p>将下列语句添加在文件的末尾后， 执行 esc-&gt;:wq</p>
+<p>其中环境位置根据自己的所在位置进行相应的更改</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-ffd5f1b87d0e5bbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="环境变量"></p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>激动的你，是不是已经被这些繁琐的东西搞的不耐烦了呢，下面我们开始启动 Jenkins</p>
+<p>将下载好的 Jenkins.war 包， 放入 Tomcat 的 webapps 目录下，进入 bin 目录执行 ./startup.sh 启动 Tomcat。</p>
+<p>启动后，在浏览器中输入： <code>localhost:8080/jenkins</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-cbdb39d4f2f4a85f.png?
+imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>系统管理-&gt; 插件管理-&gt;可选插件：</p>
+<p>在搜索框中搜索以下插件，并进行安装</p>
+<p>git plugin<br>gitlab plugin<br>grade plugin<br>Android Lint Plugin<br>Build Pipeline plugin<br>build timeout plugin<br>build name plugin<br>change assembly-version plugin<br>credentials binding plugin<br>description setter plugin<br>Dynamic parameter plugin<br>Email Extension plugin<br>FindBugs plugin<br>JaCoco plugin<br>Unit attachments plugin<br>Project Description plugin<br>Timestamper<br>Workspace cleanup plugin</p>
+<p>安装完成后，重启。</p>
+<h3 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h3><p>系统管理-&gt;系统设置：</p>
+<p>配置Android 环境，将地址指向本机的 SDK 目录<br><img src="http://upload-images.jianshu.io/upload_images/1550996-5987aabcffb290c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Android environment"></p>
+<p>系统管理-&gt;全局工具配置</p>
+<p>配置 Java， Git ， Gradle 目录等</p>
+<p>JDK：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-b9e29a1ec2b746e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Java JDK"></p>
+<p>Git：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-9c4e88d64fcc2ab9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git"></p>
+<p>Gradle：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-9fbabc7d5c7ca319.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="gradle"></p>
+<p>到此，环境配置，已基本完成。</p>
+<p>下面我们开始进行项目够将操作</p>
+<h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><h3 id="创建Job"><a href="#创建Job" class="headerlink" title="创建Job"></a>创建Job</h3><p>新建-&gt;构建一个自由风格的软件项目:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-2390d86256678c54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建CI工程"></p>
+<h3 id="参数化构建"><a href="#参数化构建" class="headerlink" title="参数化构建"></a>参数化构建</h3><p>通常我们在使用 Android-studio 进行打包时以及签名时，都会用到build.gradle并在其中配置相关属性。再此，我们可以用Jenkins，配置我们的项目参数，例如发布的版本号，构建时间， 上传路径，发布地址，签名打包等等。</p>
+<p>在这里我们先看看 build.gradle 中的构建信息:</p>
+<p>在项目的 moudle 下 build.gradle 文件</p>
+<pre><code>def getDate () {
+    def date = new Date()
+    def formattedDate = date.format(&quot;yyyyMMddHHmm&quot;)
+    return formattedDate
+}
+
+def verName = APP_VERSION
+def verCode = 14
+
+android {
+    ....
+    signingConfigs {
+        release {
+          keyAlias &#39;&#39;
+          keyPassword &#39;&#39;
+          storeFile file (&#39;&#39;)
+          storePassword &#39;&#39;
+       }   
+   }
+
+  defaultConfig {
+      applicationId &quot;cn.zhuangbudong.example&quot;
+      minSdkVersion 18
+      targetSdkVersion 25
+      multiDexEnabled true
+      versionCode verCode
+      versionName verName
+
+      resValues(&quot;string&quot;, &#39;app_version&#39;, verName)
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;
+    }
+
+   lintOptions {
+    abortOnError false
+   }
+
+   dexOptions {
+      javaMaxHeapSize &#39;2g&#39;
+   }
+
+applicationVariants.all { variant -&gt;
+    variant.outputs.each { output -&gt;
+        def newName
+        def timeNow
+        def oldFile = output.outputFile
+        def outDirectory = oldFile.parent
+        if (&quot;true&quot;.equals(IS_JENKINS)) { 
+            timeNow = JENKINS_TIME
+            outDirectory = &quot;/media/nexd/work/android/package/release/&quot;
+            newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
+       } else {
+            timeNow = getDate()
+            if (variant.buildType.name.equals(&#39;debug&#39;)) { 
+               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_debug.apk&quot;  
+          } else { 
+               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
+           } 
+       } 
+       output.outputFile = new File(outDirectory, newName)
+    }}
+
+  }
+}
+</code></pre><p>gradle.properties:</p>
+<pre><code>APP_VERSION=2.0.2
+IS_JENKINS=false
+JENKINS_TIME=&#39;&#39;
+</code></pre><p>在工程中添加以上代码，并在Jenkins中为这些参数赋值。</p>
+<p>下面介绍 Jenkins 参数配置</p>
+<p>勾选参数化构建过程，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-20f69e63a527814c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参数化构建"></p>
+<p>按照下图，添加相关类型的参数，此处注意，Jenkins 配置的参数名要和在android-studio中配置的参数名保持一致</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-e0f4ceb7015ac0da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JENKINS_TIME"><br><img src="http://upload-images.jianshu.io/upload_images/1550996-6e3f8d0311399d74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="APP_VERSION"><br><img src="http://upload-images.jianshu.io/upload_images/1550996-673c2465bcdc9a89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IS_JENKINS"><br><img src="http://upload-images.jianshu.io/upload_images/1550996-a82221191b980ad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ENVIRONMENT"></p>
+<h3 id="源码管理"><a href="#源码管理" class="headerlink" title="源码管理"></a>源码管理</h3><p>此处负责从版本库中拉去最新的代码</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-6dcbd8dd2dd9456c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git 仓库"></p>
+<p>此处如果需要验证，点击 Add， 选择： Username with password</p>
+<p>在对应窗口输入用户名和密码信息<br><img src="http://upload-images.jianshu.io/upload_images/1550996-8af978712a010864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用户身份验证"></p>
+<p>点击添加。</p>
+<p>使用 gitlab 进行源码库管理。</p>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>触发器负责拉取代码，编译，打包，发布等操作。通过触发器，执行Jenkins。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-beb6ff8faa9843f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="触发器构建"></p>
+<h3 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h3><p>此处只是在Jenkins在打包时，配置任务名称即可。如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-45b210c5df916dbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建环境"></p>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>这里是最重要滴，配置以下命令，才能进行打包签名等等。</p>
+<p>如下配置，这里需要注意下，构建文件，根目录。在你的目录结构比较复杂的时候，即你的根目录没有 build.gradle 文件时，需要指定一下 build.gradle 目录的位置。</p>
+<p>同时，也是最重要的，勾选上pass job parameters as gradle properties ，不然之前配置的参数无法传递给项目中的 gradle.properties。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-4e4e6e139fc1e856.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建"></p>
+<h3 id="构建后操作"><a href="#构建后操作" class="headerlink" title="构建后操作"></a>构建后操作</h3><p>当项目构建完成后，我们可以通过邮件的方式将产生的Apk文件，以及测试报告，构建日志等信息，发送出来 如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-63b6bcb7b2dfd551.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="邮件发送"></p>
+<pre><code>&lt;hr/&gt;
+(本邮件是程序自动下发的，请勿回复！)&lt;br/&gt;&lt;hr/&gt;
+项目名称：${PROJECT_NAME}&lt;br/&gt;&lt;hr/&gt;
+构建编号：${BUILD_NUMBER}&lt;br/&gt;&lt;hr/&gt;
+构建状态：${BUILD_STATUS}&lt;br/&gt;&lt;hr/&gt;
+触发原因：${CAUSE}&lt;br/&gt;&lt;hr/&gt;
+测试报告：&lt;a href=&quot;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&quot;&gt;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建日志地址：&lt;a href=&quot;${BUILD_URL}console&quot;&gt;${BUILD_URL}console/&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建地址：&lt;a href=&quot;${PROJECT_URL}&quot;&gt;${PROJECT_URL}&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建报告：&lt;a href=&quot;${BUILD_URL}testReport&quot;&gt;${BUILD_URL}testReport&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+变更集:${JELLY_SCRIPT,template=&quot;html&quot;}&lt;br/&gt;
+
+&lt;hr/&gt;
+</code></pre><h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>回到 Jenkins 首页，点击创建的项目，点击 build with parameters:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-58ecc4965ab845ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Build with Parameters"></p>
+<p>点击开始构建，启动 Jenkins 构建任务。</p>
+<p>构建成功时，显示为蓝色， 失败为红色，如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1550996-4b2fc4b1190ddcd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建结果"></p>
+<p>构建后生成的 Apk 文件，存在 build.gradle 文件中配置的目录。同时也可以使用蒲公英或fir.im 进行发布管理。</p>
+<p>谢谢~</p>
+</article><br><br><span class="next-post"><a href="/2019/04/16/adb-command/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2019/04/16/开发一个Android-IoT-App/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
