@@ -116,7 +116,7 @@
     root: '/',
     scheme: 'Mist',
     version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: false,
     fancybox: false,
@@ -149,6 +149,8 @@
 <meta name="twitter:title" content="小 man 的博客">
 
 
+
+  <link rel="alternate" href="/atom.xml" title="小 man 的博客" type="application/atom+xml">
 
 
 
@@ -274,7 +276,7 @@
 
     
 
-    <a href="/https:\\fiissh.tech/" rel="section">友情链接</a>
+    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank">友情链接</a>
 
   </li>
         
@@ -316,13 +318,6 @@
     </header>
 
     
-  
-  
-
-  
-
-  <a href="https://github.com/boywithsmalleyes" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
-
 
 
     <main id="main" class="main">
@@ -822,6 +817,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 21:54:55" itemprop="dateModified" datetime="2019-04-17T21:54:55+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
+<p><strong>第一种方法: </strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
+<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
+<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
+<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
+<p><strong>第二种方法:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
+<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/事件分发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -940,171 +1100,6 @@
             </div>
           
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:54:55" itemprop="dateModified" datetime="2019-04-17T21:54:55+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
-<p><strong>第一种方法: </strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
-<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
-<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
-<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
-<p><strong>第二种方法:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
-<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
-
-          
         
       
     </div>
@@ -2062,9 +2057,42 @@
           
 
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/boywithsmalleyes" title="GitHub &rarr; https://github.com/boywithsmalleyes" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -2264,6 +2292,41 @@
   
 
   
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
