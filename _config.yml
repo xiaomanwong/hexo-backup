@@ -2,13 +2,95 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+# Header
+menu:
+  主页: /
+  随笔: /tags/随笔/
+
+#SubNav
+subnav:
+  github: "https://github.com/boywithsmalleyes"
+  weibo: "https://weibo.com/1961246517/profile?topnav=1&wvr=6"
+  mail: "zhuangbudong@gmail.com"
+
+# 文章太长，阶段按钮文字
+excerpt_link: more
+#文章卡片右下角常驻链接，不需要请设置为 false
+show_all_link: '展开全文'
+#数学公式
+mathjax: false
+
+#打赏 
+# 打赏 type 设定：0-关闭；1-文章对应的 md 文件里有 reward: true，才有打赏；2-所有文章
+reward_comment: 2
+# 打赏 wording
+reward_wording: '感谢我的糖果🍬'
+weixin: /IMG_4730.JPG
+
+#目录
+# 目录设定： 0-不显示，1-md 中有 toc: true 才有， 2-全部
+toc: 2
+# 快速回到顶部
+top: true
+# 头像
+avatar: http://i1.bvimg.com/512707/03553da20dae3f8f.jpg
+
+#是否开启分享
+share_jia: true
+
+
+# 评论
+# 1、多说
+# 2、网易云跟帖
+# 3、畅言
+# 4、Disqus
+# 5、gitment
+# 不需要使用，值设置为 false，或注释掉
+duoshuo: true
+wangyiyun: false
+changyan_appid: false
+disqus: false
+
+
+style:
+  #头像上面的背景色
+  header: '#4d4d4d'
+  #右滑板块北京
+  slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
+
+# slider
+slider:
+  #是否默认展开 tags 板块
+  showTags: false
+
+# 智能菜单
+# 如不需要，将该对应项置为false
+# 比如
+#smart_menu:
+#  friends: false
+smart_menu:
+  innerArchive: '所有文章'
+  friends: '友链'
+  aboutme: '关于我'
+
+friends:
+  友情链接1: http://localhost:4000/
+  友情链接2: http://localhost:4000/
+  友情链接3: http://localhost:4000/
+  友情链接4: http://localhost:4000/
+  友情链接5: http://localhost:4000/
+  友情链接6: http://localhost:4000/
+
+aboutme: 很惭愧<br><br>只做了一点微小的工作<br>谢谢大家
+
+
 # Site
-title: 小 man`s Blog
+title: 小 man 的博客
 subtitle:
 description:
 keywords:
+email: zhuangbudong@gmail.com
 author:  小 man
-avatar: http://i1.bvimg.com/512707/03553da20dae3f8f.jpg
 language: zh-Hans
 timezone:
 
@@ -40,10 +122,14 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: false
   tab_replace:
+
+# archive: 1
+# category: 1
+# tag: 1
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -71,14 +157,13 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
-#reward_comment:
-wechatpay: /IMG_4730.JPG
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: clexy
+theme: next
+exclude_generator: 
 
 
 #prism_plugin:
@@ -93,18 +178,4 @@ deploy:
   type: git
   repo: git@github.com:boywithsmalleyes/boywithsmalleyes.github.io.git
   branch: master
-
-about : {
-  name : "Tony.wang",
-  intro1 : "Android 工程师",
-  intro2 : "Android SDK 开发工程师",
-  linkedin : "https://www.linkedin.com/in/%E6%97%AD-%E7%8E%8B-76414b110/",
-  # facebook : "https://www.facebook.com/mkkhedawat",
-  # twitter : "https://twitter.com/mkkhedawat",
-  # instagram : "https://www.instagram.com/mkkhedawat/",
-  email : "zhuangbudong@gmail.com",
-  github : "https://github.com/boywithsmalleyes",
-  # stackoverflow : "https://stackoverflow.com/users/1608029/mkkhedawat",
-  # sourceforge : "https://sourceforge.net/u/mkkhedawat/profile/"
-}
 
