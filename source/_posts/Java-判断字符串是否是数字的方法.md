@@ -1,7 +1,7 @@
 ---
 title: Java 判断字符串是否是数字的方法
 date: 2019-04-16 17:47:06
-tags:
+tags: Java
 ---
 
 * 使用 Java自带的函数
@@ -16,6 +16,8 @@ public static boolean isNumeric (String str) {
     return true;
 }
 ```
+
+<!--more-->
 
 * 使用正则表达式
 
@@ -70,3 +72,4 @@ public static boolean isDouble(String str) {
     return pattern.matcher(str).matches();
 }
 ```
+

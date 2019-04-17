@@ -1,7 +1,7 @@
 ---
 title: git command
 date: 2019-04-16 17:43:58
-tags:
+tags: Git
 ---
 
 # Git 命令
@@ -14,6 +14,7 @@ tags:
 
 整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^
 
+<!--more-->
 
 ## Git 文件的三种状态
 
@@ -188,3 +189,4 @@ git config --global alias.st status
 ```
 git st
 ```
+

@@ -1,7 +1,7 @@
 ---
 title: Android Studio Dependencies Library Resolve
 date: 2019-04-16 17:44:39
-tags:
+tags: Android
 ---
 
 在使用 Android Studio 开发时,使用 Gradle 脚本构建项目, 同 Maven 一样,所引用的包之间也存在着相互依赖的关系, 当你使用某个包之后,发现有包版本冲突, 那么解决方案就来了.
@@ -37,3 +37,4 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
 ```
+

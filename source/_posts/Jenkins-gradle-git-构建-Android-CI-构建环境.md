@@ -1,7 +1,7 @@
 ---
 title: Jenkins + gradle + git 构建 Android CI 构建环境
 date: 2019-04-16 17:42:05
-tags:
+tags: Android
 ---
 
 # 前言
@@ -23,6 +23,7 @@ CI 的基本工作流程如下：
 
 我们每一次提交代码（通过git/svn作为版本库）到主干上，根据 CI 的定时任务，检测到版本更新，通过 CI ，将进行打包发布等流程操作。
 
+<!--more-->
 # 准备工作
 
 本文使用 Linux Ubuntu 系统为大家介绍环境的搭建
@@ -324,3 +325,4 @@ JENKINS_TIME=''
 构建后生成的 Apk 文件，存在 build.gradle 文件中配置的目录。同时也可以使用蒲公英或fir.im 进行发布管理。
 
 谢谢~
+

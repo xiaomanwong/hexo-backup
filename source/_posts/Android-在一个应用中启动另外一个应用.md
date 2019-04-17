@@ -1,15 +1,19 @@
 ---
 title: Android 在一个应用中启动另外一个应用
 date: 2019-04-16 17:45:20
-tags:
+tags: Android
 ---
 
-Android 在一个应用中启动另外一个应用
+
+
+# Android 在一个应用中启动另外一个应用
 Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.
 
 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外一个 APP 的方式.
 
-# 1. 通过 APP 启动另一个 APP
+<!--more-->
+
+## 1. 通过 APP 启动另一个 APP
 
 ```
   String packageName = "com.android.calendar";
@@ -42,7 +46,7 @@ if (intent == null) {
   }
 ```
 
-# 2. 打开另外一个 APP 指定的 Activity
+## 2. 打开另外一个 APP 指定的 Activity
 
 ```
     Intent intent = new Intent();
@@ -66,3 +70,6 @@ if (intent == null) {
   Caused by: android.content.ActivityNotFoundException: Unable to find explicit activity class {com.example.fm/com.example.fm.MainFragmentActivity}; 
 have you declared this activity in your AndroidManifest.xml?
 ```
+
+
+

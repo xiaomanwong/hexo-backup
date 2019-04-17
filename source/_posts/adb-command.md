@@ -1,7 +1,7 @@
 ---
 title: adb command
 date: 2019-04-16 17:38:08
-tags:
+tags: Android
 
 ---
 
@@ -26,6 +26,7 @@ tags:
   ```
   adb devices
   ```
+<!--more-->
 
 4. 重启机器
 

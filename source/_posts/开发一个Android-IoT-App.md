@@ -1,13 +1,14 @@
 ---
 title: 开发一个Android IoT App
 date: 2019-04-16 17:43:18
-tags:
+tags: Android Things
 ---
 
 # 构建 Android IoT App
 
 本文翻译自[Building IoT APP for Android Things in 3 step](http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html)
 
+<!--more-->
 ## 前言
 
 这篇文章主要描述了，如何为 Android Things 构建 Android IoT App。 也许你早已经知道了，最近 Google 发布了一个新的 IoT 操作系统-- Android Things。Android Things 系统，是由 Android 系统衍生出来的，更有意思的是，我们可以使用我们的 Android 知识来开发 Android IoT 应用程序。在开始之前，了解 [Android Things and how it works](http://www.survivingwithandroid.com/2017/01/android-things-android-internet-of-things.html) 是很有必要的。
@@ -178,3 +179,4 @@ switch.setOnCheckedChangedListener(new CompoundButton.OnCheckedChangedListener()
 文章最后，你已经知道了如何更好的使用 Android Things。 有趣的是，使用一些新的 API Android 开发人员可以准备下一次技术革命成为物联网。此外，开发过程与 Android 应用程序相同。
 
 使用简单的几行代码，一个 Android 开发者就可以构建 Android IoT App.
+
