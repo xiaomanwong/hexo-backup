@@ -97,8 +97,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[sitemap]]></title>
-    <url>%2Fsitemap%2Findex.html</url>
+    <title><![CDATA[schedule]]></title>
+    <url>%2Fschedule%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -107,8 +107,8 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[schedule]]></title>
-    <url>%2Fschedule%2Findex.html</url>
+    <title><![CDATA[sitemap]]></title>
+    <url>%2Fsitemap%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>
