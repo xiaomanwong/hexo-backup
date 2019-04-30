@@ -299,7 +299,7 @@ public class CommonParamsInterceptor implements Interceptor {
 
 加密的方式又有很多,比如对称加密/非对称加密/Hash(严格的说不是加密),这里先不对加密进行介绍,我们聊聊加签;
 
-加签,其实就是给报文做一个摘要,相同的签名算法得到的摘要是相同的,比如MD5, SH1, SH256等, 简单的加签并不能防止篡改,因为攻击者可以穿改后,自己生成新的签名.服务端验签还是可以通过的,因此加签时一定要包含一些私有的东西,比如私钥.
+加签,其实就是给报文做一个摘要,相同的签名算法得到的摘要是相同的,比如MD5, SH1, SH256等, 简单的加签并不能防止篡改,因为攻击者可以篡改后,自己生成新的签名.服务端验签还是可以通过的,因此加签时一定要包含一些私有的东西,比如私钥.
 
 
 
@@ -307,7 +307,7 @@ public class CommonParamsInterceptor implements Interceptor {
 
 加密规则
 
-1.  根据参数 key 进行排序
+1.  根据请求参数 key 进行排序
 2.  按排好的顺序组装成 key=value&key=value 形式的字符串
 3.  将上述字符串拼接 mid, timestamp, key(私钥) ,最终形成 key=value&key=value&mid&timestamp&key 的字符串
 4.  将字符串 md5 32位小写加密, 生成 auth.
@@ -578,3 +578,6 @@ public class AuthorizeInterceptor implements Interceptor {
 }
 ```
 
+
+
+该加签方式,讲请求参数拼接为 `key=value` 的方式, 难点在于如何从 OkHttp 中获取这些参数,在 GET 请求和 POST 的处理方式又不同,代码中 POST 请求方式,又会根据请求传递的 `contentType` 而又有所不同,这里介绍了`Form`表单提交和 `Multipart` 上传文件的参数获取方式,其他的请举一反三.
