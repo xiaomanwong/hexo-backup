@@ -140,13 +140,17 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小 man">
-<meta property="og:url" content="http://xiaoman.ren/page/2/index.html">
+  <meta name="description" content="Interceptor拦截器，在 Okhttp 中就是可以拦截网络请求，并在 Interceptor 中实现自己想要的业务逻辑；实现一个典型的拦截器很容易，主需要我们实现 Interceptor 接口，并重写 intercept 方法， 例如我们实现一个日志拦截器： 1234567891011121314151617181920public class LogInterceptor impleme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取参数">
+<meta property="og:url" content="http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/index.html">
 <meta property="og:site_name" content="小 man">
+<meta property="og:description" content="Interceptor拦截器，在 Okhttp 中就是可以拦截网络请求，并在 Interceptor 中实现自己想要的业务逻辑；实现一个典型的拦截器很容易，主需要我们实现 Interceptor 接口，并重写 intercept 方法， 例如我们实现一个日志拦截器： 1234567891011121314151617181920public class LogInterceptor impleme">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-26T12:10:33.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小 man">
+<meta name="twitter:title" content="获取参数">
+<meta name="twitter:description" content="Interceptor拦截器，在 Okhttp 中就是可以拦截网络请求，并在 Interceptor 中实现自己想要的业务逻辑；实现一个典型的拦截器很容易，主需要我们实现 Interceptor 接口，并重写 intercept 方法， 例如我们实现一个日志拦截器： 1234567891011121314151617181920public class LogInterceptor impleme">
 
 
 
@@ -156,7 +160,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/page/2/">
+  <link rel="canonical" href="http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/">
 
 
 
@@ -166,7 +170,7 @@
   };
 </script>
 
-  <title>小 man</title>
+  <title>获取参数 | 小 man</title>
   
 
 
@@ -214,8 +218,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -395,9 +398,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -412,7 +415,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -429,10 +432,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/开发一个Android-IoT-App/" class="post-title-link" itemprop="url">开发一个Android IoT App</a>
+          <h1 class="post-title" itemprop="name headline">获取参数
+
               
             
           </h1>
@@ -457,7 +458,7 @@
                 
               
 
-              <time title="Created: 2019-04-16 17:43:18" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:18+08:00">2019-04-16</time>
+              <time title="Created: 2019-04-25 07:16:59" itemprop="dateCreated datePublished" datetime="2019-04-25T07:16:59+08:00">2019-04-25</time>
             
 
             
@@ -474,7 +475,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 21:54:19" itemprop="dateModified" datetime="2019-04-17T21:54:19+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-26 20:10:33" itemprop="dateModified" datetime="2019-04-26T20:10:33+08:00">2019-04-26</time>
               
             
           </span>
@@ -508,18 +509,13 @@
       
 
       
-        
-          <h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/开发一个Android-IoT-App/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <h2 id="Interceptor"><a href="#Interceptor" class="headerlink" title="Interceptor"></a>Interceptor</h2><p>拦截器，在 Okhttp 中就是可以拦截网络请求，并在 Interceptor 中实现自己想要的业务逻辑；<br>实现一个典型的拦截器很容易，主需要我们实现 <code>Interceptor</code> 接口，并重写 <code>intercept</code> 方法，</p>
+<p>例如我们实现一个日志拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class LogInterceptor implements <span class="title">Intercept</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"LogInterceptor"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">        Log.d(TAG, String.format(<span class="string">"Send request %s on %s%n%s"</span>, </span><br><span class="line">        request.url(), chain.connection(), request.headers()));</span><br><span class="line">        </span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">        Log.d(TAG, String.format(<span class="string">"Received response for %s in %.1fms%n%s"</span>,</span><br><span class="line">        response.request().url(), (t2 - t1) / <span class="number">1e6</span>d, response.headers()));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的操作很简单，那么下面我们来说说如何拦截 http 请求，获取其中的参数</p>
+<h2 id="Get-请求"><a href="#Get-请求" class="headerlink" title="Get 请求"></a>Get 请求</h2><p>Get 请求，在网络请求中和 POST 一样是最常用的两种方式，一个正常的 http get 请求链接大概是这个样子 <code>https://stackoverflow.com/questions?id=32141241</code></p>
+<p>从上面的地址上我们大概能看出，当前请求的 HOST, PATH, 以及参数 id，故此，当我们需要拦截请求，获取请求参数时，</p>
+
       
     </div>
 
@@ -537,185 +533,61 @@
     
 
     
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>小 man</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/" title="获取参数">http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" class="post-title-link" itemprop="url">Jenkins + gradle + git 构建 Android CI 构建环境</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/04/17/多个-ssh-公钥提交代码到不同平台/" rel="next" title="多个 ssh 公钥提交代码到不同平台">
+                <i class="fa fa-chevron-left"></i> 多个 ssh 公钥提交代码到不同平台
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/30/OkHttp 拦截器/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:42:05" itemprop="dateCreated datePublished" datetime="2019-04-16T17:42:05+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:47" itemprop="dateModified" datetime="2019-04-17T21:55:47+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。</p>
-<p>目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。</p>
-<p>然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。</p>
-<p>因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。</p>
-<p>对于开发工程师，只负责向版本库提交代码，不用关心打包，发布之类的流程。</p>
-<p>对于产品和测试，只需要从发布页面下载 APK 安装文件，不需要每一次都去工程师哪里索取最新的安装文件。</p>
-<p>CI 的基本工作流程如下：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1"></p>
-<p>我们每一次提交代码（通过git/svn作为版本库）到主干上，根据 CI 的定时任务，检测到版本更新，通过 CI ，将进行打包发布等流程操作。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -725,189 +597,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/adb-command/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/adb-command/" class="post-title-link" itemprop="url">adb command</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:38:08" itemprop="dateCreated datePublished" datetime="2019-04-16T17:38:08+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:56:54" itemprop="dateModified" datetime="2019-04-17T21:56:54+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li><p>查看PID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">全部日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">按照 PID 筛选日志</span><br><span class="line">adb logcat | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询链接设备</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/adb-command/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -927,8 +625,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1042,6 +749,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Interceptor"><span class="nav-number">1.</span> <span class="nav-text">Interceptor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-请求"><span class="nav-number">2.</span> <span class="nav-text">Get 请求</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1171,6 +895,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1186,6 +914,8 @@
 
   
 
+
+  
 
 
   
