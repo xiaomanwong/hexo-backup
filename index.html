@@ -412,7 +412,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/30/OkHttp-Intercept-md/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/30/OkHttp-Intercept/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -432,7 +432,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/30/OkHttp-Intercept-md/" class="post-title-link" itemprop="url">OkHttp Intercept.md</a>
+                <a href="/2019/04/30/OkHttp-Intercept/" class="post-title-link" itemprop="url">OkHttp Intercept.md</a>
               
             
           </h1>
@@ -504,172 +504,12 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/30/OkHttp-Intercept-md/#more" rel="contents">
+              <a class="btn" href="/2019/04/30/OkHttp-Intercept/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
           
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/25/Okhttp 中使用 Intercept 获取参数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/25/Okhttp 中使用 Intercept 获取参数/" class="post-title-link" itemprop="url">获取参数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-25 07:16:59" itemprop="dateCreated datePublished" datetime="2019-04-25T07:16:59+08:00">2019-04-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-26 20:10:33" itemprop="dateModified" datetime="2019-04-26T20:10:33+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Interceptor"><a href="#Interceptor" class="headerlink" title="Interceptor"></a>Interceptor</h2><p>拦截器，在 Okhttp 中就是可以拦截网络请求，并在 Interceptor 中实现自己想要的业务逻辑；<br>实现一个典型的拦截器很容易，主需要我们实现 <code>Interceptor</code> 接口，并重写 <code>intercept</code> 方法，</p>
-<p>例如我们实现一个日志拦截器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class LogInterceptor implements <span class="title">Intercept</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"LogInterceptor"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">        Log.d(TAG, String.format(<span class="string">"Send request %s on %s%n%s"</span>, </span><br><span class="line">        request.url(), chain.connection(), request.headers()));</span><br><span class="line">        </span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">        Log.d(TAG, String.format(<span class="string">"Received response for %s in %.1fms%n%s"</span>,</span><br><span class="line">        response.request().url(), (t2 - t1) / <span class="number">1e6</span>d, response.headers()));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的操作很简单，那么下面我们来说说如何拦截 http 请求，获取其中的参数</p>
-<h2 id="Get-请求"><a href="#Get-请求" class="headerlink" title="Get 请求"></a>Get 请求</h2><p>Get 请求，在网络请求中和 POST 一样是最常用的两种方式，一个正常的 http get 请求链接大概是这个样子 <code>https://stackoverflow.com/questions?id=32141241</code></p>
-<p>从上面的地址上我们大概能看出，当前请求的 HOST, PATH, 以及参数 id，故此，当我们需要拦截请求，获取请求参数时，</p>
-
-          
         
       
     </div>
@@ -2029,6 +1869,167 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://i1.bvimg.com/512707/03553da20dae3f8f.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/开发一个Android-IoT-App/" class="post-title-link" itemprop="url">开发一个Android IoT App</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 17:43:18" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:18+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 21:54:19" itemprop="dateModified" datetime="2019-04-17T21:54:19+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/16/开发一个Android-IoT-App/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2077,7 +2078,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
