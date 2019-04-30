@@ -305,12 +305,14 @@ public class CommonParamsInterceptor implements Interceptor {
 
 这里介绍一种加签方式,
 
-加密规则
+>  加密规则
 
 1.  根据请求参数 key 进行排序
 2.  按排好的顺序组装成 key=value&key=value 形式的字符串
 3.  将上述字符串拼接 mid, timestamp, key(私钥) ,最终形成 key=value&key=value&mid&timestamp&key 的字符串
 4.  将字符串 md5 32位小写加密, 生成 auth.
+
+
 
 一个简单的加签逻辑就是这样,下面代码就是对这种规则的实现,看代码↓↓↓↓
 
@@ -581,3 +583,7 @@ public class AuthorizeInterceptor implements Interceptor {
 
 
 该加签方式,讲请求参数拼接为 `key=value` 的方式, 难点在于如何从 OkHttp 中获取这些参数,在 GET 请求和 POST 的处理方式又不同,代码中 POST 请求方式,又会根据请求传递的 `contentType` 而又有所不同,这里介绍了`Form`表单提交和 `Multipart` 上传文件的参数获取方式,其他的请举一反三.
+
+
+
+> 文章有瑕疵, 请大神批评指正.
