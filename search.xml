@@ -99,6 +99,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[schedule]]></title>
     <url>%2Fschedule%2Findex.html</url>
     <content type="text"></content>
@@ -106,11 +111,6 @@
   <entry>
     <title><![CDATA[sitemap]]></title>
     <url>%2Fsitemap%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>
