@@ -32,7 +32,7 @@ ssh-keygen -t rsa -C "your email addr" -f ~/.ssh/github
     
 1. 打开 `https://github.com/settings/profile` ，选择 `SSH and GPG keys`
 
-    ![](http://i2.bvimg.com/512707/02d40a07fbe50297s.png)
+    ![](https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190425135335.png)
 2. 点击 `New SSH key`
 
     1. title 可以随便写，建议见名知意，能知道是哪台设备
