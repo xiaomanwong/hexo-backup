@@ -1,5 +1,5 @@
 ---
-title: OkHttp Intercept.md
+title: OkHttp Intercept
 date: 2019-04-30 20:42:02
 tags: OkHttp
 ---
@@ -315,8 +315,8 @@ public class CommonParamsInterceptor implements Interceptor {
 
 1.  根据请求参数 key 进行排序
 2.  按排好的顺序组装成 key=value&key=value 形式的字符串
-3.  将上述字符串拼接 mid, timestamp, key(私钥) ,最终形成 key=value&key=value&mid&timestamp&key 的字符串
-4.  将字符串 md5 32位小写加密, 生成 auth.
+3.  将上述字符串拼接  ,最终形成 key=value&key=value的字符串
+4.  将字符串 md5, 生成 auth.
 
 
 
@@ -368,22 +368,17 @@ public class AuthorizeInterceptor implements Interceptor {
         TreeMap<String, String> authMap = new TreeMap<>();
         //通过请求地址(最初始的请求地址)获取到参数列表
         Set<String> parameterNames = newHttpUrl.queryParameterNames();
-        long timestamp = System.currentTimeMillis();
         for (String key : parameterNames) {
-            //循环参数列表
-            if (!"basic".equals(key)) {
-                // 获取参数value,
+            //循环参数列表,获取参数value,
                 String paramValue = newHttpUrl.queryParameter(key);
                 if (!TextUtils.isEmpty(paramValue)) {
                     authMap.put(key, paramValue);
                 }
-            }
+            
         }
-        LogUtils.d(TAG, "===================================== Get 开始生成 auth ==========================================");
         HttpUrl.Builder newBuilder =
                 request.url().newBuilder()
-                        .addEncodedQueryParameter("auth", assembleAuth(authMap, timestamp, false))
-                        .addEncodedQueryParameter("timestamp", String.valueOf(timestamp));
+                        .addEncodedQueryParameter("auth", assembleAuth(authMap, false));
         requestBuilder.url(newBuilder.build());
         return requestBuilder.build();
     }
@@ -418,7 +413,6 @@ public class AuthorizeInterceptor implements Interceptor {
         // 处理流的请求方式
         MultipartBody body = (MultipartBody) request.body();
         TreeMap<String, String> authMap = new TreeMap<>();
-        long timestamp = System.currentTimeMillis();
         // 获取参数 key 及 value 数据, 将数据写入到 TreeMap 中进行排序
         if (body != null && body.parts().size() > 0) {
             for (MultipartBody.Part part : body.parts()) {
@@ -434,22 +428,18 @@ public class AuthorizeInterceptor implements Interceptor {
                         String headerName = headers.value(i);
                         if (headerName.contains("form-data; name=")) {
                             String key = headerName.replace("form-data; name=", "").replace("\"", "");
-                            if (!"basic".equals(key)) {
                                 String value = body2String(part.body());
                                 if (!TextUtils.isEmpty(value)) {
                                     authMap.put(key, body2String(part.body()));
                                 }
-                            }
-                        }
+                                                   }
                     }
                 }
             }
         }
 
-        LogUtils.d(TAG, "============================ MultipartBody 准备生成 Auth =====================================");
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        multipartBuilder.addFormDataPart("auth", assembleAuth(authMap, timestamp, false));
-        multipartBuilder.addFormDataPart("timestamp", String.valueOf(timestamp));
+        multipartBuilder.addFormDataPart("auth", assembleAuth(authMap, false));
         List<MultipartBody.Part> oldParts = ((MultipartBody) request.body()).parts();
         if (oldParts != null && oldParts.size() > 0) {
             for (MultipartBody.Part part : oldParts) {
@@ -464,16 +454,15 @@ public class AuthorizeInterceptor implements Interceptor {
      * 构建 Auth 数据
      * <p>
      * TreeMap 数据,按照字母顺序自动排序后,遍历数据,拼接成 key=value&key=value 的形式,
-     * Map 拼接完成后,在其后需要再次拼接上 &mid&timestamp&key
+     * Map 拼接完成后,在其后需要再次拼接上
      * <p>
      * 最后将数据 MD5 转化为 32 位小写并返回
      *
      * @param treeMap      构建 Auth 的具体数据
-     * @param timestamp    当前时间戳
      * @param isNeedDecode 是否需要解码
-     * @return 返回 auth 数据 --- 32位小写
+     * @return 返回 auth 数据 
      */
-    private String assembleAuth(TreeMap<String, String> treeMap, long timestamp, boolean isNeedDecode) {
+    private String assembleAuth(TreeMap<String, String> treeMap, boolean isNeedDecode) {
         StringBuilder stringBuilder = new StringBuilder();
         if (treeMap.size() > 0) {
             for (Map.Entry<String, String> stringStringEntry : treeMap.entrySet()) {
@@ -490,14 +479,10 @@ public class AuthorizeInterceptor implements Interceptor {
             }
         }
         treeMap.clear();
-        stringBuilder.append(mid)
-                .append("&")
-                .append(timestamp)
-                .append("&")
+        stringBuilder
                 .append(authKey);
-        LogUtils.d(TAG, stringBuilder.toString());
-        LogUtils.d(TAG, "============================ Auth 生成完成 =====================================");
-        return MD5.MD5_32(stringBuilder.toString());
+        Log.d(TAG, stringBuilder.toString());
+        return MD5.MD5(stringBuilder.toString());
     }
 
     /**
@@ -537,20 +522,17 @@ public class AuthorizeInterceptor implements Interceptor {
         TreeMap<String, String> authMap = new TreeMap<>();
         // 遍历请求参数,非空参数,添加到集合中
         for (int i = 0; i < oldFormBody.size(); i++) {
-            if (!"basic".equals(oldFormBody.encodedName(i)) && !TextUtils.isEmpty(oldFormBody.encodedValue(i))) {
+            if (!TextUtils.isEmpty(oldFormBody.encodedValue(i))) {
                 authMap.put(oldFormBody.encodedName(i), oldFormBody.encodedValue(i));
             }
         }
-        long timestamp = System.currentTimeMillis();
         if (authMap.size() != 0) {
-            LogUtils.d(TAG, "============================ FormBody 准备生成 auth ===========================");
             // 生成 auth 数据
             FormBody.Builder newFormBody = new FormBody.Builder();
             for (int i = 0; i < oldFormBody.size(); i++) {
                 newFormBody.addEncoded(oldFormBody.encodedName(i), oldFormBody.encodedValue(i));
             }
-            newFormBody.add("auth", assembleAuth(authMap, timestamp, true));
-            newFormBody.add("timestamp", String.valueOf(timestamp));
+            newFormBody.add("auth", assembleAuth(authMap, true));
             requestBuilder.method(request.method(), newFormBody.build());
             return requestBuilder.build();
         }
@@ -589,8 +571,4 @@ public class AuthorizeInterceptor implements Interceptor {
 
 
 该加签方式,讲请求参数拼接为 `key=value` 的方式, 难点在于如何从 OkHttp 中获取这些参数,在 GET 请求和 POST 的处理方式又不同,代码中 POST 请求方式,又会根据请求传递的 `contentType` 而又有所不同,这里介绍了`Form`表单提交和 `Multipart` 上传文件的参数获取方式,其他的请举一反三.
-
-
-
-> 文章有瑕疵, 请大神批评指正.
 
