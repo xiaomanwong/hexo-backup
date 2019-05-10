@@ -109,6 +109,47 @@ git push -u origin master
 
 链接远程版本库： `git remote add origin <远程地址>`
 
+**修改 github 或是其他仓库 username (指向用户)时**
+
+使用 `git remote set-url`  去修改已经存在的远程仓库地址
+
+因为 ssh 和 https 不同,因此操作也不同,如下
+
+* http:
+
+  `https://github.com/USERNAME/respository.git`
+
+* ssh
+
+  `git@github.com:USERNAME/respository.git`
+
+切换远程URL
+
+1. 打开终端
+
+2. 切换到本地工程文件夹
+
+3. 列出当前远程名称
+
+   `git remote -v`
+
+4. 切换远程URL, SSH to HTTPS 
+
+   `$ git remote set-url origin https://github.com/USERNAME/repository.git`
+
+5. 校验远程地址是否正确
+
+   ```git
+   $ git remote -v
+   # Verify new remote URL
+   > origin https://github.com/USERNAME/repository.git(fetch)
+   > origin https://github.com/USERNAME/repository.git(push)
+   ```
+
+   
+
+
+
 > git branch
 
 分支是用来管理代码版本、类型的有效工具，可根据不同的服务对象、不同的上线版本等等，来做代码分离，版本管理操作
