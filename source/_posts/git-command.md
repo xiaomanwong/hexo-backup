@@ -109,45 +109,30 @@ git push -u origin master
 
 链接远程版本库： `git remote add origin <远程地址>`
 
-**修改 github 或是其他仓库 username (指向用户)时**
 
-使用 `git remote set-url`  去修改已经存在的远程仓库地址
+> git remote set-url <仓库地址>
 
-因为 ssh 和 https 不同,因此操作也不同,如下
+SSH 和 HTTPS 方式切换
 
-* http:
 
-  `https://github.com/USERNAME/respository.git`
+```git
+# ssh to https
+$ git remote set-url origin https://github.com/USERNAME/repository.git
+# https to ssh
+$ git remote set-url origin git@github.com:USERNAME/repository.git
+```
 
-* ssh
+可以使用 `git remote -v` 来检查当前仓库地址
 
-  `git@github.com:USERNAME/respository.git`
+```
+> origin git@github.com:username/repository.git (fetch)
+> origin git@github.com:username/repository.git (push)
+```
 
-切换远程URL
+SSH 和 HTTPS 的区别：
 
-1. 打开终端
-
-2. 切换到本地工程文件夹
-
-3. 列出当前远程名称
-
-   `git remote -v`
-
-4. 切换远程URL, SSH to HTTPS 
-
-   `$ git remote set-url origin https://github.com/USERNAME/repository.git`
-
-5. 校验远程地址是否正确
-
-   ```git
-   $ git remote -v
-   # Verify new remote URL
-   > origin https://github.com/USERNAME/repository.git(fetch)
-   > origin https://github.com/USERNAME/repository.git(push)
-   ```
-
-   
-
+使用 SSH 方式需要在本地配置一个密钥，具体可参见[多个 SSH 公钥提交代码到不同平台](https://xiaoman.ren/2019/04/17/%E5%A4%9A%E4%B8%AA-ssh-%E5%85%AC%E9%92%A5%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0/)中介绍；
+而使用 HTTPS 的方式操作简单，弊端是需要经常输入密码。
 
 
 > git branch
