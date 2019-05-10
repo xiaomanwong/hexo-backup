@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiaoman.ren/2019/04/16/git-command/</loc>
+    
+    <lastmod>2019-05-10T14:42:12.384Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiaoman.ren/2019/04/30/OkHttp-Intercept/</loc>
     
     <lastmod>2019-05-09T15:10:49.055Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>http://xiaoman.ren/2019/04/16/Android-%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E4%B8%AD%E5%90%AF%E5%8A%A8%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2019-04-17T13:56:42.353Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoman.ren/2019/04/16/git-command/</loc>
-    
-    <lastmod>2019-04-17T13:56:00.257Z</lastmod>
     
   </url>
   
