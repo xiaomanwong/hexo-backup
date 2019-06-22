@@ -148,7 +148,15 @@ tags: Android
     ```
 
 21. 查看安装列表
+
     ```
     adb shell pm list packages
     ```
+
+11. 安装证书
+
+    ```
+    adb shell am start -n com.android.certinstaller/.CertInstallerMain -a android.intent.action.VIEW -t application/x-x509-ca-cert file:///sdcard/cacert.cer
+    ```
+
 
