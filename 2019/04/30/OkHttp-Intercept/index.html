@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="OkHttp InterceptorOKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例 Log 日志 (LogInterceptor)Log 在开">
+  <meta name="description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
 <meta name="keywords" content="OkHttp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OkHttp Intercept">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/30/OkHttp-Intercept/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="OkHttp InterceptorOKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例 Log 日志 (LogInterceptor)Log 在开">
+<meta property="og:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T15:10:49.055Z">
+<meta property="og:updated_time" content="2019-06-23T14:36:03.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OkHttp Intercept">
-<meta name="twitter:description" content="OkHttp InterceptorOKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例 Log 日志 (LogInterceptor)Log 在开">
+<meta name="twitter:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
 
 
 
@@ -442,7 +442,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-09 23:10:49" itemprop="dateModified" datetime="2019-05-09T23:10:49+08:00">2019-05-09</time>
+                <time title="Modified: 2019-06-23 22:36:03" itemprop="dateModified" datetime="2019-06-23T22:36:03+08:00">2019-06-23</time>
               
             
           </span>
@@ -476,11 +476,11 @@
       
 
       
-        <h1 id="OkHttp-Interceptor"><a href="#OkHttp-Interceptor" class="headerlink" title="OkHttp Interceptor"></a>OkHttp Interceptor</h1><p>OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子</p>
+        <p>OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子</p>
 <p>要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法.</p>
 <p>这里介绍两种 Interceptor 的实例</p>
-<h2 id="Log-日志-LogInterceptor"><a href="#Log-日志-LogInterceptor" class="headerlink" title="Log 日志 (LogInterceptor)"></a>Log 日志 (LogInterceptor)</h2><p>Log 在开发调试中的重要性, 不言而喻, 一个好的日志数据,能够为开发时提供很多帮助,可以通过 Log 来获取当前程序的执行状态, 顺序等等.</p>
 <a id="more"></a>
+<h2 id="Log-日志-LogInterceptor"><a href="#Log-日志-LogInterceptor" class="headerlink" title="Log 日志 (LogInterceptor)"></a>Log 日志 (LogInterceptor)</h2><p>Log 在开发调试中的重要性, 不言而喻, 一个好的日志数据,能够为开发时提供很多帮助,可以通过 Log 来获取当前程序的执行状态, 顺序等等.</p>
 <p>这里介绍的 Log 日志拦截器,主要是负责在网络请求时,截获请求中的信息,并将请求信息以 Log 的方式输出到控制台上,可展现当前请求地址,请求参数,以及请求结果等.</p>
 <p>话不多说, 上代码.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 自定义 log 拦截器,输入请求地址,请求参,请求结果</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">            <span class="comment">// 拦截请求信息,获取请求地址及请求参数</span></span><br><span class="line">            Request request = chain.request();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">            <span class="comment">// 获取请求方式</span></span><br><span class="line">            String method = request.method();</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"POST"</span>.equals(method)) &#123;</span><br><span class="line">                StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                <span class="keyword">if</span> (request.body() <span class="keyword">instanceof</span> FormBody) &#123;</span><br><span class="line">                    FormBody body = (FormBody) request.body();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; body.size(); i++) &#123;</span><br><span class="line">                        sb.append(body.encodedName(i) + <span class="string">"="</span> + body.encodedValue(i) + <span class="string">","</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    sb.delete(sb.length() - <span class="number">1</span>, sb.length());</span><br><span class="line">                    LogUtils.d(TAG, String.format(<span class="string">"Sending request %s on %s %n%s %nRequestParams:&#123;%s&#125;"</span>,</span><br><span class="line">                            request.url(), chain.connection(), request.headers(), sb.toString()));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                LogUtils.d(TAG, String.format(<span class="string">"Sending request %s on %s %n%s"</span>,</span><br><span class="line">                        request.url(), chain.connection(), request.headers()));</span><br><span class="line">            &#125;</span><br><span class="line">			<span class="comment">// 获取响应信息</span></span><br><span class="line">            Response response = chain.proceed(request);</span><br><span class="line">            <span class="keyword">long</span> t2 = System.nanoTime();</span><br><span class="line">            LogUtils.d(TAG, String.format(<span class="string">"Received response for %s in %.1fms%n%s"</span>,</span><br><span class="line">                    response.request().url(), (t2 - t1) / <span class="number">1e6</span>d, response.headers()));</span><br><span class="line"></span><br><span class="line">            MediaType contentType = response.body().contentType();</span><br><span class="line">            String content = response.body().string();</span><br><span class="line">            LogUtils.d(TAG, content);</span><br><span class="line">            ResponseBody wrappedBody = ResponseBody.create(contentType, content);</span><br><span class="line">            <span class="keyword">return</span> response.newBuilder().body(wrappedBody).build();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -759,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OkHttp-Interceptor"><span class="nav-number">1.</span> <span class="nav-text">OkHttp Interceptor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-日志-LogInterceptor"><span class="nav-number">1.1.</span> <span class="nav-text">Log 日志 (LogInterceptor)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加参"><span class="nav-number">1.2.</span> <span class="nav-text">加参</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公参拦截器"><span class="nav-number">1.2.1.</span> <span class="nav-text">公参拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加签拦截器"><span class="nav-number">1.2.2.</span> <span class="nav-text">加签拦截器</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-日志-LogInterceptor"><span class="nav-number">1.</span> <span class="nav-text">Log 日志 (LogInterceptor)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加参"><span class="nav-number">2.</span> <span class="nav-text">加参</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公参拦截器"><span class="nav-number">2.1.</span> <span class="nav-text">公参拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加签拦截器"><span class="nav-number">2.2.</span> <span class="nav-text">加签拦截器</span></a></li></ol></li></ol></div>
             
 
           </div>
