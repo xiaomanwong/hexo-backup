@@ -3,8 +3,6 @@ title: OkHttp Intercept
 date: 2019-04-30 20:42:02
 tags: OkHttp
 ---
-# OkHttp Interceptor
-
 
 
 OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子
@@ -18,12 +16,12 @@ OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(intercept
 这里介绍两种 Interceptor 的实例
 
 
+<!-- more -->
 
 ## Log 日志 (LogInterceptor)
 
 Log 在开发调试中的重要性, 不言而喻, 一个好的日志数据,能够为开发时提供很多帮助,可以通过 Log 来获取当前程序的执行状态, 顺序等等.
 
-<!-- more -->
 
 
 这里介绍的 Log 日志拦截器,主要是负责在网络请求时,截获请求中的信息,并将请求信息以 Log 的方式输出到控制台上,可展现当前请求地址,请求参数,以及请求结果等.
