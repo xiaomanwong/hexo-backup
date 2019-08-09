@@ -152,3 +152,20 @@ tags: Android
     adb shell pm list packages
     ```
 
+22. 查看内存占用
+
+    ```
+    adb shell dumpsys meminfo <package> -d
+    ```
+
+23.  查询栈信息
+
+    ```
+    adb shell dumpsys activity
+    // 获取自己应用
+    adb shell dumpsys activity | grep <package>
+    // 获取处于栈顶的 activity
+    adb shell dumpsys activity | grep mFocusedActivity
+    ```
+
+    
