@@ -174,6 +174,18 @@ git push -u origin master
 
 
 
+> git push
+
+推送本地修改到远端服务器
+
+`git push origin master`
+
+有时因两个独立的历史，会导致推送无法达成， 通常在 `git pull` 时会提示 `fatal: refusing to merge unrelated histories  // 拒绝合并无关历史`
+
+这时可是使用 `git pull origin master --allow-unrelated-histories ` 来解决。
+
+
+
 > git tag 
 
 会列出所有的 `tag` 标签信息
