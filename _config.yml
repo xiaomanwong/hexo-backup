@@ -122,6 +122,6 @@ prism_plugin:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:boywithsmalleyes/boywithsmalleyes.github.io.git
+  repo: git@github.com:xiaomanwong/hexo-backup.git
   branch: master
 
