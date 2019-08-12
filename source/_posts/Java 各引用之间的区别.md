@@ -44,6 +44,8 @@ public class ReferenceTest{
 
 
 
+<!-- more -->
+
 
 
 ## StrongReference 强引用
