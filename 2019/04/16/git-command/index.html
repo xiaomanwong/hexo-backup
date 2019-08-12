@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="小 man">
 <meta property="og:description" content="Git 命令   修改记录 修改时间 备注     添加删除远程分支 2018年07月26日13:59:22 删除远程分支命令   更新fork仓库 2018年08月10日14:16:08 添加fork的仓库，从主仓库更新代码的命令    整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T14:42:12.384Z">
+<meta property="og:updated_time" content="2019-08-12T15:33:00.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git command">
 <meta name="twitter:description" content="Git 命令   修改记录 修改时间 备注     添加删除远程分支 2018年07月26日13:59:22 删除远程分支命令   更新fork仓库 2018年08月10日14:16:08 添加fork的仓库，从主仓库更新代码的命令    整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^">
@@ -442,7 +442,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-10 22:42:12" itemprop="dateModified" datetime="2019-05-10T22:42:12+08:00">2019-05-10</time>
+                <time title="Modified: 2019-08-12 23:33:00" itemprop="dateModified" datetime="2019-08-12T23:33:00+08:00">2019-08-12</time>
               
             
           </span>
@@ -580,6 +580,13 @@
 <p>删除分支： <code>git branch -d &lt;分支名称&gt;</code></p>
 <p>删除远程分支： <code>git push origin :&lt;分支名称&gt;</code></p>
 <p>合并分支： <code>git merge &lt;分支名称&gt;</code></p>
+<blockquote>
+<p>git push</p>
+</blockquote>
+<p>推送本地修改到远端服务器</p>
+<p><code>git push origin master</code></p>
+<p>有时因两个独立的历史，会导致推送无法达成， 通常在 <code>git pull</code> 时会提示 <code>fatal: refusing to merge unrelated histories  // 拒绝合并无关历史</code></p>
+<p>这时可是使用 <code>git pull origin master --allow-unrelated-histories</code> 来解决。</p>
 <blockquote>
 <p>git tag </p>
 </blockquote>
@@ -746,7 +753,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
