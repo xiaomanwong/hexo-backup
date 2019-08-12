@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Geändert am: 2019-08-12 10:22:54" itemprop="dateModified" datetime="2019-08-12T10:22:54+08:00">2019-08-12</time>
+                <time title="Geändert am: 2019-08-12 10:24:46" itemprop="dateModified" datetime="2019-08-12T10:24:46+08:00">2019-08-12</time>
               
             
           </span>
@@ -509,84 +509,22 @@
 
       
         
-          
-            <h2 id="Reference-引用"><a href="#Reference-引用" class="headerlink" title="Reference 引用"></a>Reference 引用</h2><p>继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。</p>
+          <h2 id="Reference-引用"><a href="#Reference-引用" class="headerlink" title="Reference 引用"></a>Reference 引用</h2><p>继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。</p>
 <p>三个子类的构造方法中涉及到 ReferenceQueue 和 Referent：</p>
 <ul>
 <li>Referent： 被引用对象</li>
 <li>ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引用）会被 enqueue 到这个 ReferenceQueue 中。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>　</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.finalize();</span><br><span class="line">            System.out.println(<span class="string">"in Person finalize"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="StrongReference-强引用"><a href="#StrongReference-强引用" class="headerlink" title="StrongReference 强引用"></a>StrongReference 强引用</h2><p>Java 中使用的最多，普通的引用 <code>Object obj = new Object();  Person p = new Person();</code> 都属于<code>强引用</code> </p>
-<p>强引用本身存储在栈中，new 出来的对象存储在堆中。栈中保存的引用指向堆中对象的地址。</p>
-<p>一般情况下，当引用不在指向堆中对象的地址时（person = null） GC collector 就开始考虑对此内存（堆中的对象）进行回收。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
-<p>person 就是一个强引用，强引用不会被 GC，即使内存不够抛出 OOM 时也不会被回收。</p>
-<h2 id="SoftReference-软引用"><a href="#SoftReference-软引用" class="headerlink" title="SoftReference 软引用"></a>SoftReference 软引用</h2><p>软引用普通使用形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;Person&gt;(person);</span><br></pre></td></tr></table></figure>
-<p>强引用 person 作为参数，创建了一个软引用对象 sr, 下面是例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSofeReference</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 创建强引用对象</span></span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为"</span> + person);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建软引用对象</span></span><br><span class="line">    SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;Person&gt;(person);</span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存(OOM 之前)</span></span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行上面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br></pre></td></tr></table></figure>
-<ul>
-<li>当执行 person = null 后，堆内存的 Person 对象不再有任何强引用指向它，但此时还存在 sr 引用的对象指向 Person 对象。此时调用 sr.get() 方法，返回 Person 对象，即之前堆中的强引用对象了。我们可以合理猜测GC collector 很有可能尚未进行垃圾回收，所以此时 sr.get() 方法返回不为空。</li>
-<li>我们继续执行 <code>System.gc()</code> 强制进行垃圾回收，打印结果可以看到， sr.get() 返回依然不为空，说明 Person 对象依旧没有被回收。</li>
-</ul>
-<p><strong>软引用所指向的对象要进行回收，需要满足两个条件：</strong></p>
-<ol>
-<li>没有任何强引用指向软引用指向的对象（内存中的 Person 对象）</li>
-<li>JVM 需要内存时，即在抛出 OOM 之前</li>
-</ol>
-<p><strong>总结：</strong> SoftReference 变相延长了其只是对象占据堆内存的时间，直到虚拟机内存不足时垃圾回收才回收此堆内存空间。</p>
-<p><strong>软引用还可以和一个 ReferenceQueue 一起使用，</strong> 当 SoftReference 的 Referent 被回收以后，这个 SoftReference 会被自动 enqueue 到这个 ReferenctQueue 中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSoftReferenceWithQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为："</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;&gt;(person, queue);</span><br><span class="line">    </span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存 （OOM 前）</span></span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"加入 ReferenceQueue 的对象为："</span> + queue.poll());</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"加入 ReferenceQueue 的对象为： "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行上述例子，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">加入 ReferenceQueue 的对象为 null</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">加入 ReferenceQueue 的对象为 null</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 当 SoftReference 或 WeakReference 的 get() 方法返回 null 时，仅表明其指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。</p>
-<p>而只有确认被垃圾回收后，如果有 ReferenceQueue ，其引用才会被放置于 ReferenceQueue 中。</p>
-<h2 id="WeakReference-弱引用"><a href="#WeakReference-弱引用" class="headerlink" title="WeakReference 弱引用"></a>WeakReference 弱引用</h2><p>弱引用的一般使用形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testWeakReference</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为： "</span> + person);</span><br><span class="line">    </span><br><span class="line">    WeakReference&lt;Person&gt; wr = <span class="keyword">new</span> WeakReference&lt;&gt;(person);</span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 被 GC 后，之前 new 出的 Person 对象会立即被回收，进入 GC 流程。</span></span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象进入 GC 流程</span><br><span class="line">in Person finalize</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>当执行 <code>person = null</code> 后，堆内存的  Person 对象不再有任何引用指向它，但此时还存在 wr 引用的对象指向 Person 对象。</p>
-<p>此时调用 <code>wr.get()</code> 方法，返回 Person 对象，即之前堆中的强引用对象，我们可以合理猜测 GC collector 很有可能尚未进行垃圾回收，所以此时 <code>wr.get()</code> 方法返回不为空。</p>
-</li>
-<li><p>继续执行 <code>System.gc()</code> 强制执行垃圾回收，打印结果可以看到，<code>wr.get()</code> 返回为空 “person 对象进入 GC 流程” ，且执行了静态内部类中的 finalize 方法。说明 Person 对象被回收，进入垃圾回收流程。</p>
-</li>
-</ul>
-<p><strong>弱引用所指向的对象要进行回收，只需要满足条件：</strong></p>
-<p>​    没有任何强引用指向弱引用指向的对象（内存中的 Person 对象）</p>
-<p><strong>总结：</strong></p>
-<p>​    WeakReference 不改变原有的强引用独享的垃圾回收机制，一旦其指示对象没有任何强引用对象时，此对象即进入正常的垃圾回收流程。</p>
-<p><strong>其主要使用场景见于：</strong> </p>
-<p>​    当前已有强引用指向强引用对象，此时由于业务需要，需要增加对此对象的引用，同时又不希望改变此引用的垃圾回收机制，此时 <code>WeakReference</code> 正好符合需求，常见于一些与生命周期的场景中，比如 Activity 中的 Handler 的使用，为了防止内存泄露需要用到弱引用。</p>
-<p>与 SoftReference 一样，可以同 ReferenceQueue 一起使用。当 WeakReference 的 Referent 被回收以后，这个 WeakReference 会被自动 enqueue 到这个 ReferenceQueue 中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testWeakReferenceWithQueue</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为 "</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    WeakReference&lt;Person&gt; wr = <span class="keyword">new</span> WeakReference&lt;&gt;(person, queue);</span><br><span class="line">    System.out.println(<span class="string">"wr 对象为 "</span> + wr);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"Whether or not this reference has been enqueued:"</span> + wr.isEnqueued());</span><br><span class="line">    System.out.println(<span class="string">"Queue item: "</span> + queue.pull());</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;<span class="comment">// 仅是表名指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收，只有确认被垃圾回收后，如果有 ReferenceQueue ，其引用才会被放置于 ReferenceQueue 中。</span></span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 确保垃圾回收线程能够执行</span></span><br><span class="line">        Thread.sleep(<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"Whether or not this reference has been enqueued: "</span> + wr.isEnqueued());</span><br><span class="line">    System.out.println(<span class="string">"queue item: "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>执行结果：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">wr 对象为 java.lang.ref.WeakReference@603828d2</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">Whether or not this reference has been enqueued: false</span><br><span class="line">queue item: null</span><br><span class="line">person 对象进入回收流程</span><br><span class="line">in Person finalize</span><br><span class="line">Whether or not this reference has been enqueued: true</span><br><span class="line">queue item: java.lang.ref.WeakReference@603828d2</span><br></pre></td></tr></table></figure>
-<p>从第二行到最后行可以看出， person 进入 GC 流程后，wr 被加入到 queue 中。</p>
-<p><strong>注意：</strong></p>
-<p>​     当 SoftReference 或者 WeakReference 的 get() 方法返回 null 时，仅表示其指示对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。</p>
-<p>​    而只有确认被垃圾回收后，如果有 ReferenceQueue， 其引用才会被放置于 ReferenceQueue 中。</p>
-<h2 id="PhantomReference-虚引用"><a href="#PhantomReference-虚引用" class="headerlink" title="PhantomReference 虚引用"></a>PhantomReference 虚引用</h2><p>虚引用源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang.ref;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.ref.Reference;</span><br><span class="line"><span class="keyword">import</span> java.lang.ref.ReferenceQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhantomReference</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Reference</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PhantomReference</span><span class="params">(T var1, ReferenceQueue&lt;? <span class="keyword">super</span> T&gt; var2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.(var1, var2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>PhantomReference 只有一个构造函数 <code>PhantomReference(T referenct, ReferenceQueue&lt;? super T&gt; q)</code>  因此，PhantomReference 使用必须结合 ReferenceQueue；</li>
-<li>不管有无强引用指向 PhantomReference 的指示对象， PhantomReference 的 get() 方法返回结果都是 null</li>
-</ul>
-<p>举例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testPhantomReference</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为"</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    PhantomReference&lt;Person&gt; pr = <span class="keyword">new</span> PhantomReference&lt;&gt;(person, queue);</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"pr 对象为"</span> + pr);</span><br><span class="line">    System.out.println(<span class="string">"pr.get() = "</span> + pr.get());</span><br><span class="line">    </span><br><span class="line">    person = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 确保垃圾回收线程执行</span></span><br><span class="line">        Thread.sleep(<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"queue item: "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>执行结果：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">pr 对象为 java.lang.ref.PhantomReference@60e35b53</span><br><span class="line">pr.get() = null</span><br><span class="line">in Person finalize</span><br><span class="line">queue ite: java.lang.ref.PhantomReference@60e35b53</span><br></pre></td></tr></table></figure>
-<p><strong>总结：</strong></p>
-<p>​    与 WeakReference 一样，不改变原有的强引用对象的垃圾回收机制。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可以被垃圾回收。虚引用主要用来跟踪对象被垃圾回收后的活动（监听并才去必要的行动）</p>
-<p><strong>用途：</strong></p>
-<p>​    当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
-<p>​    程序可以通过判断医用队列中是否已经加入虚引用来了解被引用的对象是否将要被垃圾回收。</p>
-<p>​    程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前才去必要的行动。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/09/Java 各引用之间的区别/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -703,7 +641,7 @@
                 
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Geändert am: 2019-08-12 10:22:57" itemprop="dateModified" datetime="2019-08-12T10:22:57+08:00">2019-08-12</time>
+                <time title="Geändert am: 2019-08-12 10:24:52" itemprop="dateModified" datetime="2019-08-12T10:24:52+08:00">2019-08-12</time>
               
             
           </span>
@@ -1770,6 +1708,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小 man">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/boywithsmalleyes/static_file/blob/master/images/img_avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小 man">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-30 16:10:57" itemprop="dateModified" datetime="2019-04-30T16:10:57+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
+<p><strong>第一种方法: </strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
+<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
+<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
+<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
+<p><strong>第二种方法:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
+<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/事件分发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1888,171 +1991,6 @@
             </div>
           
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小 man">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/boywithsmalleyes/static_file/blob/master/images/img_avator.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小 man">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-04-30 16:10:57" itemprop="dateModified" datetime="2019-04-30T16:10:57+08:00">2019-04-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
-<p><strong>第一种方法: </strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
-<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
-<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
-<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
-<p><strong>第二种方法:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
-<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
-
-          
         
       
     </div>

@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="小 man">
 <meta property="og:description" content="Reference 引用继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。 三个子类的构造方法中涉及到 ReferenceQueue 和 Referent：  Referent： 被引用对象 ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T02:22:54.096Z">
+<meta property="og:updated_time" content="2019-08-12T02:24:46.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Reference">
 <meta name="twitter:description" content="Reference 引用继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。 三个子类的构造方法中涉及到 ReferenceQueue 和 Referent：  Referent： 被引用对象 ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引">
@@ -476,7 +476,7 @@
                 
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Geändert am: 2019-08-12 10:22:54" itemprop="dateModified" datetime="2019-08-12T10:22:54+08:00">2019-08-12</time>
+                <time title="Geändert am: 2019-08-12 10:24:46" itemprop="dateModified" datetime="2019-08-12T10:24:46+08:00">2019-08-12</time>
               
             
           </span>
@@ -517,6 +517,7 @@
 <li>ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引用）会被 enqueue 到这个 ReferenceQueue 中。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>　</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.finalize();</span><br><span class="line">            System.out.println(<span class="string">"in Person finalize"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="StrongReference-强引用"><a href="#StrongReference-强引用" class="headerlink" title="StrongReference 强引用"></a>StrongReference 强引用</h2><p>Java 中使用的最多，普通的引用 <code>Object obj = new Object();  Person p = new Person();</code> 都属于<code>强引用</code> </p>
 <p>强引用本身存储在栈中，new 出来的对象存储在堆中。栈中保存的引用指向堆中对象的地址。</p>
 <p>一般情况下，当引用不在指向堆中对象的地址时（person = null） GC collector 就开始考虑对此内存（堆中的对象）进行回收。</p>
