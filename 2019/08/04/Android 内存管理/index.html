@@ -140,20 +140,21 @@
 
 
 
-  <meta name="description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+  <meta name="description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小 man">
-<meta property="og:url" content="http://xiaoman.ren/2019/08/09/Android 内存管理/index.html">
+<meta property="og:title" content="Android 内存管理">
+<meta property="og:url" content="http://xiaoman.ren/2019/08/04/Android 内存管理/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+<meta property="og:description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://camo.githubusercontent.com/ba01b8ae9af4a5e588251316c826bf3e0e695f35/687474703a2f2f7777772e69626d2e636f6d2f646576656c6f706572776f726b732f636e2f6a6176612f6c2d4a6176614d656d6f72794c65616b2f312e676966">
 <meta property="og:image" content="https://camo.githubusercontent.com/dee4aecb8a80c4e73337b56ee01cbffa2a8049dd/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f32303135313132333134343232363334393f73706d3d353137362e3130303233392e626c6f67636f6e742e392e437455316334">
 <meta property="og:image" content="https://camo.githubusercontent.com/2b1a52551d828d9640f23ee7c2802476b02ccec3/687474703a2f2f696d67322e746263646e2e636e2f4c312f3436312f312f666230356666366432653638663330396239346464383433353263383161636665306165383339653f73706d3d353137362e3130303233392e626c6f67636f6e742e31302e437455316334">
-<meta property="og:updated_time" content="2019-08-09T11:03:20.049Z">
+<meta property="og:updated_time" content="2019-08-12T02:22:57.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小 man">
-<meta name="twitter:description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+<meta name="twitter:title" content="Android 内存管理">
+<meta name="twitter:description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/ba01b8ae9af4a5e588251316c826bf3e0e695f35/687474703a2f2f7777772e69626d2e636f6d2f646576656c6f706572776f726b732f636e2f6a6176612f6c2d4a6176614d656d6f72794c65616b2f312e676966">
 
 
@@ -164,7 +165,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2019/08/09/Android 内存管理/">
+  <link rel="canonical" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
 
 
 
@@ -174,7 +175,7 @@
   };
 </script>
 
-  <title> | 小 man</title>
+  <title>Android 内存管理 | 小 man</title>
   
 
 
@@ -242,7 +243,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -349,7 +350,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
         </li>
       
     </ul>
@@ -372,7 +373,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="Suche..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -419,7 +420,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/09/Android 内存管理/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -436,7 +437,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">Android 内存管理
 
               
             
@@ -455,16 +456,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-08-09 19:03:20" itemprop="dateCreated datePublished" datetime="2019-08-09T19:03:20+08:00">2019-08-09</time>
+              <time title="Erstellt: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-08-12 10:22:57" itemprop="dateModified" datetime="2019-08-12T10:22:57+08:00">2019-08-12</time>
+              
             
           </span>
 
@@ -497,7 +514,7 @@
       
 
       
-        <h1 id="Android-内存管理"><a href="#Android-内存管理" class="headerlink" title="Android 内存管理"></a>Android 内存管理</h1><p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
+        <p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
 <h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。</p>
 <ul>
 <li>静态存储区（方法区）：主要存放静态数据，全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</li>
@@ -668,20 +685,26 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>小 man</li>
+    <strong>Beitragsautor:  </strong>小 man</li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
+    <strong>Beitragslink: </strong>
     
-    <a href="http://xiaoman.ren/2019/08/09/Android 内存管理/">http://xiaoman.ren/2019/08/09/Android 内存管理/</a>
+    <a href="http://xiaoman.ren/2019/08/04/Android 内存管理/" title="Android 内存管理">http://xiaoman.ren/2019/08/04/Android 内存管理/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Urheberrechtshinweis:  </strong>Alle Artikel in diesem Blog sind unter <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> lizenziert, außer es wird anders angegeben.</li>
 </ul>
 
       </div>
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -692,8 +715,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/09/Java 各引用之间的区别/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/05/08/清香木养殖（二）/" rel="next" title="清香木养殖（二）">
+                <i class="fa fa-chevron-left"></i> 清香木养殖（二）
               </a>
             
           </div>
@@ -701,6 +724,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/09/Java 各引用之间的区别/" rel="prev" title="Java Reference">
+                Java Reference <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -746,10 +773,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -772,7 +799,7 @@
                   <a href="/archives">
                 
                     <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -803,7 +830,7 @@
                       
                     
                     <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   </a>
                 </div>
               
@@ -883,7 +910,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-内存管理"><span class="nav-number">1.</span> <span class="nav-text">Android 内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存分配策略"><span class="nav-number">1.1.</span> <span class="nav-text">Java 内存分配策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆与栈的区别："><span class="nav-number">1.2.</span> <span class="nav-text">堆与栈的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-是如何管理内存"><span class="nav-number">1.3.</span> <span class="nav-text">Java 是如何管理内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-中的内存泄露"><span class="nav-number">1.4.</span> <span class="nav-text">什么是 Java 中的内存泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细的-Java-中的内存泄露"><span class="nav-number">1.5.</span> <span class="nav-text">详细的 Java 中的内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存回收机制"><span class="nav-number">1.5.1.</span> <span class="nav-text">Java 内存回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存泄漏引起的原因"><span class="nav-number">1.5.2.</span> <span class="nav-text">Java 内存泄漏引起的原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-中常见的内存泄漏汇总"><span class="nav-number">1.6.</span> <span class="nav-text">Android  中常见的内存泄漏汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类泄漏"><span class="nav-number">1.6.1.</span> <span class="nav-text">集合类泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例造成的内存泄露"><span class="nav-number">1.6.2.</span> <span class="nav-text">单例造成的内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类-非静态内部类和异步线程"><span class="nav-number">1.6.3.</span> <span class="nav-text">匿名内部类/非静态内部类和异步线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类"><span class="nav-number">1.6.4.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-造成的内存泄漏"><span class="nav-number">1.6.5.</span> <span class="nav-text">Handler 造成的内存泄漏</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存分配策略"><span class="nav-number">1.</span> <span class="nav-text">Java 内存分配策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆与栈的区别："><span class="nav-number">2.</span> <span class="nav-text">堆与栈的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-是如何管理内存"><span class="nav-number">3.</span> <span class="nav-text">Java 是如何管理内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-中的内存泄露"><span class="nav-number">4.</span> <span class="nav-text">什么是 Java 中的内存泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细的-Java-中的内存泄露"><span class="nav-number">5.</span> <span class="nav-text">详细的 Java 中的内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存回收机制"><span class="nav-number">5.1.</span> <span class="nav-text">Java 内存回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存泄漏引起的原因"><span class="nav-number">5.2.</span> <span class="nav-text">Java 内存泄漏引起的原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-中常见的内存泄漏汇总"><span class="nav-number">6.</span> <span class="nav-text">Android  中常见的内存泄漏汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类泄漏"><span class="nav-number">6.1.</span> <span class="nav-text">集合类泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例造成的内存泄露"><span class="nav-number">6.2.</span> <span class="nav-text">单例造成的内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类-非静态内部类和异步线程"><span class="nav-number">6.3.</span> <span class="nav-text">匿名内部类/非静态内部类和异步线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类"><span class="nav-number">6.4.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-造成的内存泄漏"><span class="nav-number">6.5.</span> <span class="nav-text">Handler 造成的内存泄漏</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -916,7 +943,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -924,7 +951,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
@@ -1408,7 +1435,7 @@
   $('.highlight').each(function(i, e) {
     var $wrap = $('<div>').addClass('highlight-wrap');
     $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+    $wrap.append($('<button>').addClass('copy-btn').append('Kopieren').on('click', function(e) {
       var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
         return $(e).text();
       }).toArray().join('\n');
@@ -1425,15 +1452,15 @@
       ta.readOnly = false;
       var result = document.execCommand('copy');
       
-        if (result) $(this).text('Copied');
-        else $(this).text('Copy failed');
+        if (result) $(this).text('Kopiert');
+        else $(this).text('Kopieren fehlgeschlagen');
       
       ta.blur(); // For iOS
       $(this).blur();
     })).on('mouseleave', function(e) {
       var $b = $(this).find('.copy-btn');
       setTimeout(function() {
-        $b.text('Copy');
+        $b.text('Kopieren');
       }, 300);
     }).append(e);
   })
