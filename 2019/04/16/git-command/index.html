@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="小 man">
 <meta property="og:description" content="Git 命令   修改记录 修改时间 备注     添加删除远程分支 2018年07月26日13:59:22 删除远程分支命令   更新fork仓库 2018年08月10日14:16:08 添加fork的仓库，从主仓库更新代码的命令    整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T14:09:38.332Z">
+<meta property="og:updated_time" content="2019-08-12T06:58:59.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git command">
 <meta name="twitter:description" content="Git 命令   修改记录 修改时间 备注     添加删除远程分支 2018年07月26日13:59:22 删除远程分支命令   更新fork仓库 2018年08月10日14:16:08 添加fork的仓库，从主仓库更新代码的命令    整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^">
@@ -239,7 +239,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -346,7 +346,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
         </li>
       
     </ul>
@@ -369,7 +369,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Suche..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -452,14 +452,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-04-16 17:43:58" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:58+08:00">2019-04-16</time>
+              <time title="Created: 2019-04-16 17:43:58" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:58+08:00">2019-04-16</time>
             
 
             
@@ -474,9 +474,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Geändert am: 2019-05-10 22:09:38" itemprop="dateModified" datetime="2019-05-10T22:09:38+08:00">2019-05-10</time>
+                <time title="Modified: 2019-08-12 14:58:59" itemprop="dateModified" datetime="2019-08-12T14:58:59+08:00">2019-08-12</time>
               
             
           </span>
@@ -633,6 +633,13 @@
 <p>删除远程分支： <code>git push origin :&lt;分支名称&gt;</code></p>
 <p>合并分支： <code>git merge &lt;分支名称&gt;</code></p>
 <blockquote>
+<p>git push</p>
+</blockquote>
+<p>推送本地修改到远端服务器</p>
+<p><code>git push origin master</code></p>
+<p>有时因两个独立的历史，会导致推送无法达成， 通常在 <code>git pull</code> 时会提示 <code>fatal: refusing to merge unrelated histories  // 拒绝合并无关历史</code></p>
+<p>这时可是使用 <code>git pull origin master --allow-unrelated-histories</code> 来解决。</p>
+<blockquote>
 <p>git tag </p>
 </blockquote>
 <p>会列出所有的 <code>tag</code> 标签信息</p>
@@ -685,14 +692,14 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Beitragsautor:  </strong>小 man</li>
+    <strong>Post author:  </strong>小 man</li>
   <li class="post-copyright-link">
-    <strong>Beitragslink: </strong>
+    <strong>Post link: </strong>
     
     <a href="http://xiaoman.ren/2019/04/16/git-command/" title="git command">http://xiaoman.ren/2019/04/16/git-command/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Urheberrechtshinweis:  </strong>Alle Artikel in diesem Blog sind unter <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> lizenziert, außer es wird anders angegeben.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -773,10 +780,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -799,7 +806,7 @@
                   <a href="/archives">
                 
                     <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -830,7 +837,7 @@
                       
                     
                     <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">schlagwörter</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -943,7 +950,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -951,7 +958,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
@@ -1435,7 +1442,7 @@
   $('.highlight').each(function(i, e) {
     var $wrap = $('<div>').addClass('highlight-wrap');
     $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('Kopieren').on('click', function(e) {
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
       var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
         return $(e).text();
       }).toArray().join('\n');
@@ -1452,15 +1459,15 @@
       ta.readOnly = false;
       var result = document.execCommand('copy');
       
-        if (result) $(this).text('Kopiert');
-        else $(this).text('Kopieren fehlgeschlagen');
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
       
       ta.blur(); // For iOS
       $(this).blur();
     })).on('mouseleave', function(e) {
       var $b = $(this).find('.copy-btn');
       setTimeout(function() {
-        $b.text('Kopieren');
+        $b.text('Copy');
       }, 300);
     }).append(e);
   })
