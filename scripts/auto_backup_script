@@ -17,6 +17,8 @@ function run() {
 
 		cd('../hexo-backup');    //此处修改为Hexo根目录路径
 
+		exec('git status') // 展示修改过的文件
+
     if (exec('git add --all').code !== 0) {
 			echo('错误: git add --all 执行失败');
 			exit(1);
