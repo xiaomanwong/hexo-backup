@@ -19,11 +19,11 @@ function run() {
 
 		exec('git status') // 展示修改过的文件
 
-    if (exec('git add --all').code !== 0) {
-			echo('错误: git add --all 执行失败');
-			exit(1);
-
-		}
+    	// if (exec('git add -a').code !== 0) {
+		//	echo('错误: git add --all 执行失败');
+		//	exit(1);
+		// }
+		
 		if (exec('git commit -a -m "Form auto backup script\'s commit"').code !== 0) {
 			echo('错误: git commit -a -m 执行失败');
 			exit(1);
