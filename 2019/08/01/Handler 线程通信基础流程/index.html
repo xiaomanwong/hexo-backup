@@ -140,20 +140,18 @@
 
 
 
-  <meta name="description" content="激动的心，颤抖的手，京东上面动动手。哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株清香木，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。  其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。">
-<meta name="keywords" content="绿植">
+  <meta name="description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清香木养殖（一）">
-<meta property="og:url" content="http://xiaoman.ren/2019/05/04/清香木养殖（一）/index.html">
+<meta property="og:title" content="线程通信基础流程">
+<meta property="og:url" content="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="激动的心，颤抖的手，京东上面动动手。哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株清香木，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。  其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。">
+<meta property="og:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/WechatIMG68.jpeg">
-<meta property="og:updated_time" content="2019-05-04T14:52:51.315Z">
+<meta property="og:updated_time" content="2019-08-15T08:12:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清香木养殖（一）">
-<meta name="twitter:description" content="激动的心，颤抖的手，京东上面动动手。哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株清香木，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。  其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/WechatIMG68.jpeg">
+<meta name="twitter:title" content="线程通信基础流程">
+<meta name="twitter:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
 
 
 
@@ -163,7 +161,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2019/05/04/清香木养殖（一）/">
+  <link rel="canonical" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
 
 
 
@@ -173,7 +171,7 @@
   };
 </script>
 
-  <title>清香木养殖（一） | 小 man</title>
+  <title>线程通信基础流程 | 小 man</title>
   
 
 
@@ -384,7 +382,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/04/清香木养殖（一）/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -401,7 +399,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">清香木养殖（一）
+          <h1 class="post-title" itemprop="name headline">线程通信基础流程
 
               
             
@@ -427,12 +425,24 @@
                 
               
 
-              <time title="Created: 2019-05-04 21:54:08 / Modified: 22:52:51" itemprop="dateCreated datePublished" datetime="2019-05-04T21:54:08+08:00">2019-05-04</time>
+              <time title="Created: 2019-08-01 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-01T21:54:08+08:00">2019-08-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-15 16:12:58" itemprop="dateModified" datetime="2019-08-15T16:12:58+08:00">2019-08-15</time>
               
             
           </span>
@@ -466,43 +476,58 @@
       
 
       
-        <p>激动的心，颤抖的手，京东上面动动手。<br>哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株<strong>清香木</strong>，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。</p>
-<p><img src="https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/WechatIMG68.jpeg" alt="清香木"></p>
-<p>其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。<br><a id="more"></a></p>
-<p>那么问题来了，我是一只程序狗，这种张飞绣花的事儿，着实让我头疼了一番；平日里坐在电脑前，噼里啪啦的敲着键盘，书写着一行行 ABC（突然想起一首歌《都选 C》），徜徉在编码的世界里。忽然之间，生活中多了一株绿植，让那份隐藏在我身体某处多年的小爱心又如雨后春笋一般，萌发了起来。可是啊，在编码的世界里，我可以装装样子，但在 ta 的世界里，我只能装孙子。</p>
-<p>自此之后，我将踏上绿植的养护之道，千里之行始于足下，就请你把我带入到你的世界里，深入的了解并爱上你吧。</p>
-<p>OK，说正事儿，先来介绍一下<strong>清香木</strong>：</p>
-<p>清香木非常收到花友的喜爱，是一种非常理想的盆栽植物，盆景清香木摆放在室内，能营造出一种野外山水树木移入家内的感觉，自然清新。原本生长我国的云脑中部、北部及四川南部等高海拔的干热河谷地带，具有耐阴性，喜好暖，生长缓慢，寿命长等特点（这也会我选择样 ta 的原因）。</p>
-<p>这里有一个养花的 APP，<a href="https://itunes.apple.com/cn/app/%E5%85%BB%E8%8A%B1%E5%A4%A7%E5%85%A8-%E5%85%BB%E8%8A%B1%E4%BA%BA%E7%9A%84%E5%9C%88%E5%AD%90/id1245612230?mt=8" target="_blank" rel="noopener">养花大全</a>，我就是在这上学习养花的技术及注意事项的。</p>
-<p>虽然我并没有经理过 ta 的出生，但后面的路我想和你一起。为你整理发型（修剪枝叶）、为你安家乐业（上盆定型），呵护你（土壤和水分），一路前行（光照和温度）。</p>
-<p>虽然 APP 上介绍了<strong>清香木</strong>一些喜好，也提供了一些养殖方法，但身在门外汉的我还是对绿植界的术语感到头疼，下面来介绍一下</p>
-<table>
-<thead>
-<tr>
-<th>术语</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>见干见湿</td>
-<td>见干：土壤干涸，表面看不到潮湿。 见湿：浇水时，看土壤全部浸湿。</td>
-</tr>
-<tr>
-<td>浇水要浇透</td>
-<td>浇水时，见到水从底部孔流出</td>
-</tr>
-</tbody>
-</table>
-<p>这个表格是我在看清香木养殖事项时遇到的问题，以后会继续更新。<br>虽然这个术语刚到看的时候，一脸懵。我也请教了我的同事关于养护的问题，他也细心的解释了，而且还特别照顾我这个小白，用很生动的比喻让我理解透了这些属于。</p>
-<p>那么这里我在详细的说一下我的理解：</p>
-<ul>
-<li>见干见湿：要解释的和上面的含义一样，那么我还要补充的部分就是，土壤是自上而下干的， 因此表面上虽然干了，但是土壤内部其实还没有干，尤其是土壤底部（植物的根部），这个时候我们可以通过向土壤中插入一根木棍（要插到底儿哦😏），专门用来检测土壤湿度，拔出时记住木棍裸露在土壤外面的位置，拔出后用潮湿的部位去计算位置。保持根部的湿润，可以促进植物根系的发展，因此不需要经常给植物浇水。见湿也就是浇水时，保证土壤湿润即可。</li>
-<li>浇水要浇透：当我看到时我也和纳闷什么意思，而且和上面的见湿似乎又冲突，到底是见到土壤湿了就可以，还是要浇透？那什么又是浇透呢？经过我的调研和咨询，终于弄明白，这些情况是和土壤的成分有关系，因为土壤的透气性、保水性都对植物发育有很大影响，一旦有问题，很可能导致叶子发黄，脱落，甚至死亡。Emmm  我们说浇透的事儿，花盆底部是有一个小口的（不养花根部不懂事干嘛的，小时候帮妈妈浇花，水从那漏出来，还以为浪费了呢）。因为土壤成分不同，吸水、蓄水能力也不同，具体土壤成分先不介绍，简单说下原理—可以先浇一遍快水，就是将水分均匀的洒在土壤的表面，不要留干，都浸湿，见盆地有水分流出即可，等到 10 分钟之后，在进行一次浇水，同样是均匀的浇，并底部有水流出即可。这样就可以保证浇透了。</li>
-</ul>
-<blockquote>
-<p>小白在这献丑了，后续会持续更新</p>
-</blockquote>
+        <p>[TOC]</p>
+<p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Looper 在构造函数里做了两件事儿：</p>
+<ol>
+<li>将线程对象指向了创建的 Looper 的线程</li>
+<li>创建了一个新的  MessageQueue</li>
+</ol>
+<p>分析完构造函数后，看下面两个方法</p>
+<ol>
+<li>looper.loop()</li>
+<li>looper.prepare()</li>
+</ol>
+<a id="more"></a>
+<h3 id="looper-loop"><a href="#looper-loop" class="headerlink" title="looper.loop()"></a>looper.loop()</h3><p>在当前线程中启动一个 Message loop 机制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Looper me = myLooper();<span class="comment">// 获取当前线程绑定的 Looper</span></span><br><span class="line">    <span class="keyword">if</span>(me == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn`t called on this thread"</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> MessageQueue queue = me.mQueue();<span class="comment">// 获取与 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// make sure the identity of this thread is that of the local process,</span></span><br><span class="line">    <span class="comment">// And keep track of what that identity token actuall is.</span></span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    fianl <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进入死循环，不断获取对象，分发对象到 Handler 中去消费</span></span><br><span class="line">    <span class="keyword">for</span>(;;) &#123;</span><br><span class="line">        Message msg = queue.next();<span class="comment">// 不断获取下一个 message 对象，这里可能会造成阻塞。</span></span><br><span class="line">        <span class="keyword">if</span>(msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// No message idicates that the message queue is quittig.</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// This must be in a local variable, in case a UI event sets the logger</span></span><br><span class="line">        Printer logging = me.mLogging;</span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&gt;&gt;&gt; Dispatching to "</span> + msg.target + <span class="string">" "</span> + msg.callback _ <span class="string">": "</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在这里开始分发 Message </span></span><br><span class="line">        msg.target.dispatchMessage(msg);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&lt;&lt;&lt;&lt;&lt; Finished to "</span> + msg.target + <span class="string">" "</span> + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Make sure that during the course of dispatching the identity of the thread wasn`t corrupted.</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span> newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        <span class="keyword">if</span>(ident != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Log.wtf(TAG, <span class="string">"Thread identity changed from 0x"</span></span><br><span class="line">                        + Long.toHexString(ident) + <span class="string">" to 0x"</span></span><br><span class="line">                        + Long.toHexString(newIdent) + <span class="string">" while dispatching to "</span></span><br><span class="line">                        + msg.target.getClass().getName() + <span class="string">" "</span></span><br><span class="line">                        + msg.callback + <span class="string">" what="</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当分发完 Message 后，当然要标记将该 Message 为 “正在使用”</span></span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的代码可以看出，最重要的方法是：</p>
+<ol>
+<li><code>queue.next()</code></li>
+<li><code>msg.target.dispatchMessage(msg)</code></li>
+<li><code>msg.recycleUnchecked()</code></li>
+</ol>
+<p>其实 Looper 中最重要的部分都是由 Message、MessageQueue 组成的，这段代码设计到的四个对象，他们彼此的关系如下:</p>
+<ol>
+<li>MessageQueue： 装食物的容器</li>
+<li>Message ：被装的食物</li>
+<li>Handler （msg.target 实际上就是 Handler）：食物的消费者</li>
+<li>Looper：负责分发食物的人</li>
+</ol>
+<h3 id="looper-prepare-在当前线程关联一个-Lopper-对象"><a href="#looper-prepare-在当前线程关联一个-Lopper-对象" class="headerlink" title="looper.prepare() 在当前线程关联一个 Lopper 对象"></a>looper.prepare() 在当前线程关联一个 Lopper 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Lopper may be created per thread"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在当前线程绑定一个 looper</span></span><br><span class="line">    mThreadLocal.set(<span class="keyword">new</span> Looper(quiteAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，做了两件事儿：</p>
+<ol>
+<li>判断当前线程有没有 Looper，如果有则抛出异常（在这里我们就可以知道，Android 规定一个线程只能拥有一个与自己关联的 Looper。</li>
+<li>如果有的话，那么就设置一个新的 Looper 到当前线程。</li>
+</ol>
+<h3 id="Handler-的使用"><a href="#Handler-的使用" class="headerlink" title="Handler 的使用"></a>Handler 的使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Handler handler = <span class="keyword">new</span> Handler ()&#123;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// handle your message</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们先来看下 Handler 的构造：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空参构造与之对应</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">(Callback callbacck, <span class="keyword">boolean</span> async)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 大姨泄漏提醒log</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 获取与创建 Handler 线程的 Looper</span></span><br><span class="line">    mLooper = Looper.myLooper();</span><br><span class="line">    <span class="keyword">if</span>(mLooper == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RunntimeException(<span class="string">"Can`t create handler inside thread that has not called Looper.prepare()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 因为一个 Looper 只有一个 MessageQueue， 也就是与当前线程绑定的 MessageQueue</span></span><br><span class="line">    mQueue = mLooper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Looper.loop() 死循环中的 msg.target 是什么时候被赋值的？</li>
+<li>handler.handleMessage(msg) 在什么时候被回调的？</li>
+</ol>
+<p><strong>A1:</strong> Looper.loop() 死循环中的 msg.target 是什么赋值的呢？要分析这个问题，自然的就想到从发送消息开始，无论是 handler.sendMessage(msg)  还是 handler.sendEmptyMessage(what)， 最后都可以追溯到下面这个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sendMessageAtTime</span><span class="params">(Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 引用 Handler 中的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 这个 MessageQueue 就是创建 Looper 时被创建的 MessageQueue</span></span><br><span class="line">    MessageQueue queue = mQueue;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(queue == <span class="keyword">null</span>) &#123;</span><br><span class="line">        RuntimeException e = <span class="keyword">new</span> RuntimeException(</span><br><span class="line">        <span class="keyword">this</span> + <span class="string">" sendMessageAtTime() called withe no mQueue"</span>);</span><br><span class="line">        Log.w(<span class="string">"Looper"</span>, e.getMessage(), e);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将新来的 Message 加入到 MessageQueue 中</span></span><br><span class="line">    <span class="keyword">return</span> enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来看一下 <code>enququeMessage(queue, msg, uptimeMillis)</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">enququeMessage</span><span class="params">(MessageQueue, queue, Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">   	msg.target = <span class="keyword">this</span>;</span><br><span class="line">   	<span class="keyword">if</span>(mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(<span class="keyword">true</span>);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>A2</strong>:  handler.handleMessage(msg) 在什么时候被回调？通过上面的分析，我们很明确知道， Message 中的 target 是在什么时候赋值的，我们先来分析下在 Looper.loop() 中出现过的 dispatchMessage(msg) 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">diapatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(msg.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg); <span class="comment">// 开始回调</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的分析，可以清楚的知道 Handler, Looper, Message, MessageQueue 这四者的关系以及如何合作了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当我们调用 handler.sendMessage(msg)； 方法发送一个 Message 时， 实际上这个 Message 是发送到与当前线程绑定的一个 MessageQueue 中，然后与当前线程绑定的 Looper 将会不断的从 MessageQueue 中取出新的 Message， 调用 msg.target.dispatchMessage(msg) 方法将消息发送到与 Message 绑定的 handler.handleMessage() 方法中。</p>
+<p>一个 Thread 对应多个 Handler， 一个 Thread 对应一个 Looper 和 MessageQueue， Handler 与 Thread 共享 Looper 和 MessageQueue。 Message 只是消息的载体，将会被发送到与线程绑定的唯一的 MessageQueue 中，并且被与线程绑定的唯一的 Looper 分发，被其自身绑定的 Handler 消费。</p>
 
       
     </div>
@@ -537,7 +562,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2019/05/04/清香木养殖（一）/" title="清香木养殖（一）">http://xiaoman.ren/2019/05/04/清香木养殖（一）/</a>
+    <a href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/" title="线程通信基础流程">http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -550,7 +575,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/绿植/" rel="tag"># 绿植</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -563,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/30/OkHttp-Intercept/" rel="next" title="OkHttp Intercept">
-                <i class="fa fa-chevron-left"></i> OkHttp Intercept
+              <a href="/2019/06/23/清香木养殖（三）/" rel="next" title="清香木养殖（三）">
+                <i class="fa fa-chevron-left"></i> 清香木养殖（三）
               </a>
             
           </div>
@@ -573,8 +598,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/08/清香木养殖（二）/" rel="prev" title="清香木养殖（二）">
-                清香木养殖（二） <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/06/Java 各引用之间的区别/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -619,8 +644,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -738,6 +772,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Looper"><span class="nav-number">1.</span> <span class="nav-text">Looper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#looper-loop"><span class="nav-number">1.1.</span> <span class="nav-text">looper.loop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#looper-prepare-在当前线程关联一个-Lopper-对象"><span class="nav-number">1.2.</span> <span class="nav-text">looper.prepare() 在当前线程关联一个 Lopper 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-的使用"><span class="nav-number">1.3.</span> <span class="nav-text">Handler 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
