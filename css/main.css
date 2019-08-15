@@ -1913,10 +1913,14 @@ pre .javascript .function {
   height: 4px;
   border-radius: 50%;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background: #ffcb1c;
 =======
   background: #745e00;
 >>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
+=======
+  background: #541726;
+>>>>>>> 635e63267dce511beb0900f679bec6a30104b027
 }
 .feed-link,
 .chat {
