@@ -1,5 +1,8 @@
-# Android 内存管理
-
+---
+title: Android 内存管理
+date: 2019-08-04 21:54:08
+tags: Android
+---
 
 
 内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。
@@ -13,6 +16,8 @@ Java 程序运行时的内存分配策略有三种，分别是静态分配、栈
 * 静态存储区（方法区）：主要存放静态数据，全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。
 * 栈区：当方法被执行时，方法体内的局部变量（其中包括基础数据类型、对象引用）都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因此栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。
 * 堆区：又称动态内存分配，通常就是在程序运行时直接 new 出来的内存，也就是对象的实例。这部分内存在不使用时，将会由 Java 垃圾回收器负责回收。
+
+<!-- more -->
 
 ## 堆与栈的区别：
 
@@ -97,7 +102,7 @@ for (int i = 1; i < 100; i++) {
 不论那种语言的内存分配方式，都需要返回所分配的真实地址，也就是返回一个指针到内存块的首地址。Java 中对象是采用 new 或者反射的方法创建的，这些对象的创建都是在堆（Heap）中分配的。所有对象的回收都是由 Java 虚拟机通过垃圾回收机制完成。 GC 为了能够正确释放对象，会监控每个对象的运行状态，对他们的申请、引用、被引用、赋值等状况进行监控， Java 会使用有向图的方式进行管理内存，实时监控对象是否可以到达，如果不可以到达，则将其回收，这样也可以消除引用的循环问题。在 Java 语言中，判断一个内存空间是否符合垃圾回收标准有两个：
 
  	1. 给对象赋予了空值 null
- 	2. 给对象赋予了新值，这样重新分配了内存空间。
+		2. 给对象赋予了新值，这样重新分配了内存空间。
 
 
 
@@ -450,7 +455,7 @@ public class SampleActivity extends Activity {
 Java 对引用分为 StrongReference， SoftReference， WeakReference和 PhantomReference 四种。
 
 | 级别                   | 回收时机     | 用途                                                         | 生存时间           |
-| ---------------------- | :----------- | :----------------------------------------------------------- | ------------------ |
+| ---------------------- | ------------ | ------------------------------------------------------------ | ------------------ |
 | 强(StrongReference)    | 从来不会     | 对象的一般状态                                               | JVM 停止运行时终止 |
 | 软(SoftReference)      | 在内存不足时 | 联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器(内存不足才清空) | 内存不足时终止     |
 | 弱（WeakReference）    | 在垃圾回收时 | 联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的一级高速缓冲器(系统发生 gc 则清空) | gc 运行后终止      |
@@ -472,7 +477,7 @@ private Map<String, SoftReference<Bitmap>> imageCache = new HashMap<String, Soft
 
 再定义一个方法，保存 bitmap 的软引用到 HashMap。
 
-```Java
+```
 public class CacheBySoftRef {
     // 先定义一个 HashMap，保存软引用对象
     private Map<String, SoftReference<Bitmap>> imageCache = new HashMap<String, SoftReference<Bitmap>>();
@@ -499,3 +504,83 @@ public class CacheBySoftRef {
 }
 ```
 
+
+
+使用软引用以后，在 OutOfMemory 异常发生之前，这些缓存的图片资源的内存空间可以被释放掉，从而避免内存达到上线，避免 Crash 发生。
+
+
+
+如果只是想避免 OutOfMemory 异常的发生，则可以使用软引用。如果对于应用的性能更在意，想尽快回收一些占用内存比较大的对象，则可以使用弱引用。
+
+另外可以根据对象**是否经常使用**来判断选择软引用还是弱引用。如果对象可能会经常使用，就尽可能的使用软引用。如果对象不被使用的可能性更大，就用弱引用。
+
+前面所说，创建一个静态的 Handler 内部类，然后对 Handler 持有的对象使用弱引用，这样在回收时也可以回收 Handler 持有的对象，但是这样做虽然避免了 Activity 的泄漏，不过 Looper 线程的消息队列中，还是可能会有待处理的消息，所以我们在 Activity 的 onDestory() 时，或者 Stop 时应该移除消息队列 MessageQueue 中的消息。
+
+移除消息队列中 Message 的方法：
+
+```java
+public final void removeCallbacks(Runnable r);
+public final void removeCallbacks(Runnable r, Objject token);
+public final void removeCallbacksAndMessages(Object token);
+public final void removeMessages(int what);
+public final void removeMessages(int what, Object object);
+```
+
+
+
+### 尽量避免使用 static 成员变量
+
+
+
+如果成员变量被声明为 static, 那我们都知道其生命周期将与整个 APP 进程生命周期一样。
+
+这会导致一些列问题，如果你的 APP 进程设计上是常驻内存的，那即使 APP 切到后台，这部分内存也不会被释放。按照现在手机 APP 内存管理机制，占内存较大的后台集成将优先回收，因为如果此 APP 做过进程互相保活，那会造成 APP 在后台频繁重启。当手机安装了你参与开发的 APP 以后一夜时间手机被消耗空了电量、流量，你的 APP 不得不被用户卸载或者静默。
+
+修复方法是：
+
+不要在类初始化时初始化静态成员。可以考虑 lazy 初始化。架构设计上要死好是否真的有必要这样做，尽量避免。如果架构需要这么设计，那么此对象的生命周期你有责任管理起来。
+
+### 避免 Override finalize()
+
+1. finalize 方法被执行的时间不确定，不能依赖它来释放紧缺的资源，时间不确定的原因是：虚拟机调用 GC 的时间不确定 finalize daemon 线程被调度到的时间不确定。
+
+2. finalize 方法只会被执行一次，及时对象被复活，如果已经执行过 finalize 方法，再次被 GC 时，也不会再执行，原因是：
+
+   含有 finalize 方法的 Object 是在 new 的时候，由虚拟机生成了一个 finalize reference 在来引用到该 Object的，而在finalize 方法执行的时候，该 Object 所对应的 finalize Reference 会被释放掉。即使在这个时候把该Object 复活（即用强引用引用住该 Object），再第二次被 GC 的时候，由于没有了 finalize Reference 与之对应，所以 finalize 方法不会再执行。
+
+3. 含有 finalize 方法的 Object 需要至少经过两轮 GC 才有可能被释放。
+
+### 资源未关闭造成的内存泄漏
+
+对于使用了 BroadcastRevicer, ContentObserver, File， 游标 Cursor， Stream， Bitmap 等资源的使用，应该在 Activity 销毁时及时关闭或者注销，否则这些资源将不会被回收，造成内存泄漏。
+
+### 一些不良代码造成的内存压力
+
+有些代码并不造成内存泄漏，但是他们， 或是对没使用的内存没进行有效及时的释放，或是没有有效的利用已有的对象而是频繁的申请新内存。
+
+比如: Bitmap 没有调用 recycle(), 对于 Bitmap 对象在不使用时，我们应该先调用  recycle(), 释放内存，然后设置为 null。 因为加载 bitmap 对象的内存空间，一部分是 Java 的， 一部分是 C 的（因为 Bitmap 分配的底层是通过 JNI 调用的）。而这个 recycle() 就是针对 C 部分的内存释放。构造 Adapter 时，没有使用缓存的 convertView， 每次都在创建新的 converView。 这里推荐使用 ViewHolder。 
+
+
+
+## 总结
+
+对 Activity 等组件的引用应该控制在 Activity 的生命周期内；如果不能就考虑使用 `getApplicationContext` 或者 `getApplication` ,以避免 Activity 被外部长生命周期的对象引用而泄漏。
+
+
+
+尽量不要在静态变量或者静态内部类中使用非静态外部成员变量（包括 context），即使要使用，也要考虑适时把外部成员变量置空；也可以在内部类中使用弱引用来引用外部类的变量。
+
+对生命周期比 Activity 长的内部类对象，并且内部类中使用了外部类的成员变量，可以这样避免内存泄漏：
+
+```
+将内部类改为静态内部类
+静态内部类中使用弱引用来引用外部成员的成员变量
+```
+
+Handler 的持有的引用对象最好使用弱引用，资源释放时，也可以清空 Handler 中的消息，比如在 Activity onStop 或者 onDestory 的时候，取消掉该 Handler 对象的 Message 和 Runnable。
+
+在 Java 的实现过程中，也要考虑其对象释放，最好的方法是在不使用某对象是，显式地将此对象赋值为 null, 比如使用完 Bitmap 后，先调用 recycle()， 再赋 null， 清空对图片等资源有直接引用或简洁引用的数组（使用 array.clear(); array=null）等，最好遵循谁创建谁释放的原则。
+
+正确关闭资源，对于使用了 BroadcastReceived， ContentObserver, File, Cursor, Stream, Bitmap 等资源的使用，应该在 Activity 销毁时及时关闭或者注销。
+
+保持对对象生命周期的敏感，特别注意单例，静态对象，全局性集合等的生命周期。

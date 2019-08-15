@@ -1,4 +1,8 @@
-# Java Reference(SoftReference, WeakReference, PhantomReference, StrongReference) 的使用
+---
+title: Java Reference
+date: 2019-08-09 21:54:08
+tags: Java
+---
 
 
 
@@ -39,6 +43,8 @@ public class ReferenceTest{
 ```
 
 
+
+<!-- more -->
 
 
 

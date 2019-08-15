@@ -140,22 +140,18 @@
 
 
 
-  <meta name="description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
+  <meta name="description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 在一个应用中启动另外一个应用">
-<meta property="og:url" content="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/index.html">
+<meta property="og:title" content="线程通信基础流程">
+<meta property="og:url" content="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
+<meta property="og:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
 <meta property="og:locale" content="zh-Hans">
-<<<<<<< HEAD
-<meta property="og:updated_time" content="2019-04-30T08:10:57.567Z">
-=======
-<meta property="og:updated_time" content="2019-04-17T13:56:42.354Z">
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
+<meta property="og:updated_time" content="2019-08-15T08:12:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 在一个应用中启动另外一个应用">
-<meta name="twitter:description" content="Android 在一个应用中启动另外一个应用Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动. 综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习">
+<meta name="twitter:title" content="线程通信基础流程">
+<meta name="twitter:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
 
 
 
@@ -165,7 +161,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/">
+  <link rel="canonical" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
 
 
 
@@ -175,7 +171,7 @@
   };
 </script>
 
-  <title>Android 在一个应用中启动另外一个应用 | 小 man</title>
+  <title>线程通信基础流程 | 小 man</title>
   
 
 
@@ -243,11 +239,7 @@
   </div>
 
   <div class="site-nav-toggle">
-<<<<<<< HEAD
-    <button aria-label="Navigationsleiste an/ausschalten">
-=======
     <button aria-label="Toggle navigation bar">
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -312,43 +304,6 @@
     <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
 
   </li>
-<<<<<<< HEAD
-        
-        
-        
-          
-          <li class="menu-item menu-item-归档">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-时刻表">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>时刻表</a>
-
-  </li>
-=======
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
 
       
       
@@ -357,11 +312,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-<<<<<<< HEAD
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
-=======
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
         </li>
       
     </ul>
@@ -384,11 +335,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-<<<<<<< HEAD
-      <input autocomplete="off" placeholder="Suche..." spellcheck="false" type="text" id="local-search-input">
-=======
       <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -435,16 +382,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
       <meta itemprop="description" content>
-<<<<<<< HEAD
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg">
-=======
       <meta itemprop="image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/img_avator.jpg">
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -456,7 +399,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android 在一个应用中启动另外一个应用
+          <h1 class="post-title" itemprop="name headline">线程通信基础流程
 
               
             
@@ -475,22 +418,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-<<<<<<< HEAD
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-=======
                 <span class="post-meta-item-text">Posted on</span>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
               
 
               
                 
               
 
-<<<<<<< HEAD
-              <time title="Erstellt: 2019-04-16 17:45:20" itemprop="dateCreated datePublished" datetime="2019-04-16T17:45:20+08:00">2019-04-16</time>
-=======
-              <time title="Created: 2019-04-16 17:45:20" itemprop="dateCreated datePublished" datetime="2019-04-16T17:45:20+08:00">2019-04-16</time>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
+              <time title="Created: 2019-08-01 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-01T21:54:08+08:00">2019-08-01</time>
             
 
             
@@ -505,15 +440,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-<<<<<<< HEAD
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-04-30 16:10:57" itemprop="dateModified" datetime="2019-04-30T16:10:57+08:00">2019-04-30</time>
-=======
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 21:56:42" itemprop="dateModified" datetime="2019-04-17T21:56:42+08:00">2019-04-17</time>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
+                <time title="Modified: 2019-08-15 16:12:58" itemprop="dateModified" datetime="2019-08-15T16:12:58+08:00">2019-08-15</time>
               
             
           </span>
@@ -547,27 +476,58 @@
       
 
       
-        <h1 id="Android-在一个应用中启动另外一个应用"><a href="#Android-在一个应用中启动另外一个应用" class="headerlink" title="Android 在一个应用中启动另外一个应用"></a>Android 在一个应用中启动另外一个应用</h1><p>Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.</p>
-<p>综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外一个 APP 的方式.</p>
+        <p>[TOC]</p>
+<p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Looper 在构造函数里做了两件事儿：</p>
+<ol>
+<li>将线程对象指向了创建的 Looper 的线程</li>
+<li>创建了一个新的  MessageQueue</li>
+</ol>
+<p>分析完构造函数后，看下面两个方法</p>
+<ol>
+<li>looper.loop()</li>
+<li>looper.prepare()</li>
+</ol>
 <a id="more"></a>
-<h2 id="1-通过-APP-启动另一个-APP"><a href="#1-通过-APP-启动另一个-APP" class="headerlink" title="1. 通过 APP 启动另一个 APP"></a>1. 通过 APP 启动另一个 APP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String packageName = &quot;com.android.calendar&quot;;</span><br><span class="line">Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);</span><br><span class="line">intent.putExtra(&quot;type&quot;, true);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
-<p>上面的代码,就可以完成从一个 APP 启动另一个 APP 的业务需求, 这里需要注意的是,我们需要检测一下要启动的 APP 是否已经安装,如果应用未安装, 则会 NullPointException.</p>
-<p>通过这种方式, Android 虚拟机会自己在目标 APP 下寻找标签为 <code>android.intent.action.MAIN</code> 的 Activity 启动.</p>
-<p>这里介绍两种方式,检测目标应用是否已经安装</p>
-<p><strong> 方法一: </strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = getPackageName().getLaunchIntentForPackage(packageName);</span><br><span class="line">if (intent == null) &#123;</span><br><span class="line">  // 这里判断 Intent 为空, 说明应用不存在 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>方法二:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PackageInfo packageInfo = getPackageManager(0.getPackageInfo(packageName, 0);</span><br><span class="line">if (packageInfo == null) &#123;</span><br><span class="line">    // 这里如果 packageInfo 为 null, 说明应用不存在</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-打开另外一个-APP-指定的-Activity"><a href="#2-打开另外一个-APP-指定的-Activity" class="headerlink" title="2. 打开另外一个 APP 指定的 Activity"></a>2. 打开另外一个 APP 指定的 Activity</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent();</span><br><span class="line">ComponentName componeneName = new ComponeneName(&quot;com.android.calendar&quot;, &quot;com.android.calendar.LaunchActivity&quot;);</span><br><span class="line">intent.setComponent(componeneName);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
-<p>值得注意: </p>
-<ul>
-<li>需要将目标 Activity 的 android:export=”true” 属性在所属应用的 AndroidMainfest 里设置为 true, 意思是当前 Activity 允许被外部应用访问, 否则会报错</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.lang.SecurityException: Permission Denial: starting  Intent </span><br><span class="line">&#123; cmp=com.example.fm/.MainFragmentActivity (has extras) &#125; from ProcessRecord</span><br><span class="line">&#123;39282a97 11545:com.xing.toolbardemo1/u0a71&#125;  (pid=11545,     uid=10071) not exported from uid 10067</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 5.0 以前的设备上,需要在当前的 AndroidMainfest 里也生命目标Activity, 否则会报错; 但在 5.0 以后的设备上,就不会报错哦</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  Caused by: android.content.ActivityNotFoundException: Unable to find explicit activity class &#123;com.example.fm/com.example.fm.MainFragmentActivity&#125;; </span><br><span class="line">have you declared this activity in your AndroidManifest.xml?</span><br></pre></td></tr></table></figure>
+<h3 id="looper-loop"><a href="#looper-loop" class="headerlink" title="looper.loop()"></a>looper.loop()</h3><p>在当前线程中启动一个 Message loop 机制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Looper me = myLooper();<span class="comment">// 获取当前线程绑定的 Looper</span></span><br><span class="line">    <span class="keyword">if</span>(me == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn`t called on this thread"</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> MessageQueue queue = me.mQueue();<span class="comment">// 获取与 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// make sure the identity of this thread is that of the local process,</span></span><br><span class="line">    <span class="comment">// And keep track of what that identity token actuall is.</span></span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    fianl <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进入死循环，不断获取对象，分发对象到 Handler 中去消费</span></span><br><span class="line">    <span class="keyword">for</span>(;;) &#123;</span><br><span class="line">        Message msg = queue.next();<span class="comment">// 不断获取下一个 message 对象，这里可能会造成阻塞。</span></span><br><span class="line">        <span class="keyword">if</span>(msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// No message idicates that the message queue is quittig.</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// This must be in a local variable, in case a UI event sets the logger</span></span><br><span class="line">        Printer logging = me.mLogging;</span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&gt;&gt;&gt; Dispatching to "</span> + msg.target + <span class="string">" "</span> + msg.callback _ <span class="string">": "</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在这里开始分发 Message </span></span><br><span class="line">        msg.target.dispatchMessage(msg);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&lt;&lt;&lt;&lt;&lt; Finished to "</span> + msg.target + <span class="string">" "</span> + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Make sure that during the course of dispatching the identity of the thread wasn`t corrupted.</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span> newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        <span class="keyword">if</span>(ident != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Log.wtf(TAG, <span class="string">"Thread identity changed from 0x"</span></span><br><span class="line">                        + Long.toHexString(ident) + <span class="string">" to 0x"</span></span><br><span class="line">                        + Long.toHexString(newIdent) + <span class="string">" while dispatching to "</span></span><br><span class="line">                        + msg.target.getClass().getName() + <span class="string">" "</span></span><br><span class="line">                        + msg.callback + <span class="string">" what="</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当分发完 Message 后，当然要标记将该 Message 为 “正在使用”</span></span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的代码可以看出，最重要的方法是：</p>
+<ol>
+<li><code>queue.next()</code></li>
+<li><code>msg.target.dispatchMessage(msg)</code></li>
+<li><code>msg.recycleUnchecked()</code></li>
+</ol>
+<p>其实 Looper 中最重要的部分都是由 Message、MessageQueue 组成的，这段代码设计到的四个对象，他们彼此的关系如下:</p>
+<ol>
+<li>MessageQueue： 装食物的容器</li>
+<li>Message ：被装的食物</li>
+<li>Handler （msg.target 实际上就是 Handler）：食物的消费者</li>
+<li>Looper：负责分发食物的人</li>
+</ol>
+<h3 id="looper-prepare-在当前线程关联一个-Lopper-对象"><a href="#looper-prepare-在当前线程关联一个-Lopper-对象" class="headerlink" title="looper.prepare() 在当前线程关联一个 Lopper 对象"></a>looper.prepare() 在当前线程关联一个 Lopper 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Lopper may be created per thread"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在当前线程绑定一个 looper</span></span><br><span class="line">    mThreadLocal.set(<span class="keyword">new</span> Looper(quiteAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，做了两件事儿：</p>
+<ol>
+<li>判断当前线程有没有 Looper，如果有则抛出异常（在这里我们就可以知道，Android 规定一个线程只能拥有一个与自己关联的 Looper。</li>
+<li>如果有的话，那么就设置一个新的 Looper 到当前线程。</li>
+</ol>
+<h3 id="Handler-的使用"><a href="#Handler-的使用" class="headerlink" title="Handler 的使用"></a>Handler 的使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Handler handler = <span class="keyword">new</span> Handler ()&#123;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// handle your message</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们先来看下 Handler 的构造：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空参构造与之对应</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">(Callback callbacck, <span class="keyword">boolean</span> async)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 大姨泄漏提醒log</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 获取与创建 Handler 线程的 Looper</span></span><br><span class="line">    mLooper = Looper.myLooper();</span><br><span class="line">    <span class="keyword">if</span>(mLooper == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RunntimeException(<span class="string">"Can`t create handler inside thread that has not called Looper.prepare()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 因为一个 Looper 只有一个 MessageQueue， 也就是与当前线程绑定的 MessageQueue</span></span><br><span class="line">    mQueue = mLooper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Looper.loop() 死循环中的 msg.target 是什么时候被赋值的？</li>
+<li>handler.handleMessage(msg) 在什么时候被回调的？</li>
+</ol>
+<p><strong>A1:</strong> Looper.loop() 死循环中的 msg.target 是什么赋值的呢？要分析这个问题，自然的就想到从发送消息开始，无论是 handler.sendMessage(msg)  还是 handler.sendEmptyMessage(what)， 最后都可以追溯到下面这个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sendMessageAtTime</span><span class="params">(Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 引用 Handler 中的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 这个 MessageQueue 就是创建 Looper 时被创建的 MessageQueue</span></span><br><span class="line">    MessageQueue queue = mQueue;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(queue == <span class="keyword">null</span>) &#123;</span><br><span class="line">        RuntimeException e = <span class="keyword">new</span> RuntimeException(</span><br><span class="line">        <span class="keyword">this</span> + <span class="string">" sendMessageAtTime() called withe no mQueue"</span>);</span><br><span class="line">        Log.w(<span class="string">"Looper"</span>, e.getMessage(), e);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将新来的 Message 加入到 MessageQueue 中</span></span><br><span class="line">    <span class="keyword">return</span> enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来看一下 <code>enququeMessage(queue, msg, uptimeMillis)</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">enququeMessage</span><span class="params">(MessageQueue, queue, Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">   	msg.target = <span class="keyword">this</span>;</span><br><span class="line">   	<span class="keyword">if</span>(mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(<span class="keyword">true</span>);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>A2</strong>:  handler.handleMessage(msg) 在什么时候被回调？通过上面的分析，我们很明确知道， Message 中的 target 是在什么时候赋值的，我们先来分析下在 Looper.loop() 中出现过的 dispatchMessage(msg) 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">diapatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(msg.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg); <span class="comment">// 开始回调</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的分析，可以清楚的知道 Handler, Looper, Message, MessageQueue 这四者的关系以及如何合作了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当我们调用 handler.sendMessage(msg)； 方法发送一个 Message 时， 实际上这个 Message 是发送到与当前线程绑定的一个 MessageQueue 中，然后与当前线程绑定的 Looper 将会不断的从 MessageQueue 中取出新的 Message， 调用 msg.target.dispatchMessage(msg) 方法将消息发送到与 Message 绑定的 handler.handleMessage() 方法中。</p>
+<p>一个 Thread 对应多个 Handler， 一个 Thread 对应一个 Looper 和 MessageQueue， Handler 与 Thread 共享 Looper 和 MessageQueue。 Message 只是消息的载体，将会被发送到与线程绑定的唯一的 MessageQueue 中，并且被与线程绑定的唯一的 Looper 分发，被其自身绑定的 Handler 消费。</p>
 
       
     </div>
@@ -598,24 +558,14 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-<<<<<<< HEAD
-    <strong>Beitragsautor:  </strong>小 man</li>
-  <li class="post-copyright-link">
-    <strong>Beitragslink: </strong>
-=======
     <strong>Post author:  </strong>小 man</li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
     
-    <a href="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/" title="Android 在一个应用中启动另外一个应用">http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/</a>
+    <a href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/" title="线程通信基础流程">http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/</a>
   </li>
   <li class="post-copyright-license">
-<<<<<<< HEAD
-    <strong>Urheberrechtshinweis:  </strong>Alle Artikel in diesem Blog sind unter <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> lizenziert, außer es wird anders angegeben.</li>
-=======
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
 </ul>
 
       </div>
@@ -638,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/16/Android-Studio-Dependencies-Library-Resolve/" rel="next" title="Android Studio Dependencies Library Resolve">
-                <i class="fa fa-chevron-left"></i> Android Studio Dependencies Library Resolve
+              <a href="/2019/06/23/清香木养殖（三）/" rel="next" title="清香木养殖（三）">
+                <i class="fa fa-chevron-left"></i> 清香木养殖（三）
               </a>
             
           </div>
@@ -648,8 +598,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/16/事件分发/" rel="prev" title="事件分发">
-                事件分发 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/06/Java 各引用之间的区别/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -696,17 +646,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-<<<<<<< HEAD
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-=======
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             Overview
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
           </li>
         </ul>
       
@@ -715,11 +658,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-<<<<<<< HEAD
-              <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg" alt="小 man">
-=======
               <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/img_avator.jpg" alt="小 man">
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
             
               <p class="site-author-name" itemprop="name">小 man</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -732,17 +671,8 @@
                 
                   <a href="/archives">
                 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">Artikel</span>
-=======
-                    <span class="site-state-item-count">17</span>
-=======
                     <span class="site-state-item-count">18</span>
->>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
                     <span class="site-state-item-name">posts</span>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
                   </a>
                 </div>
               
@@ -773,11 +703,7 @@
                       
                     
                     <span class="site-state-item-count">6</span>
-<<<<<<< HEAD
-                    <span class="site-state-item-name">schlagwörter</span>
-=======
                     <span class="site-state-item-name">tags</span>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
                   </a>
                 </div>
               
@@ -857,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-在一个应用中启动另外一个应用"><span class="nav-number">1.</span> <span class="nav-text">Android 在一个应用中启动另外一个应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-通过-APP-启动另一个-APP"><span class="nav-number">1.1.</span> <span class="nav-text">1. 通过 APP 启动另一个 APP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-打开另外一个-APP-指定的-Activity"><span class="nav-number">1.2.</span> <span class="nav-text">2. 打开另外一个 APP 指定的 Activity</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Looper"><span class="nav-number">1.</span> <span class="nav-text">Looper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#looper-loop"><span class="nav-number">1.1.</span> <span class="nav-text">looper.loop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#looper-prepare-在当前线程关联一个-Lopper-对象"><span class="nav-number">1.2.</span> <span class="nav-text">looper.prepare() 在当前线程关联一个 Lopper 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-的使用"><span class="nav-number">1.3.</span> <span class="nav-text">Handler 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -890,11 +816,7 @@
 </div>
 
 
-<<<<<<< HEAD
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-=======
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
 
 
 
@@ -902,11 +824,7 @@
 
 
 
-<<<<<<< HEAD
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
-=======
   <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
 
 
 
@@ -1390,11 +1308,7 @@
   $('.highlight').each(function(i, e) {
     var $wrap = $('<div>').addClass('highlight-wrap');
     $(e).after($wrap);
-<<<<<<< HEAD
-    $wrap.append($('<button>').addClass('copy-btn').append('Kopieren').on('click', function(e) {
-=======
     $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
       var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
         return $(e).text();
       }).toArray().join('\n');
@@ -1411,24 +1325,15 @@
       ta.readOnly = false;
       var result = document.execCommand('copy');
       
-<<<<<<< HEAD
-        if (result) $(this).text('Kopiert');
-        else $(this).text('Kopieren fehlgeschlagen');
-=======
         if (result) $(this).text('Copied');
         else $(this).text('Copy failed');
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
       
       ta.blur(); // For iOS
       $(this).blur();
     })).on('mouseleave', function(e) {
       var $b = $(this).find('.copy-btn');
       setTimeout(function() {
-<<<<<<< HEAD
-        $b.text('Kopieren');
-=======
         $b.text('Copy');
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
       }, 300);
     }).append(e);
   })

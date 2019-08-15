@@ -1,13 +1,8 @@
 ---
-title: 线程通信基础流程
+title: Handler 线程通信基础流程
 date: 2019-08-01 21:54:08
-tags: Android
+tags: Handler
 ---
-
-
-
-[TOC]
-
 
 
 Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。
@@ -220,3 +215,4 @@ public void diapatchMessage(Message msg) {
 当我们调用 handler.sendMessage(msg)； 方法发送一个 Message 时， 实际上这个 Message 是发送到与当前线程绑定的一个 MessageQueue 中，然后与当前线程绑定的 Looper 将会不断的从 MessageQueue 中取出新的 Message， 调用 msg.target.dispatchMessage(msg) 方法将消息发送到与 Message 绑定的 handler.handleMessage() 方法中。
 
 一个 Thread 对应多个 Handler， 一个 Thread 对应一个 Looper 和 MessageQueue， Handler 与 Thread 共享 Looper 和 MessageQueue。 Message 只是消息的载体，将会被发送到与线程绑定的唯一的 MessageQueue 中，并且被与线程绑定的唯一的 Looper 分发，被其自身绑定的 Handler 消费。
+
