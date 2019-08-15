@@ -427,7 +427,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/09/Android 内存管理/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/09/Java 各引用之间的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -451,7 +451,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/09/Android 内存管理/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2019/08/09/Java 各引用之间的区别/" class="post-title-link" itemprop="url">Java Reference</a>
               
             
           </h1>
@@ -480,6 +480,7 @@
                 
               
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               <time title="Erstellt: 2019-08-09 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-09T21:54:08+08:00">2019-08-09</time>
@@ -517,6 +518,28 @@
 
             
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+              <time title="Created: 2019-08-09 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-09T21:54:08+08:00">2019-08-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-12 10:51:05" itemprop="dateModified" datetime="2019-08-12T10:51:05+08:00">2019-08-12</time>
+              
+            
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
           </span>
 
           
@@ -549,6 +572,7 @@
 
       
         
+<<<<<<< HEAD
           
             <h1 id="Android-内存管理"><a href="#Android-内存管理" class="headerlink" title="Android 内存管理"></a>Android 内存管理</h1><p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
 <h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。</p>
@@ -586,10 +610,15 @@
 <p><img src="https://camo.githubusercontent.com/ba01b8ae9af4a5e588251316c826bf3e0e695f35/687474703a2f2f7777772e69626d2e636f6d2f646576656c6f706572776f726b732f636e2f6a6176612f6c2d4a6176614d656d6f72794c65616b2f312e676966" alt></p>
 <p>Java 使用有向图的方式进行内存管理，可以消除引用循环的问题，例如有三个对象，相互引用，只要他们和根进程不可达，那么 GC 就可以回收他。这种管理方式的有点是管理内存的精度高，但是效率低。</p>
 <h2 id="什么是-Java-中的内存泄露"><a href="#什么是-Java-中的内存泄露" class="headerlink" title="什么是 Java 中的内存泄露"></a>什么是 Java 中的内存泄露</h2><p>在 Java 中，内存泄露就是存在一些被分配的对象，这些对象有两个特点。</p>
+=======
+          <h2 id="Reference-引用"><a href="#Reference-引用" class="headerlink" title="Reference 引用"></a>Reference 引用</h2><p>继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。</p>
+<p>三个子类的构造方法中涉及到 ReferenceQueue 和 Referent：</p>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
 <ul>
-<li>这些对象是可达的，即在有向图中，存在通路与其相连</li>
-<li>这些对象是无用的，即程序以后不会在使用这些对象。</li>
+<li>Referent： 被引用对象</li>
+<li>ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引用）会被 enqueue 到这个 ReferenceQueue 中。</li>
 </ul>
+<<<<<<< HEAD
 <p>如果满足这两个条件，这些对象就可以判定为 Java 中的内存泄露，这些对象不会被 GC 回收，但却是占用着内存。</p>
 <p>对于程序猿来说， GC 基本是透明的，不可见的。虽然我们只有几个函数可以方位 GC， 例如运行 GC 的函数 <code>System.gc()</code>，但是根据 Java 语言规范定义，该函数不保证 JVM 的垃圾回收器一定会执行。因为，不同的 JVM 实现着可能使用不同的算法管理 GC。 通常 GC 的线程优先级比较低。 JVM 调用 GC 的策略也有很多种，有的是内存使用达到一定成都时， GC 才开始工作；也有定时执行，有的是平缓执行 GC， 有的是中断式执行 GC。 通常来说，我们不需要关心这些。除非在一些特定的场合， GC 的执行影响应用程序的性能，例如对于基于 Web 的实时系统，如网络游戏等，用户不希望 GC 突然终端应用程序执行而进行垃圾回收，那么我们需要调整 GC 的参数，让 GC 能够通过平缓的方式释放内存，例如将垃圾回收分解为一系列的小步骤执行， Sun 提供了 HotSpot JVM 支持这一特性。</p>
 <p>同样给出一个 Java 内存泄露的典型例子</p>
@@ -706,7 +735,18 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheBySoftRef</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 先定义一个 HashMap，保存软引用对象</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, SoftReference&lt;Bitmap&gt;&gt; imageCache = <span class="keyword">new</span> HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 再定义一个方法，保存 bitmap 的软引用到 HashMap。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBitmapToCache</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 强引用的 Bitmap 对象</span></span><br><span class="line">        Bitmap bitmap = BitmapFactory.decodeFile(path);</span><br><span class="line">        <span class="comment">// 软引用的 bitmap 对象</span></span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = <span class="keyword">new</span> SoftReference&lt;Bitmap&gt;(bitmap);</span><br><span class="line">        imageCache.put(path, softBitmap);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取的时候，可以通过 SoftReference 的 get() 方法得到 bitmap 对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmapByPath</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 从缓存中取软引用的 bitmap 对象</span></span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = imageCache.get(path);</span><br><span class="line">        <span class="comment">// 判断是否存在软引用</span></span><br><span class="line">        <span class="keyword">if</span> (softBitmap == <span class="keyword">null</span>)  <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 通过软引用取出 bitmap 对象，如果由于内存不足 Bitmap 被回收，将取到空，如果未被回收，则可重复使用，提高速度</span></span><br><span class="line">        Bitmap bitmap = softBitmap.get();</span><br><span class="line">        <span class="keyword">return</span> bitmap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>　</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.finalize();</span><br><span class="line">            System.out.println(<span class="string">"in Person finalize"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/09/Java 各引用之间的区别/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
+          
+          <!--/noindex-->
         
       
     </div>
@@ -761,7 +801,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/06/Java 各引用之间的区别/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -785,7 +825,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/06/Java 各引用之间的区别/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2019/08/04/Android 内存管理/" class="post-title-link" itemprop="url">Android 内存管理</a>
               
             
           </h1>
@@ -816,6 +856,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <time title="Erstellt: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
 =======
               <time title="Created: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
@@ -825,9 +866,18 @@
 =======
               <time title="Created: 2019-08-06 18:16:30" itemprop="dateCreated datePublished" datetime="2019-08-06T18:16:30+08:00">2019-08-06</time>
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+              <time title="Created: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
             
 
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
+            
+              
+
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
               
                 
                 <span class="post-meta-divider">|</span>
@@ -837,6 +887,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
@@ -849,6 +900,12 @@
               
 =======
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-12 16:11:48" itemprop="dateModified" datetime="2019-08-12T16:11:48+08:00">2019-08-12</time>
+              
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
             
           </span>
 
@@ -882,6 +939,7 @@
 
       
         
+<<<<<<< HEAD
           
             <h1 id="Java-Reference-SoftReference-WeakReference-PhantomReference-StrongReference-的使用"><a href="#Java-Reference-SoftReference-WeakReference-PhantomReference-StrongReference-的使用" class="headerlink" title="Java Reference(SoftReference, WeakReference, PhantomReference, StrongReference) 的使用"></a>Java Reference(SoftReference, WeakReference, PhantomReference, StrongReference) 的使用</h1><h2 id="Reference-引用"><a href="#Reference-引用" class="headerlink" title="Reference 引用"></a>Reference 引用</h2><p>继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。</p>
 <p>三个子类的构造方法中涉及到 ReferenceQueue 和 Referent：</p>
@@ -957,10 +1015,16 @@
 <p>​    而只有确认被垃圾回收后，如果有 ReferenceQueue， 其引用才会被放置于 ReferenceQueue 中。</p>
 <h2 id="PhantomReference-虚引用"><a href="#PhantomReference-虚引用" class="headerlink" title="PhantomReference 虚引用"></a>PhantomReference 虚引用</h2><p>虚引用源码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang.ref;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.ref.Reference;</span><br><span class="line"><span class="keyword">import</span> java.lang.ref.ReferenceQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhantomReference</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Reference</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PhantomReference</span><span class="params">(T var1, ReferenceQueue&lt;? <span class="keyword">super</span> T&gt; var2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.(var1, var2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+=======
+          <p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
+<h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。</p>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
 <ul>
-<li>PhantomReference 只有一个构造函数 <code>PhantomReference(T referenct, ReferenceQueue&lt;? super T&gt; q)</code>  因此，PhantomReference 使用必须结合 ReferenceQueue；</li>
-<li>不管有无强引用指向 PhantomReference 的指示对象， PhantomReference 的 get() 方法返回结果都是 null</li>
+<li>静态存储区（方法区）：主要存放静态数据，全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</li>
+<li>栈区：当方法被执行时，方法体内的局部变量（其中包括基础数据类型、对象引用）都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因此栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</li>
+<li>堆区：又称动态内存分配，通常就是在程序运行时直接 new 出来的内存，也就是对象的实例。这部分内存在不使用时，将会由 Java 垃圾回收器负责回收。</li>
 </ul>
+<<<<<<< HEAD
 <p>举例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testPhantomReference</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为"</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    PhantomReference&lt;Person&gt; pr = <span class="keyword">new</span> PhantomReference&lt;&gt;(person, queue);</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"pr 对象为"</span> + pr);</span><br><span class="line">    System.out.println(<span class="string">"pr.get() = "</span> + pr.get());</span><br><span class="line">    </span><br><span class="line">    person = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 确保垃圾回收线程执行</span></span><br><span class="line">        Thread.sleep(<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"queue item: "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>执行结果：</strong></p>
@@ -973,7 +1037,17 @@
 <p>​    程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前才去必要的行动。</p>
 
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/04/Android 内存管理/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1062,6 +1136,7 @@
                 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="/2019/05/08/清香木养殖（二）/" class="post-title-link" itemprop="url">清香木养殖（二）</a>
 =======
                 <a href="/2019/06/23/清香木养殖（三）/" class="post-title-link" itemprop="url">清香木养殖（三）</a>
@@ -1069,6 +1144,9 @@
 =======
                 <a href="/2019/08/01/Handler 线程通信基础流程/" class="post-title-link" itemprop="url">线程通信基础流程</a>
 >>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
+=======
+                <a href="/2019/08/01/Handler 线程通信基础流程/" class="post-title-link" itemprop="url">Handler 线程通信基础流程</a>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
               
             
           </h1>
@@ -1122,7 +1200,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-15 16:12:58" itemprop="dateModified" datetime="2019-08-15T16:12:58+08:00">2019-08-15</time>
+                <time title="Modified: 2019-08-15 20:31:50" itemprop="dateModified" datetime="2019-08-15T20:31:50+08:00">2019-08-15</time>
               
             
           </span>
@@ -1159,6 +1237,7 @@
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <p>心心切切,每天都会关注它的变化,可惜心急吃不得热豆腐;经过了几天, 发现它有一些枯叶和干枝,你是在向我宣战吗?????上网查询了一下发现其实是植物在更换了环境之后,需要一段时间的适应,枯叶干枝属于正常现象, 哈哈哈,还好你不是嫌弃我的小屋.</p>
           <!--noindex-->
           
@@ -1174,6 +1253,9 @@
 =======
           <p>[TOC]</p>
 <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+=======
+          <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
 <h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Looper 在构造函数里做了两件事儿：</p>
@@ -2912,10 +2994,16 @@
                     
                       
                     
+<<<<<<< HEAD
                     <span class="site-state-item-count">6</span>
 <<<<<<< HEAD
                     <span class="site-state-item-name">schlagwörter</span>
 =======
+=======
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+>>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
                     <span class="site-state-item-name">tags</span>
 >>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
                   </a>
