@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
-<meta name="keywords" content="Android">
+  <meta name="description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
+<meta name="keywords" content="Handler">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线程通信基础流程">
+<meta property="og:title" content="Handler 线程通信基础流程">
 <meta property="og:url" content="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
+<meta property="og:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-15T08:12:58.000Z">
+<meta property="og:updated_time" content="2019-08-15T12:31:50.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线程通信基础流程">
-<meta name="twitter:description" content="[TOC] Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new Mess">
+<meta name="twitter:title" content="Handler 线程通信基础流程">
+<meta name="twitter:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>线程通信基础流程 | 小 man</title>
+  <title>Handler 线程通信基础流程 | 小 man</title>
   
 
 
@@ -399,7 +399,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">线程通信基础流程
+          <h1 class="post-title" itemprop="name headline">Handler 线程通信基础流程
 
               
             
@@ -442,7 +442,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-15 16:12:58" itemprop="dateModified" datetime="2019-08-15T16:12:58+08:00">2019-08-15</time>
+                <time title="Modified: 2019-08-15 20:31:50" itemprop="dateModified" datetime="2019-08-15T20:31:50+08:00">2019-08-15</time>
               
             
           </span>
@@ -476,8 +476,7 @@
       
 
       
-        <p>[TOC]</p>
-<p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+        <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
 <h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Looper 在构造函数里做了两件事儿：</p>
@@ -562,7 +561,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/" title="线程通信基础流程">http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/</a>
+    <a href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/" title="Handler 线程通信基础流程">http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -575,7 +574,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Handler/" rel="tag"># Handler</a>
           
         </div>
       
@@ -598,8 +597,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/06/Java 各引用之间的区别/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/04/Android 内存管理/" rel="prev" title="Android 内存管理">
+                Android 内存管理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +701,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

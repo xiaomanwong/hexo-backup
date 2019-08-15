@@ -140,20 +140,21 @@
 
 
 
-  <meta name="description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+  <meta name="description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小 man">
-<meta property="og:url" content="http://xiaoman.ren/2019/08/09/Android 内存管理/index.html">
+<meta property="og:title" content="Android 内存管理">
+<meta property="og:url" content="http://xiaoman.ren/2019/08/04/Android 内存管理/index.html">
 <meta property="og:site_name" content="小 man">
-<meta property="og:description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+<meta property="og:description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://camo.githubusercontent.com/ba01b8ae9af4a5e588251316c826bf3e0e695f35/687474703a2f2f7777772e69626d2e636f6d2f646576656c6f706572776f726b732f636e2f6a6176612f6c2d4a6176614d656d6f72794c65616b2f312e676966">
 <meta property="og:image" content="https://camo.githubusercontent.com/dee4aecb8a80c4e73337b56ee01cbffa2a8049dd/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f32303135313132333134343232363334393f73706d3d353137362e3130303233392e626c6f67636f6e742e392e437455316334">
 <meta property="og:image" content="https://camo.githubusercontent.com/2b1a52551d828d9640f23ee7c2802476b02ccec3/687474703a2f2f696d67322e746263646e2e636e2f4c312f3436312f312f666230356666366432653638663330396239346464383433353263383161636665306165383339653f73706d3d353137362e3130303233392e626c6f67636f6e742e31302e437455316334">
-<meta property="og:updated_time" content="2019-08-09T11:02:41.000Z">
+<meta property="og:updated_time" content="2019-08-12T08:11:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小 man">
-<meta name="twitter:description" content="Android 内存管理内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储">
+<meta name="twitter:title" content="Android 内存管理">
+<meta name="twitter:description" content="内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。 Java 内存分配策略Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。  静态存储区（方法区）：主要存放静">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/ba01b8ae9af4a5e588251316c826bf3e0e695f35/687474703a2f2f7777772e69626d2e636f6d2f646576656c6f706572776f726b732f636e2f6a6176612f6c2d4a6176614d656d6f72794c65616b2f312e676966">
 
 
@@ -164,7 +165,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2019/08/09/Android 内存管理/">
+  <link rel="canonical" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
 
 
 
@@ -174,7 +175,7 @@
   };
 </script>
 
-  <title> | 小 man</title>
+  <title>Android 内存管理 | 小 man</title>
   
 
 
@@ -385,7 +386,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/09/Android 内存管理/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小 man">
@@ -402,7 +403,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">Android 内存管理
 
               
             
@@ -428,9 +429,25 @@
                 
               
 
-              <time title="Created: 2019-08-09 19:02:41" itemprop="dateCreated datePublished" datetime="2019-08-09T19:02:41+08:00">2019-08-09</time>
+              <time title="Created: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-12 16:11:48" itemprop="dateModified" datetime="2019-08-12T16:11:48+08:00">2019-08-12</time>
+              
             
           </span>
 
@@ -463,13 +480,14 @@
       
 
       
-        <h1 id="Android-内存管理"><a href="#Android-内存管理" class="headerlink" title="Android 内存管理"></a>Android 内存管理</h1><p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
+        <p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
 <h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。</p>
 <ul>
 <li>静态存储区（方法区）：主要存放静态数据，全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</li>
 <li>栈区：当方法被执行时，方法体内的局部变量（其中包括基础数据类型、对象引用）都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因此栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</li>
 <li>堆区：又称动态内存分配，通常就是在程序运行时直接 new 出来的内存，也就是对象的实例。这部分内存在不使用时，将会由 Java 垃圾回收器负责回收。</li>
 </ul>
+<a id="more"></a>
 <h2 id="堆与栈的区别："><a href="#堆与栈的区别：" class="headerlink" title="堆与栈的区别："></a>堆与栈的区别：</h2><p>在方法体内定义的（局部变量）一些基本类型的变量和对象的引用都是在方法的栈内存中分配的。当在一段方法块中定义一个变量时，Java 就会在栈中为该变量分配内存空间，当超过该变量的作用域后，该变量也就无效了，分配给它的内存空间也将被释放掉，该内存空间可以被重新使用。</p>
 <p>堆内存用来存放所有由 new 创建的对象（包括该对象其中的所有成员变量）和数组。在堆中分配的内存，将由 Java 垃圾回收器来自动管理。在堆中产生了一个数组或者对象后，还可以在栈中定义一个特殊变量，这个变量的取值等于数组或者对象在内存中的首地址，这个特殊的变量就是我们上面说的引用变量。我们可以通过这个引用变量来访问堆中的对象或者数组。</p>
 <p>举例：</p>
@@ -496,7 +514,7 @@
 <p>在这个例子中，我们循环申请 Object 对象，并将所申请的对象放入一个 Vector 中，如果我们仅仅释放引用本身，那么 Vector 仍然应用该对象，所以这个对象对 GC 来说是不可回收的。因此，如果对象加入到 Vector 后，还必须从 Vector 中删除，最简单的方法就是将 Vector 对象设置为 null。</p>
 <h2 id="详细的-Java-中的内存泄露"><a href="#详细的-Java-中的内存泄露" class="headerlink" title="详细的 Java 中的内存泄露"></a>详细的 Java 中的内存泄露</h2><h3 id="Java-内存回收机制"><a href="#Java-内存回收机制" class="headerlink" title="Java 内存回收机制"></a>Java 内存回收机制</h3><p>不论那种语言的内存分配方式，都需要返回所分配的真实地址，也就是返回一个指针到内存块的首地址。Java 中对象是采用 new 或者反射的方法创建的，这些对象的创建都是在堆（Heap）中分配的。所有对象的回收都是由 Java 虚拟机通过垃圾回收机制完成。 GC 为了能够正确释放对象，会监控每个对象的运行状态，对他们的申请、引用、被引用、赋值等状况进行监控， Java 会使用有向图的方式进行管理内存，实时监控对象是否可以到达，如果不可以到达，则将其回收，这样也可以消除引用的循环问题。在 Java 语言中，判断一个内存空间是否符合垃圾回收标准有两个：</p>
 <pre><code>1. 给对象赋予了空值 null
-2. 给对象赋予了新值，这样重新分配了内存空间。
+   2. 给对象赋予了新值，这样重新分配了内存空间。
 </code></pre><h3 id="Java-内存泄漏引起的原因"><a href="#Java-内存泄漏引起的原因" class="headerlink" title="Java 内存泄漏引起的原因"></a>Java 内存泄漏引起的原因</h3><p>内存泄露是指无用对象（不再使用的对象）持续占有内存活无用对象的内存得不到及时释放，从而造成内存空间的浪费称为内存泄漏。内存泄漏有时不严重，不易察觉，这样开发者就不知道存在内存泄漏，但有时也很严重，会提示 Out of memory。</p>
 <p>Java 内存泄漏的根本原因是什么呢？长生命周期的对象持有短生命周期对象的引用就很可能发生内存泄漏，尽管短生命周期对象已经不再需要，但是因为长生命周期持有它的引用而导致不能被释放回收，这就是 Java 中内存泄漏的发生场景，主要有一下几大类：</p>
 <ol>
@@ -564,34 +582,34 @@
 <thead>
 <tr>
 <th>级别</th>
-<th style="text-align:left">回收时机</th>
-<th style="text-align:left">用途</th>
+<th>回收时机</th>
+<th>用途</th>
 <th>生存时间</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>强(StrongReference)</td>
-<td style="text-align:left">从来不会</td>
-<td style="text-align:left">对象的一般状态</td>
+<td>从来不会</td>
+<td>对象的一般状态</td>
 <td>JVM 停止运行时终止</td>
 </tr>
 <tr>
 <td>软(SoftReference)</td>
-<td style="text-align:left">在内存不足时</td>
-<td style="text-align:left">联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器(内存不足才清空)</td>
+<td>在内存不足时</td>
+<td>联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器(内存不足才清空)</td>
 <td>内存不足时终止</td>
 </tr>
 <tr>
 <td>弱（WeakReference）</td>
-<td style="text-align:left">在垃圾回收时</td>
-<td style="text-align:left">联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的一级高速缓冲器(系统发生 gc 则清空)</td>
+<td>在垃圾回收时</td>
+<td>联合 ReferenceQueue 构造有效期短/占内存大/生命周期长的对象的一级高速缓冲器(系统发生 gc 则清空)</td>
 <td>gc 运行后终止</td>
 </tr>
 <tr>
 <td>虚（PhantomReference）</td>
-<td style="text-align:left">在垃圾回收时</td>
-<td style="text-align:left">联合 ReferenceQueue 来跟踪对象被垃圾回收器回收的活动</td>
+<td>在垃圾回收时</td>
+<td>联合 ReferenceQueue 来跟踪对象被垃圾回收器回收的活动</td>
 <td>gc 运行后终止</td>
 </tr>
 </tbody>
@@ -602,7 +620,37 @@
 <p>首先定义一个 HashMap，保存软引用对象：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Map&lt;String, SoftReference&lt;Bitmap&gt;&gt; imageCache = new HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();</span><br></pre></td></tr></table></figure>
 <p>再定义一个方法，保存 bitmap 的软引用到 HashMap。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheBySoftRef</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 先定义一个 HashMap，保存软引用对象</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, SoftReference&lt;Bitmap&gt;&gt; imageCache = <span class="keyword">new</span> HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 再定义一个方法，保存 bitmap 的软引用到 HashMap。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBitmapToCache</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 强引用的 Bitmap 对象</span></span><br><span class="line">        Bitmap bitmap = BitmapFactory.decodeFile(path);</span><br><span class="line">        <span class="comment">// 软引用的 bitmap 对象</span></span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = <span class="keyword">new</span> SoftReference&lt;Bitmap&gt;(bitmap);</span><br><span class="line">        imageCache.put(path, softBitmap);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取的时候，可以通过 SoftReference 的 get() 方法得到 bitmap 对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmapByPath</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 从缓存中取软引用的 bitmap 对象</span></span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = imageCache.get(path);</span><br><span class="line">        <span class="comment">// 判断是否存在软引用</span></span><br><span class="line">        <span class="keyword">if</span> (softBitmap == <span class="keyword">null</span>)  <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 通过软引用取出 bitmap 对象，如果由于内存不足 Bitmap 被回收，将取到空，如果未被回收，则可重复使用，提高速度</span></span><br><span class="line">        Bitmap bitmap = softBitmap.get();</span><br><span class="line">        <span class="keyword">return</span> bitmap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class CacheBySoftRef &#123;</span><br><span class="line">    // 先定义一个 HashMap，保存软引用对象</span><br><span class="line">    private Map&lt;String, SoftReference&lt;Bitmap&gt;&gt; imageCache = new HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();</span><br><span class="line">    </span><br><span class="line">    // 再定义一个方法，保存 bitmap 的软引用到 HashMap。</span><br><span class="line">    public void addBitmapToCache(String path) &#123;</span><br><span class="line">        // 强引用的 Bitmap 对象</span><br><span class="line">        Bitmap bitmap = BitmapFactory.decodeFile(path);</span><br><span class="line">        // 软引用的 bitmap 对象</span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = new SoftReference&lt;Bitmap&gt;(bitmap);</span><br><span class="line">        imageCache.put(path, softBitmap);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 获取的时候，可以通过 SoftReference 的 get() 方法得到 bitmap 对象</span><br><span class="line">    public Bitmap getBitmapByPath(String path) &#123;</span><br><span class="line">        // 从缓存中取软引用的 bitmap 对象</span><br><span class="line">        SoftReference&lt;Bitmap&gt; softBitmap = imageCache.get(path);</span><br><span class="line">        // 判断是否存在软引用</span><br><span class="line">        if (softBitmap == null)  return;</span><br><span class="line">        // 通过软引用取出 bitmap 对象，如果由于内存不足 Bitmap 被回收，将取到空，如果未被回收，则可重复使用，提高速度</span><br><span class="line">        Bitmap bitmap = softBitmap.get();</span><br><span class="line">        return bitmap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用软引用以后，在 OutOfMemory 异常发生之前，这些缓存的图片资源的内存空间可以被释放掉，从而避免内存达到上线，避免 Crash 发生。</p>
+<p>如果只是想避免 OutOfMemory 异常的发生，则可以使用软引用。如果对于应用的性能更在意，想尽快回收一些占用内存比较大的对象，则可以使用弱引用。</p>
+<p>另外可以根据对象<strong>是否经常使用</strong>来判断选择软引用还是弱引用。如果对象可能会经常使用，就尽可能的使用软引用。如果对象不被使用的可能性更大，就用弱引用。</p>
+<p>前面所说，创建一个静态的 Handler 内部类，然后对 Handler 持有的对象使用弱引用，这样在回收时也可以回收 Handler 持有的对象，但是这样做虽然避免了 Activity 的泄漏，不过 Looper 线程的消息队列中，还是可能会有待处理的消息，所以我们在 Activity 的 onDestory() 时，或者 Stop 时应该移除消息队列 MessageQueue 中的消息。</p>
+<p>移除消息队列中 Message 的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">removeCallbacks</span><span class="params">(Runnable r)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">removeCallbacks</span><span class="params">(Runnable r, Objject token)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">removeCallbacksAndMessages</span><span class="params">(Object token)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">removeMessages</span><span class="params">(<span class="keyword">int</span> what)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">removeMessages</span><span class="params">(<span class="keyword">int</span> what, Object object)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="尽量避免使用-static-成员变量"><a href="#尽量避免使用-static-成员变量" class="headerlink" title="尽量避免使用 static 成员变量"></a>尽量避免使用 static 成员变量</h3><p>如果成员变量被声明为 static, 那我们都知道其生命周期将与整个 APP 进程生命周期一样。</p>
+<p>这会导致一些列问题，如果你的 APP 进程设计上是常驻内存的，那即使 APP 切到后台，这部分内存也不会被释放。按照现在手机 APP 内存管理机制，占内存较大的后台集成将优先回收，因为如果此 APP 做过进程互相保活，那会造成 APP 在后台频繁重启。当手机安装了你参与开发的 APP 以后一夜时间手机被消耗空了电量、流量，你的 APP 不得不被用户卸载或者静默。</p>
+<p>修复方法是：</p>
+<p>不要在类初始化时初始化静态成员。可以考虑 lazy 初始化。架构设计上要死好是否真的有必要这样做，尽量避免。如果架构需要这么设计，那么此对象的生命周期你有责任管理起来。</p>
+<h3 id="避免-Override-finalize"><a href="#避免-Override-finalize" class="headerlink" title="避免 Override finalize()"></a>避免 Override finalize()</h3><ol>
+<li><p>finalize 方法被执行的时间不确定，不能依赖它来释放紧缺的资源，时间不确定的原因是：虚拟机调用 GC 的时间不确定 finalize daemon 线程被调度到的时间不确定。</p>
+</li>
+<li><p>finalize 方法只会被执行一次，及时对象被复活，如果已经执行过 finalize 方法，再次被 GC 时，也不会再执行，原因是：</p>
+<p>含有 finalize 方法的 Object 是在 new 的时候，由虚拟机生成了一个 finalize reference 在来引用到该 Object的，而在finalize 方法执行的时候，该 Object 所对应的 finalize Reference 会被释放掉。即使在这个时候把该Object 复活（即用强引用引用住该 Object），再第二次被 GC 的时候，由于没有了 finalize Reference 与之对应，所以 finalize 方法不会再执行。</p>
+</li>
+<li><p>含有 finalize 方法的 Object 需要至少经过两轮 GC 才有可能被释放。</p>
+</li>
+</ol>
+<h3 id="资源未关闭造成的内存泄漏"><a href="#资源未关闭造成的内存泄漏" class="headerlink" title="资源未关闭造成的内存泄漏"></a>资源未关闭造成的内存泄漏</h3><p>对于使用了 BroadcastRevicer, ContentObserver, File， 游标 Cursor， Stream， Bitmap 等资源的使用，应该在 Activity 销毁时及时关闭或者注销，否则这些资源将不会被回收，造成内存泄漏。</p>
+<h3 id="一些不良代码造成的内存压力"><a href="#一些不良代码造成的内存压力" class="headerlink" title="一些不良代码造成的内存压力"></a>一些不良代码造成的内存压力</h3><p>有些代码并不造成内存泄漏，但是他们， 或是对没使用的内存没进行有效及时的释放，或是没有有效的利用已有的对象而是频繁的申请新内存。</p>
+<p>比如: Bitmap 没有调用 recycle(), 对于 Bitmap 对象在不使用时，我们应该先调用  recycle(), 释放内存，然后设置为 null。 因为加载 bitmap 对象的内存空间，一部分是 Java 的， 一部分是 C 的（因为 Bitmap 分配的底层是通过 JNI 调用的）。而这个 recycle() 就是针对 C 部分的内存释放。构造 Adapter 时，没有使用缓存的 convertView， 每次都在创建新的 converView。 这里推荐使用 ViewHolder。 </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对 Activity 等组件的引用应该控制在 Activity 的生命周期内；如果不能就考虑使用 <code>getApplicationContext</code> 或者 <code>getApplication</code> ,以避免 Activity 被外部长生命周期的对象引用而泄漏。</p>
+<p>尽量不要在静态变量或者静态内部类中使用非静态外部成员变量（包括 context），即使要使用，也要考虑适时把外部成员变量置空；也可以在内部类中使用弱引用来引用外部类的变量。</p>
+<p>对生命周期比 Activity 长的内部类对象，并且内部类中使用了外部类的成员变量，可以这样避免内存泄漏：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将内部类改为静态内部类</span><br><span class="line">静态内部类中使用弱引用来引用外部成员的成员变量</span><br></pre></td></tr></table></figure>
+<p>Handler 的持有的引用对象最好使用弱引用，资源释放时，也可以清空 Handler 中的消息，比如在 Activity onStop 或者 onDestory 的时候，取消掉该 Handler 对象的 Message 和 Runnable。</p>
+<p>在 Java 的实现过程中，也要考虑其对象释放，最好的方法是在不使用某对象是，显式地将此对象赋值为 null, 比如使用完 Bitmap 后，先调用 recycle()， 再赋 null， 清空对图片等资源有直接引用或简洁引用的数组（使用 array.clear(); array=null）等，最好遵循谁创建谁释放的原则。</p>
+<p>正确关闭资源，对于使用了 BroadcastReceived， ContentObserver, File, Cursor, Stream, Bitmap 等资源的使用，应该在 Activity 销毁时及时关闭或者注销。</p>
+<p>保持对对象生命周期的敏感，特别注意单例，静态对象，全局性集合等的生命周期。</p>
 
       
     </div>
@@ -637,7 +685,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2019/08/09/Android 内存管理/">http://xiaoman.ren/2019/08/09/Android 内存管理/</a>
+    <a href="http://xiaoman.ren/2019/08/04/Android 内存管理/" title="Android 内存管理">http://xiaoman.ren/2019/08/04/Android 内存管理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -648,6 +696,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -657,8 +711,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/06/Java 各引用之间的区别/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/08/01/Handler 线程通信基础流程/" rel="next" title="Handler 线程通信基础流程">
+                <i class="fa fa-chevron-left"></i> Handler 线程通信基础流程
               </a>
             
           </div>
@@ -666,6 +720,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/09/Java 各引用之间的区别/" rel="prev" title="Java Reference">
+                Java Reference <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -767,7 +825,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -848,7 +908,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-内存管理"><span class="nav-number">1.</span> <span class="nav-text">Android 内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存分配策略"><span class="nav-number">1.1.</span> <span class="nav-text">Java 内存分配策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆与栈的区别："><span class="nav-number">1.2.</span> <span class="nav-text">堆与栈的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-是如何管理内存"><span class="nav-number">1.3.</span> <span class="nav-text">Java 是如何管理内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-中的内存泄露"><span class="nav-number">1.4.</span> <span class="nav-text">什么是 Java 中的内存泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细的-Java-中的内存泄露"><span class="nav-number">1.5.</span> <span class="nav-text">详细的 Java 中的内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存回收机制"><span class="nav-number">1.5.1.</span> <span class="nav-text">Java 内存回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存泄漏引起的原因"><span class="nav-number">1.5.2.</span> <span class="nav-text">Java 内存泄漏引起的原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-中常见的内存泄漏汇总"><span class="nav-number">1.6.</span> <span class="nav-text">Android  中常见的内存泄漏汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类泄漏"><span class="nav-number">1.6.1.</span> <span class="nav-text">集合类泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例造成的内存泄露"><span class="nav-number">1.6.2.</span> <span class="nav-text">单例造成的内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类-非静态内部类和异步线程"><span class="nav-number">1.6.3.</span> <span class="nav-text">匿名内部类/非静态内部类和异步线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类"><span class="nav-number">1.6.4.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-造成的内存泄漏"><span class="nav-number">1.6.5.</span> <span class="nav-text">Handler 造成的内存泄漏</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存分配策略"><span class="nav-number">1.</span> <span class="nav-text">Java 内存分配策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆与栈的区别："><span class="nav-number">2.</span> <span class="nav-text">堆与栈的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-是如何管理内存"><span class="nav-number">3.</span> <span class="nav-text">Java 是如何管理内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-中的内存泄露"><span class="nav-number">4.</span> <span class="nav-text">什么是 Java 中的内存泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细的-Java-中的内存泄露"><span class="nav-number">5.</span> <span class="nav-text">详细的 Java 中的内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存回收机制"><span class="nav-number">5.1.</span> <span class="nav-text">Java 内存回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-内存泄漏引起的原因"><span class="nav-number">5.2.</span> <span class="nav-text">Java 内存泄漏引起的原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-中常见的内存泄漏汇总"><span class="nav-number">6.</span> <span class="nav-text">Android  中常见的内存泄漏汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类泄漏"><span class="nav-number">6.1.</span> <span class="nav-text">集合类泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例造成的内存泄露"><span class="nav-number">6.2.</span> <span class="nav-text">单例造成的内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类-非静态内部类和异步线程"><span class="nav-number">6.3.</span> <span class="nav-text">匿名内部类/非静态内部类和异步线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类"><span class="nav-number">6.4.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-造成的内存泄漏"><span class="nav-number">6.5.</span> <span class="nav-text">Handler 造成的内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量避免使用-static-成员变量"><span class="nav-number">6.6.</span> <span class="nav-text">尽量避免使用 static 成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免-Override-finalize"><span class="nav-number">6.7.</span> <span class="nav-text">避免 Override finalize()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源未关闭造成的内存泄漏"><span class="nav-number">6.8.</span> <span class="nav-text">资源未关闭造成的内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些不良代码造成的内存压力"><span class="nav-number">6.9.</span> <span class="nav-text">一些不良代码造成的内存压力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
