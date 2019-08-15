@@ -1870,15 +1870,9 @@ pre .javascript .function {
 .site-author-image {
   border-radius: 100%;
 }
-<<<<<<< HEAD
-.site-author-image {
-  transition: transform 1s ease-out;
-}
 .site-author-image:hover {
   transform: rotateZ(360deg);
 }
-=======
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
 .site-author-name {
   margin: 5px 0 0;
   text-align: center;
@@ -1912,23 +1906,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  background: #ffcb1c;
-=======
-  background: #745e00;
->>>>>>> c1e1d1e28407f3ab1f40fc8a12b186e1bb22e897
-=======
-  background: #541726;
->>>>>>> 635e63267dce511beb0900f679bec6a30104b027
-=======
-  background: #71b188;
->>>>>>> 49a1ed28c05475f695ab56a06aac2e6bef35aa76
-=======
-  background: #2fa7af;
->>>>>>> f7ee449f7cd3e0b50a4c5002fdb1e2a323e8ed33
+  background: #266001;
 }
 .feed-link,
 .chat {
