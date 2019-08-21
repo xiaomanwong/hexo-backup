@@ -152,16 +152,13 @@ tags: Android
     ```
     adb shell pm list packages
     ```
-
-<<<<<<< HEAD
+    
 11. 安装证书
 
     ```
     adb shell am start -n com.android.certinstaller/.CertInstallerMain -a android.intent.action.VIEW -t application/x-x509-ca-cert file:///sdcard/cacert.cer
     ```
 
-
-=======
 22. 查看内存占用
 
     ```
@@ -178,5 +175,4 @@ tags: Android
     adb shell dumpsys activity | grep mFocusedActivity
     ```
 
-    
->>>>>>> f9adb0c31383a6ee73b1b79bc3661b2e25cff86a
+
